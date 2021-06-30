@@ -70,4 +70,10 @@ class InputBack : public InputChoice
         InputBack();
 };
 
+class InputExit : public InputChoice
+{
+    public:
+        InputExit();
+};
+
 #endif

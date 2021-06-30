@@ -143,3 +143,5 @@ Bundle InputFormat::build_bundle(std::string input_value)
 }
 
 InputBack::InputBack() : InputChoice("Back", {{"Back", "back"}}) {}
+
+InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}

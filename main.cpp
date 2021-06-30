@@ -7,7 +7,7 @@
 
 int main()
 {
-    InputBack input_back;
-    input_back.input();
+    InputExit input_exit;
+    input_exit.input();
     return 0;
 }
