@@ -64,4 +64,10 @@ class InputFormat : public InputElement
         std::string get_text_without_title();
 };
 
+class InputBack : public InputChoice
+{
+    public:
+        InputBack();
+};
+
 #endif

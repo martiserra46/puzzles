@@ -141,3 +141,5 @@ Bundle InputFormat::build_bundle(std::string input_value)
 {
     return input_converter->convert_input(input_value);
 }
+
+InputBack::InputBack() : InputChoice("Back", {{"Back", "back"}}) {}
