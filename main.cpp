@@ -7,7 +7,7 @@
 
 int main()
 {
-    InputSelectGenerate input_exit;
+    InputLevel input_exit(10);
     input_exit.input();
     return 0;
 }

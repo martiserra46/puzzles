@@ -6,6 +6,7 @@
 #include "input_validator.h"
 #include "input_converter.h"
 #include <utility>
+#include "number_utils.h"
 
 #define INPUT_MAX_LINE_WIDTH 30
 
@@ -152,5 +153,20 @@ InputSelectGenerate::InputSelectGenerate() : InputGroup(
     {
         new InputChoice("Select or Generate", {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}),
         new InputExit()
+    }
+) {}
+
+InputDifficulty::InputDifficulty() : InputGroup(
+    {
+        new InputChoice("Difficulty", {{"Easy", "e"}, {"Medium", "m"}, {"Hard", "h"}}),
+        new InputExitRestart()
+    }
+) {}
+
+InputLevel::InputLevel(int num_levels) : InputGroup(
+    {
+        new InputFormat("Level", "level-number", new InputNumberValidator(1, num_levels), new InputNumberConverter("level_number"),
+        "level-number has to be a number between 1 and " + std::to_string(num_levels), "(ex: " + std::to_string(random(1, num_levels)) + ")"),
+        new InputExitRestart()
     }
 ) {}

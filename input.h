@@ -88,4 +88,16 @@ class InputSelectGenerate : public InputGroup
         InputSelectGenerate();
 };
 
+class InputDifficulty : public InputGroup
+{
+    public:
+        InputDifficulty();
+};
+
+class InputLevel : public InputGroup
+{
+    public:
+        InputLevel(int num_levels);
+};
+
 #endif
