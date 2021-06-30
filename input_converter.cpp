@@ -13,15 +13,17 @@ Bundle InputNumberConverter::convert_input(std::string input_value)
     return bundle;
 }
 
-InputRowColumnConverter::InputRowColumnConverter(std::string row_name, std::string column_name) : row_name(row_name), column_name(column_name) {}
+InputTwoNumbersConverter::InputTwoNumbersConverter(
+    std::string number_1_name, std::string number_2_name
+) : number_1_name(number_1_name), number_2_name(number_2_name) {}
 
-Bundle InputRowColumnConverter::convert_input(std::string input_value)
+Bundle InputTwoNumbersConverter::convert_input(std::string input_value)
 {
     Bundle bundle;
     std::vector<std::string> values = split(input_value, ',');
-    int row = std::stoi(values[0]);
-    int col = std::stoi(values[1]);
-    bundle.set_int(row_name, row);
-    bundle.set_int(column_name, col);
+    int number_1 = std::stoi(values[0]);
+    int number_2 = std::stoi(values[1]);
+    bundle.set_int(number_1_name, number_1);
+    bundle.set_int(number_2_name, number_2);
     return bundle;
 }

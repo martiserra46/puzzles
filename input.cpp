@@ -188,8 +188,8 @@ InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, 
         new InputFormat(
             "Rows & Columns",
             "rows,columns",
-            new InputRowColumnValidator(min_rows, max_rows, min_columns, max_columns),
-            new InputRowColumnConverter("rows", "columns"),
+            new InputTwoNumbersValidator(min_rows, max_rows, min_columns, max_columns),
+            new InputTwoNumbersConverter("rows", "columns"),
             "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
             "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
             "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"

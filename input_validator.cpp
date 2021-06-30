@@ -22,27 +22,27 @@ bool InputNumberValidator::is_valid(std::string input_value)
     return true;
 }
 
-InputRowColumnValidator::InputRowColumnValidator(int min_row, int max_row, int min_col, int max_col)
+InputTwoNumbersValidator::InputTwoNumbersValidator(int min_num_1, int max_num_1, int min_num_2, int max_num_2)
 {
-    set_min_max_row_column(min_row, max_row, min_col, max_col);
+    set_min_max_num_1_num_2(min_num_1, max_num_1, min_num_2, max_num_2);
 }
 
-void InputRowColumnValidator::set_min_max_row_column(int min_row, int max_row, int min_col, int max_col)
+void InputTwoNumbersValidator::set_min_max_num_1_num_2(int min_num_1, int max_num_1, int min_num_2, int max_num_2)
 {
-    this->min_row = min_row;
-    this->max_row = max_row;
-    this->min_col = min_col;
-    this->max_col = max_col;
+    this->min_num_1 = min_num_1;
+    this->max_num_1 = max_num_1;
+    this->min_num_2 = min_num_2;
+    this->max_num_2 = max_num_2;
 }
 
-bool InputRowColumnValidator::is_valid(std::string input_value)
+bool InputTwoNumbersValidator::is_valid(std::string input_value)
 {
     std::vector<std::string> values = split(input_value, ',');
     if (values.size() != 2) return false;
     if (!is_number(values[0]) || !is_number(values[1])) return false;
-    int row = std::stoi(values[0]);
-    int col = std::stoi(values[1]);
-    if (row < min_row || row > max_row) return false;
-    if (col < min_col || col > max_col) return false;
+    int num_1 = std::stoi(values[0]);
+    int num_2 = std::stoi(values[1]);
+    if (num_1 < min_num_1 || num_1 > max_num_1) return false;
+    if (num_2 < min_num_2 || num_2 > max_num_2) return false;
     return true;
 }

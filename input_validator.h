@@ -20,14 +20,14 @@ class InputNumberValidator : public InputValidator
         int min, max;
 };
 
-class InputRowColumnValidator : public InputValidator
+class InputTwoNumbersValidator : public InputValidator
 {
     public:
-        InputRowColumnValidator(int min_row, int max_row, int min_col, int max_col);
-        void set_min_max_row_column(int min_row, int max_row, int min_col, int max_col);
+        InputTwoNumbersValidator(int min_num_1, int max_num_1, int min_num_2, int max_num_2);
+        void set_min_max_num_1_num_2(int min_num_1, int max_num_1, int min_num_2, int max_num_2);
         bool is_valid(std::string input_value);
     private:
-        int min_row, min_col, max_row, max_col;
+        int min_num_1, min_num_2, max_num_1, max_num_2;
 };
 
 #endif

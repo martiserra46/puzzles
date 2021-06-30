@@ -19,11 +19,11 @@ class InputNumberConverter : public InputConverter
         Bundle convert_input(std::string input_value);
 };
 
-class InputRowColumnConverter : public InputConverter
+class InputTwoNumbersConverter : public InputConverter
 {
-    std::string row_name, column_name;
+    std::string number_1_name, number_2_name;
     public:
-        InputRowColumnConverter(std::string row_name, std::string column_name);
+        InputTwoNumbersConverter(std::string number_1_name, std::string number_2_name);
         Bundle convert_input(std::string input_value);
 };
 
