@@ -5,6 +5,7 @@
 #include "bundle.h"
 #include <vector>
 #include <utility>
+#include "input_validator.h"
 
 class Input
 {
@@ -41,6 +42,20 @@ class InputChoice : public InputElement
     std::vector<std::pair<std::string, std::string>> list_choices;
     public:
         InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices);
+        bool is_valid(std::string value);
+    protected:
+        std::string get_text_without_title();
+};
+
+class InputFormat : public InputElement
+{
+    std::string format;
+    InputValidator *input_validator;
+    std::string description;
+    std::string example;
+    public:
+        InputFormat(std::string title, std::string format, InputValidator *input_validator, std::string description, std::string example);
+        ~InputFormat();
         bool is_valid(std::string value);
     protected:
         std::string get_text_without_title();

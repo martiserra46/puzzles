@@ -3,6 +3,8 @@
 #include <string>
 #include "text_utils.h"
 #include <vector>
+#include "input_validator.h"
+#include <utility>
 
 #define INPUT_MAX_LINE_WIDTH 30
 
@@ -79,8 +81,6 @@ Bundle InputGroup::build_bundle(std::string input_value)
     }
     return Bundle();
 }
-
-InputChoice::InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices) : InputElement(title), list_choices(list_choices) {}
 
 bool InputChoice::is_valid(std::string input_value)
 {
