@@ -52,6 +52,12 @@ std::string InputElement::get_text()
 
 InputGroup::InputGroup(std::vector<Input*> list_inputs) : list_inputs(list_inputs) {}
 
+InputGroup::~InputGroup()
+{
+    for (Input *input : list_inputs) delete input;
+    list_inputs.clear();
+}
+
 std::string InputGroup::get_text()
 {
     std::string text = "";

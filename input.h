@@ -33,6 +33,7 @@ class InputGroup : public Input
     std::vector<Input*> list_inputs;
     public:
         InputGroup(std::vector<Input*> list_inputs);
+        ~InputGroup();
         std::string get_text();
         bool is_valid(std::string input_value);
         Bundle build_bundle(std::string input_value);
