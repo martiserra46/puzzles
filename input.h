@@ -76,6 +76,12 @@ class InputExit : public InputChoice
         InputExit();
 };
 
+class InputExitRestart : public InputChoice
+{
+    public:
+        InputExitRestart();
+};
+
 class InputSelectGenerate : public InputGroup
 {
     public:

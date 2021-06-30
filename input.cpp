@@ -146,6 +146,8 @@ InputBack::InputBack() : InputChoice("Back", {{"Back", "back"}}) {}
 
 InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}
 
+InputExitRestart::InputExitRestart() : InputChoice("Options", {{"Exit", "exit"}, {"Restart", "restart"}}) {}
+
 InputSelectGenerate::InputSelectGenerate() : InputGroup(
     {
         new InputChoice("Select or Generate", {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}),
