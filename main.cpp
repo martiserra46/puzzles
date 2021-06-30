@@ -1,11 +1,11 @@
 #include <iostream>
-#include "bundle.h"
+#include "text_utils.h"
 
 int main()
 {
-    Bundle bundle;
-    bundle.set_string("hola", "adeu");
-    bundle.set_int("num", 4);
-    std::cout << bundle.get_string("hola") << " " << bundle.get_int("num") << std::endl;
+    std::cout << text_between_chars(to_uppercase("Hola"), '-', 30) << std::endl;
+    std::cout << text_max_line_width("Ho", 4) << std::endl;
+    std::cout << "a" << std::endl;
+    std::cout << split("hola, em dic Martí", ' ')[0] << std::endl;
     return 0;
 }
