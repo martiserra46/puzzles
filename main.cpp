@@ -7,7 +7,7 @@
 
 int main()
 {
-    InputRowsColumns input_exit(5, 10, 5, 10);
+    InputNumFigures input_exit(5, 10);
     input_exit.input();
     return 0;
 }

@@ -106,4 +106,10 @@ class InputRowsColumns : public InputGroup
         InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns);
 };
 
+class InputNumFigures : public InputGroup
+{
+    public:
+        InputNumFigures(int min, int max);
+};
+
 #endif

@@ -169,7 +169,7 @@ InputLevel::InputLevel(int num_levels) : InputGroup(
             "Level",
             "level-number",
             new InputNumberValidator(1, num_levels),
-            new InputNumberConverter("level_number"),
+            new InputNumberConverter("level-number"),
             "level-number has to be a number between 1 and " + std::to_string(num_levels),
             "(ex: " + std::to_string(random(1, num_levels)) + ")"
         ),
@@ -187,6 +187,20 @@ InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, 
             "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
             "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
             "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"
+        ),
+        new InputExitRestart()
+    }
+) {}
+
+InputNumFigures::InputNumFigures(int min, int max) : InputGroup(
+    {
+        new InputFormat(
+            "Num. Figures",
+            "num-figures",
+            new InputNumberValidator(min, max),
+            new InputNumberConverter("num-figures"),
+            "num-figures has to be a number between " + std::to_string(min) + " and " + std::to_string(max),
+            "(ex: " + std::to_string(random(min, max)) + ")"
         ),
         new InputExitRestart()
     }
