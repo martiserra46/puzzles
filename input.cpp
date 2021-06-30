@@ -105,3 +105,31 @@ std::string InputChoice::get_text_without_title()
     }
     return text_max_line_width(text, INPUT_MAX_LINE_WIDTH) + "\n";
 }
+
+InputFormat::InputFormat(
+    std::string title,
+    std::string format,
+    InputValidator *input_validator,
+    std::string description,
+    std::string example
+) : InputElement(title), format(format), input_validator(input_validator), description(description), example(example) {}
+
+InputFormat::~InputFormat()
+{
+    delete input_validator;
+}
+
+std::string InputFormat::get_text_without_title()
+{
+    std::string text = ">> " + format + "\n";
+    text += "\n";
+    text += description + "\n";
+    text += "\n";
+    text += example + "\n";
+    return text_max_line_width(text, INPUT_MAX_LINE_WIDTH) + "\n";
+}
+
+bool InputFormat::is_valid(std::string value)
+{
+    return input_validator->is_valid(value);
+}
