@@ -145,3 +145,10 @@ Bundle InputFormat::build_bundle(std::string input_value)
 InputBack::InputBack() : InputChoice("Back", {{"Back", "back"}}) {}
 
 InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}
+
+InputSelectGenerate::InputSelectGenerate() : InputGroup(
+    {
+        new InputChoice("Select or Generate", {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}),
+        new InputExit()
+    }
+) {}

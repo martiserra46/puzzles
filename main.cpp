@@ -7,7 +7,7 @@
 
 int main()
 {
-    InputExit input_exit;
+    InputSelectGenerate input_exit;
     input_exit.input();
     return 0;
 }
