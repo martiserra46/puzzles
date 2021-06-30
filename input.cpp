@@ -31,6 +31,11 @@ std::pair<std::string, Bundle> Input::input()
     return std::pair<std::string, Bundle>(input_value, bundle);
 }
 
+Bundle Input::build_bundle(std::string input_value)
+{
+    return Bundle();
+}
+
 InputElement::InputElement(std::string title) : title(title) {}
 
 std::string InputElement::get_text()
