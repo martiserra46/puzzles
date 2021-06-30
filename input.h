@@ -36,4 +36,15 @@ class InputGroup : public Input
         std::vector<Input*> list_inputs;
 };
 
+class InputChoice : public InputElement
+{
+    public:
+        InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices);
+        bool is_valid(std::string value);
+    protected:
+        std::string get_text_without_title();
+    private:
+        std::vector<std::pair<std::string, std::string>> list_choices;
+};
+
 #endif
