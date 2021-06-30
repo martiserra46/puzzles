@@ -82,6 +82,11 @@ Bundle InputGroup::build_bundle(std::string input_value)
     return Bundle();
 }
 
+InputChoice::InputChoice(
+    std::string title,
+    std::vector<std::pair<std::string, std::string>> list_choices
+) : InputElement(title), list_choices(list_choices) {}
+
 bool InputChoice::is_valid(std::string input_value)
 {
     for (int i = 0; i < list_choices.size(); i++)
