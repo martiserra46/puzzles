@@ -14,4 +14,14 @@ class Input
         virtual Bundle build_bundle(std::string input_value) = 0;
 };
 
+class InputElement : public Input
+{
+    std::string title;
+    public:
+        InputElement(std::string title);
+        std::string get_text();
+    protected:
+        virtual std::string get_text_without_title() = 0;
+};
+
 #endif
