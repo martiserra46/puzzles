@@ -165,8 +165,29 @@ InputDifficulty::InputDifficulty() : InputGroup(
 
 InputLevel::InputLevel(int num_levels) : InputGroup(
     {
-        new InputFormat("Level", "level-number", new InputNumberValidator(1, num_levels), new InputNumberConverter("level_number"),
-        "level-number has to be a number between 1 and " + std::to_string(num_levels), "(ex: " + std::to_string(random(1, num_levels)) + ")"),
+        new InputFormat(
+            "Level",
+            "level-number",
+            new InputNumberValidator(1, num_levels),
+            new InputNumberConverter("level_number"),
+            "level-number has to be a number between 1 and " + std::to_string(num_levels),
+            "(ex: " + std::to_string(random(1, num_levels)) + ")"
+        ),
+        new InputExitRestart()
+    }
+) {}
+
+InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns) : InputGroup(
+    {
+        new InputFormat(
+            "Rows & Columns",
+            "rows,columns",
+            new InputRowColumnValidator(min_rows, max_rows, min_columns, max_columns),
+            new InputRowColumnConverter("rows", "columns"),
+            "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
+            "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
+            "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"
+        ),
         new InputExitRestart()
     }
 ) {}

@@ -7,7 +7,7 @@
 
 int main()
 {
-    InputLevel input_exit(10);
+    InputRowsColumns input_exit(5, 10, 5, 10);
     input_exit.input();
     return 0;
 }

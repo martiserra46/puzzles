@@ -100,4 +100,10 @@ class InputLevel : public InputGroup
         InputLevel(int num_levels);
 };
 
+class InputRowsColumns : public InputGroup
+{
+    public:
+        InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns);
+};
+
 #endif
