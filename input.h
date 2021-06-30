@@ -7,6 +7,7 @@
 class Input
 {
     public:
+        virtual ~Input() {};
         std::pair<std::string, Bundle> input();
         virtual std::string get_text() = 0;
         virtual bool is_valid(std::string input_value) = 0;
