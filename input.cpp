@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "text_utils.h"
+#include <vector>
 
 #define INPUT_MAX_LINE_WIDTH 30
 
@@ -38,4 +39,38 @@ std::string InputElement::get_text()
     std::string text = text_between_chars(title_to_upper, '-', INPUT_MAX_LINE_WIDTH) + "\n";
     text += get_text_without_title() + "\n";
     return text;
+}
+
+InputGroup::InputGroup(std::vector<Input*> list_inputs) : list_inputs(list_inputs) {}
+
+std::string InputGroup::get_text()
+{
+    std::string text = "";
+    for (int i = 0; i < list_inputs.size(); i++)
+    {
+        text += (*list_inputs[i]).get_text();
+    }
+    return text_max_line_width(text, INPUT_MAX_LINE_WIDTH);
+}
+
+bool InputGroup::is_valid(std::string input_value)
+{
+    for (int i = 0; i < list_inputs.size(); i++)
+    {
+        if ((*list_inputs[i]).is_valid(input_value)) return true;
+    }
+    return false;
+}
+
+Bundle InputGroup::build_bundle(std::string input_value)
+{
+    for (int i = 0; i < list_inputs.size(); i++)
+    {
+        Input *input = list_inputs[i];
+        if ((*input).is_valid(input_value))
+        {
+            return input->build_bundle(input_value);
+        }
+    }
+    return Bundle();
 }
