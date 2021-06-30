@@ -25,7 +25,7 @@ std::string text_max_line_width(std::string text, int max_line_width)
         std::vector<std::string> result_text_line = text_line_to_text_lines(text_line, max_line_width);
         result_lines.insert(result_lines.end(), result_text_line.begin(), result_text_line.end());
     }
-    for (std::string line : result_lines) result += line;
+    for (std::string line : result_lines) result += line + "\n";
     return result;
 }
 
