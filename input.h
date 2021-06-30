@@ -28,24 +28,22 @@ class InputElement : public Input
 
 class InputGroup : public Input
 {
+    std::vector<Input*> list_inputs;
     public:
         InputGroup(std::vector<Input*> list_inputs);
         std::string get_text();
         bool is_valid(std::string input_value);
         Bundle build_bundle(std::string input_value);
-    private:
-        std::vector<Input*> list_inputs;
 };
 
 class InputChoice : public InputElement
 {
+    std::vector<std::pair<std::string, std::string>> list_choices;
     public:
         InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices);
         bool is_valid(std::string value);
     protected:
         std::string get_text_without_title();
-    private:
-        std::vector<std::pair<std::string, std::string>> list_choices;
 };
 
 #endif
