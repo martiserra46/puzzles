@@ -10,6 +10,7 @@ class Input
         std::pair<std::string, Bundle> input();
         std::string get_text();
         bool is_valid(std::string input_value);
+        Bundle build_bundle(std::string input_value);
 };
 
 #endif
