@@ -1,11 +1,11 @@
 #include <iostream>
-#include "text_utils.h"
+#include "number_utils.h"
 
 int main()
 {
-    std::cout << text_between_chars(to_uppercase("Hola"), '-', 30) << std::endl;
-    std::cout << text_max_line_width("Ho", 4) << std::endl;
-    std::cout << "a" << std::endl;
-    std::cout << split("hola, em dic Martí", ' ')[0] << std::endl;
+    set_random_seed();
+    std::cout << random(1,5) << std::endl;
+    std::cout << is_number("43") << std::endl;
+    std::cout << is_number("fda") << std::endl;
     return 0;
 }
