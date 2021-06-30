@@ -1,11 +1,10 @@
 #include <iostream>
-#include "number_utils.h"
+#include "input.h"
+#include <utility>
 
 int main()
 {
-    set_random_seed();
-    std::cout << random(1,5) << std::endl;
-    std::cout << is_number("43") << std::endl;
-    std::cout << is_number("fda") << std::endl;
+    InputChoice input_choice("Difficulty", {{"Easy", "e"}});
+    input_choice.input();
     return 0;
 }

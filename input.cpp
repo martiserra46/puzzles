@@ -79,3 +79,24 @@ Bundle InputGroup::build_bundle(std::string input_value)
     }
     return Bundle();
 }
+
+InputChoice::InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices) : InputElement(title), list_choices(list_choices) {}
+
+bool InputChoice::is_valid(std::string input_value)
+{
+    for (int i = 0; i < list_choices.size(); i++)
+    {
+        if (list_choices[i].second == input_value) return true;
+    }
+    return false;
+}
+
+std::string InputChoice::get_text_without_title()
+{
+    std::string text = "";
+    for (int i = 0; i < list_choices.size(); i++)
+    {
+        text += list_choices[i].first + " (" + list_choices[i].second + ")\n";
+    }
+    return text_max_line_width(text, INPUT_MAX_LINE_WIDTH) + "\n";
+}
