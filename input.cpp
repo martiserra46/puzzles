@@ -4,6 +4,7 @@
 #include "text_utils.h"
 #include <vector>
 #include "input_validator.h"
+#include "input_converter.h"
 #include <utility>
 
 #define INPUT_MAX_LINE_WIDTH 30
@@ -110,13 +111,15 @@ InputFormat::InputFormat(
     std::string title,
     std::string format,
     InputValidator *input_validator,
+    InputConverter *input_converter,
     std::string description,
     std::string example
-) : InputElement(title), format(format), input_validator(input_validator), description(description), example(example) {}
+) : InputElement(title), format(format), input_validator(input_validator), input_converter(input_converter), description(description), example(example) {}
 
 InputFormat::~InputFormat()
 {
     delete input_validator;
+    delete input_converter;
 }
 
 std::string InputFormat::get_text_without_title()
@@ -132,4 +135,9 @@ std::string InputFormat::get_text_without_title()
 bool InputFormat::is_valid(std::string value)
 {
     return input_validator->is_valid(value);
+}
+
+Bundle InputFormat::build_bundle(std::string input_value)
+{
+    return input_converter->convert_input(input_value);
 }

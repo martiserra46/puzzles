@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include "input_validator.h"
+#include "input_converter.h"
 
 class Input
 {
@@ -51,12 +52,14 @@ class InputFormat : public InputElement
 {
     std::string format;
     InputValidator *input_validator;
+    InputConverter *input_converter;
     std::string description;
     std::string example;
     public:
-        InputFormat(std::string title, std::string format, InputValidator *input_validator, std::string description, std::string example);
+        InputFormat(std::string title, std::string format, InputValidator *input_validator, InputConverter *input_converter, std::string description, std::string example);
         ~InputFormat();
         bool is_valid(std::string value);
+        Bundle build_bundle(std::string input_value);
     protected:
         std::string get_text_without_title();
 };
