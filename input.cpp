@@ -31,9 +31,15 @@ std::pair<std::string, Bundle> Input::input()
 
     std::cout << std::endl;
 
+    std::string name = build_name(input_value);
     Bundle bundle = build_bundle(input_value);
 
-    return std::pair<std::string, Bundle>(input_value, bundle);
+    return std::pair<std::string, Bundle>(name, bundle);
+}
+
+std::string build_name(std::string input_value)
+{
+    return input_value;
 }
 
 Bundle Input::build_bundle(std::string input_value)
@@ -147,6 +153,11 @@ std::string InputFormat::get_text_without_title()
 bool InputFormat::is_valid(std::string input_value)
 {
     return input_validator->is_valid(input_value);
+}
+
+std::string InputFormat::build_name(std::string input_value)
+{
+    return format;
 }
 
 Bundle InputFormat::build_bundle(std::string input_value)

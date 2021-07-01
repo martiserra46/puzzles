@@ -1,6 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include <string>
 #include <utility>
 #include "bundle.h"
 #include <vector>
@@ -15,6 +16,7 @@ class Input
         std::pair<std::string, Bundle> input();
         virtual std::string get_text() = 0;
         virtual bool is_valid(std::string input_value) = 0;
+        virtual std::string build_name(std::string input_value);
         virtual Bundle build_bundle(std::string input_value);
 };
 
@@ -60,6 +62,7 @@ class InputFormat : public InputElement
         InputFormat(std::string title, std::string format, InputValidator *input_validator, InputConverter *input_converter, std::string description, std::string example);
         ~InputFormat();
         bool is_valid(std::string input_value);
+        std::string build_name(std::string input_value);
         Bundle build_bundle(std::string input_value);
     protected:
         std::string get_text_without_title();
