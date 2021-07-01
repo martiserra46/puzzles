@@ -10,6 +10,7 @@
 
 #define INPUT_MAX_LINE_WIDTH 30
 
+/** Input **/
 std::pair<std::string, Bundle> Input::input()
 {
     std::cout << get_text();
@@ -40,6 +41,7 @@ Bundle Input::build_bundle(std::string input_value)
     return Bundle();
 }
 
+/** InputElement **/
 InputElement::InputElement(std::string title) : title(title) {}
 
 std::string InputElement::get_text()
@@ -50,6 +52,7 @@ std::string InputElement::get_text()
     return text;
 }
 
+/** InputGroup **/
 InputGroup::InputGroup(std::vector<Input*> list_inputs) : list_inputs(list_inputs) {}
 
 InputGroup::~InputGroup()
@@ -90,6 +93,7 @@ Bundle InputGroup::build_bundle(std::string input_value)
     return Bundle();
 }
 
+/** InputChoice **/
 InputChoice::InputChoice(
     std::string title,
     std::vector<std::pair<std::string, std::string>> list_choices
@@ -114,6 +118,7 @@ std::string InputChoice::get_text_without_title()
     return text_max_line_width(text, INPUT_MAX_LINE_WIDTH) + "\n";
 }
 
+/** InputFormat **/
 InputFormat::InputFormat(
     std::string title,
     std::string format,
@@ -149,12 +154,16 @@ Bundle InputFormat::build_bundle(std::string input_value)
     return input_converter->convert_input(input_value);
 }
 
+/** InputBack **/
 InputBack::InputBack() : InputChoice("Back", {{"Back", "back"}}) {}
 
+/** InputExit **/
 InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}
 
+/** InputExitRestart **/
 InputExitRestart::InputExitRestart() : InputChoice("Options", {{"Exit", "exit"}, {"Restart", "restart"}}) {}
 
+/** InputSelectGenerate **/
 InputSelectGenerate::InputSelectGenerate() : InputGroup(
     {
         new InputChoice("Select or Generate", {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}),
@@ -162,6 +171,7 @@ InputSelectGenerate::InputSelectGenerate() : InputGroup(
     }
 ) {}
 
+/** InputDifficulty **/
 InputDifficulty::InputDifficulty() : InputGroup(
     {
         new InputChoice("Difficulty", {{"Easy", "e"}, {"Medium", "m"}, {"Hard", "h"}}),
@@ -169,6 +179,7 @@ InputDifficulty::InputDifficulty() : InputGroup(
     }
 ) {}
 
+/** InputLevel **/
 InputLevel::InputLevel(int num_levels) : InputGroup(
     {
         new InputFormat(
@@ -183,6 +194,7 @@ InputLevel::InputLevel(int num_levels) : InputGroup(
     }
 ) {}
 
+/** InputRowsColumns **/
 InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns) : InputGroup(
     {
         new InputFormat(
@@ -198,6 +210,7 @@ InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, 
     }
 ) {}
 
+/** InputNumFigures **/
 InputNumFigures::InputNumFigures(int min, int max) : InputGroup(
     {
         new InputFormat(
