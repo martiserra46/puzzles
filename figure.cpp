@@ -16,12 +16,12 @@ char Figure::get_letter() const
     return letter;
 }
 
-std::size_t Figure::get_width() const
+size_t Figure::get_width() const
 {
     return width;
 }
 
-std::size_t Figure::get_height() const
+size_t Figure::get_height() const
 {
     return height;
 }
