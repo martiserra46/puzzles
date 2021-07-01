@@ -3,6 +3,7 @@
 #include "bundle.h"
 #include "text_utils.h"
 
+/** InputNumberConverter **/
 InputNumberConverter::InputNumberConverter(std::string number_name) : number_name(number_name) {}
 
 Bundle InputNumberConverter::convert_input(std::string input_value)
@@ -13,6 +14,7 @@ Bundle InputNumberConverter::convert_input(std::string input_value)
     return bundle;
 }
 
+/** InputTwoNumbersConverter **/
 InputTwoNumbersConverter::InputTwoNumbersConverter(
     std::string number_1_name, std::string number_2_name
 ) : number_1_name(number_1_name), number_2_name(number_2_name) {}
