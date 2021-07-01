@@ -1,6 +1,5 @@
 #include "action.h"
-#include <cstdlib>
-#include <iostream>
+#include "system_utils.h"
 
 ActionGroup::ActionGroup(std::vector<Action*> actions) : actions(actions) {}
 
@@ -34,6 +33,7 @@ bool ActionBack::do_action(std::string name, Bundle bundle)
 {
     if (name == "back")
     {
+        clear_screen();
         input_action->do_input_action();
         return true;
     }
@@ -43,8 +43,7 @@ bool ActionBack::do_action(std::string name, Bundle bundle)
 bool ActionExit::do_action(std::string name, Bundle bundle)
 {
     if (name != "exit") return false;
-    system("clear");
-    exit(0);
+    quit();
     return true;
 }
 
@@ -52,12 +51,12 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
 {
     if (name == "exit")
     {
-        system("clear");
-        exit(0);
+        quit();
         return true;
     }
     else if (name == "restart")
     {
+        clear_screen();
         InputActionSelectGenerate input_action;
         input_action.do_input_action();
         return true;
@@ -69,12 +68,14 @@ bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
 {
     if (name == "s")
     {
+        clear_screen();
         InputActionDifficulty input_action;
         input_action.do_input_action();
         return true;
     }
     else if (name == "g")
     {
+        clear_screen();
         InputActionRowsColumns input_action;
         input_action.do_input_action();
         return true;
@@ -86,6 +87,7 @@ bool ActionDifficulty::do_action(std::string name, Bundle bundle)
 {
     if (name == "e" || name == "m" || name == "h")
     {
+        clear_screen();
         InputActionLevel input_action(name);
         input_action.do_input_action();
         return true;
@@ -102,6 +104,7 @@ bool ActionLevel::do_action(std::string name, Bundle bundle)
 {
     if (name == "level-number")
     {
+        clear_screen();
         int level = bundle.get_int("level-number");
         // GameController game_controller;
         // game_controller.play_selected_level(difficulty, level);
@@ -114,6 +117,7 @@ bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
 {
     if (name == "rows,columns")
     {
+        clear_screen();
         int rows = bundle.get_int("rows");
         int columns = bundle.get_int("columns");
         InputActionNumFigures input_action(rows, columns);
@@ -133,6 +137,7 @@ bool ActionNumFigures::do_action(std::string name, Bundle bundle)
 {
     if (name == "num-figures")
     {
+        clear_screen();
         int num_figures = bundle.get_int("num-figures");
         // GameController game_controller;
         // game_controller.play_generated_puzzle(rows, columns, num_figures);
