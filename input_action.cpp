@@ -3,6 +3,7 @@
 #include "bundle.h"
 #include <utility>
 
+/** InputAction **/
 InputAction::InputAction(Input *input, Action *action) : input(input), action(action) {}
 
 InputAction::~InputAction()
@@ -17,16 +18,19 @@ void InputAction::do_input_action()
     action->do_action(input_value.first, input_value.second);
 }
 
+/** InputActionSelectGenerate **/
 InputActionSelectGenerate::InputActionSelectGenerate() : InputAction(
     new InputSelectGenerateWithOptions(),
     new ActionSelectGenerateWithOptions()
 ) {}
 
+/** InputActionDifficulty **/
 InputActionDifficulty::InputActionDifficulty() : InputAction(
     new InputDifficultyWithOptions(),
     new ActionDifficultyWithOptions()
 ) {}
 
+/** InputActionLevel **/
 InputActionLevel::InputActionLevel(std::string difficulty) : InputAction(
     new InputLevelWithOptions(difficulty),
     new ActionLevelWithOptions(difficulty)
@@ -35,11 +39,13 @@ InputActionLevel::InputActionLevel(std::string difficulty) : InputAction(
     this->difficulty = difficulty;
 }
 
+/** InputActionRowsColumns **/
 InputActionRowsColumns::InputActionRowsColumns() : InputAction(
     new InputRowsColumnsWithOptions(),
     new ActionRowsColumnsWithOptions()
 ) {}
 
+/** InputActionNumFigures **/
 InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputAction(
     new InputNumFiguresWithOptions(rows, columns),
     new ActionNumFiguresWithOptions(rows, columns)
