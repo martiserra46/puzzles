@@ -29,6 +29,7 @@ class ActionBack : public Action
     InputAction *input_action;
     public:
         ActionBack(InputAction *input_action);
+        ~ActionBack();
         bool do_action(std::string name, Bundle bundle);
 };
 

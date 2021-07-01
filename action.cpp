@@ -25,6 +25,11 @@ bool ActionGroup::do_action(std::string name, Bundle bundle)
 
 ActionBack::ActionBack(InputAction *input_action) : input_action(input_action) {}
 
+ActionBack::~ActionBack()
+{
+    delete input_action;
+}
+
 bool ActionBack::do_action(std::string name, Bundle bundle)
 {
     if (name == "back")
@@ -53,8 +58,8 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
     }
     else if (name == "restart")
     {
-        //InputActionSelectGenerate input_action;
-        //input_action.do_input_action();
+        InputActionSelectGenerate input_action;
+        input_action.do_input_action();
         return true;
     }
     return false;
@@ -64,14 +69,14 @@ bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
 {
     if (name == "s")
     {
-        // InputActionDifficulty input_action;
-        // input_action.do_input_action();
+        InputActionDifficulty input_action;
+        input_action.do_input_action();
         return true;
     }
     else if (name == "g")
     {
-        // InputActionRowsColumns input_action;
-        // input_action.do_input_action();
+        InputActionRowsColumns input_action;
+        input_action.do_input_action();
         return true;
     }
     return false;
@@ -81,8 +86,8 @@ bool ActionDifficulty::do_action(std::string name, Bundle bundle)
 {
     if (name == "e" || name == "m" || name == "h")
     {
-        //InputActionLevel input_action(name);
-        //input_action.do_input_action();
+        InputActionLevel input_action(name);
+        input_action.do_input_action();
         return true;
     }
     return false;
@@ -111,8 +116,8 @@ bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
     {
         int rows = bundle.get_int("rows");
         int columns = bundle.get_int("columns");
-        // InputActionNumFigures input_action(rows, columns);
-        // input_action.do_input_action();
+        InputActionNumFigures input_action(rows, columns);
+        input_action.do_input_action();
         return true;
     }
     return false;
@@ -146,7 +151,7 @@ ActionSelectGenerateWithOptions::ActionSelectGenerateWithOptions() : ActionGroup
 ActionDifficultyWithOptions::ActionDifficultyWithOptions() : ActionGroup(
     {
         new ActionDifficulty(),
-        //new ActionBack(new InputActionSelectGenerate()),
+        new ActionBack(new InputActionSelectGenerate()),
         new ActionExitRestart()
     }
 ) {}
@@ -154,7 +159,7 @@ ActionDifficultyWithOptions::ActionDifficultyWithOptions() : ActionGroup(
 ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionGroup(
     {
         new ActionLevel(difficulty),
-        //new ActionBack(new InputActionDifficulty());
+        new ActionBack(new InputActionDifficulty()),
         new ActionExitRestart()
     }
 )
@@ -165,7 +170,7 @@ ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionG
 ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
     {
         new ActionRowsColumns(),
-        //new ActionBack(new InputActionSelectGenerate()),
+        new ActionBack(new InputActionSelectGenerate()),
         new ActionExitRestart()
     }
 ) {}
@@ -173,7 +178,7 @@ ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
 ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) : ActionGroup(
     {
         new ActionNumFigures(rows, columns),
-        //new ActionBack(new InputActionRowsColumns()),
+        new ActionBack(new InputActionRowsColumns()),
         new ActionExitRestart()
     }
 ) 

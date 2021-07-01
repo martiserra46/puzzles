@@ -2,11 +2,11 @@
 #include <utility>
 #include <string>
 #include "bundle.h"
-#include "input.h"
+#include "input_action.h"
 
 int main()
 {
-    InputLevelWithOptions input("h");
-    input.input();
+    InputActionSelectGenerate input_action;
+    input_action.do_input_action();
     return 0;
 }
