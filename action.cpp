@@ -95,3 +95,16 @@ bool ActionLevel::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
+{
+    if (name == "rows,columns")
+    {
+        int rows = bundle.get_int("rows");
+        int columns = bundle.get_int("columns");
+        // InputActionNumFigures input_action(rows, columns);
+        // input_action.do_input_action();
+        return true;
+    }
+    return false;
+}
