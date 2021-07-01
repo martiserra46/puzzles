@@ -4,6 +4,7 @@
 #include "drawing_generator.h"
 #include "position.h"
 #include <vector>
+#include "puzzle.h"
 
 int main()
 {
@@ -16,8 +17,9 @@ int main()
     grid.insert_figure({0,0}, figure1);
     grid.insert_figure({1,1}, figure2);
     std::vector<Figure> figures = {figure1, figure2, figure3};
+    Puzzle puzzle(5, 5, figures);
     DrawingGenerator drawing_generator;
-    std::cout << drawing_generator.generate_drawing(figures) << std::endl;
+    std::cout << drawing_generator.generate_drawing(puzzle) << std::endl;
     std::cout << "Hola" << std::endl;
     return 0;
 }

@@ -1,6 +1,13 @@
 #include "drawing_generator.h"
 #include "text_utils.h"
 
+std::string DrawingGenerator::generate_drawing(Puzzle &puzzle)
+{
+    std::string drawing = generate_drawing(puzzle.get_grid()) + "\n";
+    drawing += generate_drawing(puzzle.get_not_placed_figures());
+    return drawing;
+}
+
 std::string DrawingGenerator::generate_drawing(Grid &grid)
 {
     std::string drawing;
@@ -15,6 +22,18 @@ std::string DrawingGenerator::generate_drawing(Grid &grid)
             drawing += " ";
         }
         drawing += "|\n";
+    }
+    return drawing;
+}
+
+std::string DrawingGenerator::generate_drawing(std::vector<Figure> figures)
+{
+    std::string drawing = "";
+    for (int i = 0; i < figures.size(); i++)
+    {
+        Figure &figure = figures[i];
+        drawing += "" + std::to_string(i + 1) + "." + "\n";
+        drawing += generate_drawing(figure) + "\n"; 
     }
     return drawing;
 }
@@ -41,18 +60,6 @@ std::string DrawingGenerator::generate_drawing(Figure &figure)
             drawing += " ";
         }
         drawing += "|\n";
-    }
-    return drawing;
-}
-
-std::string DrawingGenerator::generate_drawing(std::vector<Figure> figures)
-{
-    std::string drawing = "";
-    for (int i = 0; i < figures.size(); i++)
-    {
-        Figure &figure = figures[i];
-        drawing += "" + std::to_string(i + 1) + "." + "\n";
-        drawing += generate_drawing(figure) + "\n"; 
     }
     return drawing;
 }
