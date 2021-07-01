@@ -4,6 +4,15 @@
 
 ActionGroup::ActionGroup(std::vector<Action*> actions) : actions(actions) {}
 
+ActionGroup::~ActionGroup()
+{
+    for (Action *action : actions)
+    {
+        delete action;
+    }
+    actions.clear();
+}
+
 bool ActionGroup::do_action(std::string name, Bundle bundle)
 {
     for (Action *action : actions)
