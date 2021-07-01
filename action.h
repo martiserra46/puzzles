@@ -39,9 +39,7 @@ class ActionExit : public Action
 
 class ActionExitRestart : public Action
 {
-    InputAction &input_action;
     public:
-        ActionExitRestart(InputAction &input_action);
         bool do_action(std::string name, Bundle bundle);
 };
 

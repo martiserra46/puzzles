@@ -34,8 +34,6 @@ bool ActionExit::do_action(std::string name, Bundle bundle)
     return true;
 }
 
-ActionExitRestart::ActionExitRestart(InputAction &input_action) : input_action(input_action) {}
-
 bool ActionExitRestart::do_action(std::string name, Bundle bundle)
 {
     if (name == "exit")
@@ -46,7 +44,8 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
     }
     else if (name == "restart")
     {
-        input_action.do_input_action();
+        //InputActionSelectGenerate input_action;
+        //input_action.do_input_action();
         return true;
     }
     return false;
