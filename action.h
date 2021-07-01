@@ -25,9 +25,9 @@ class ActionGroup : public Action
 
 class ActionBack : public Action
 {
-    InputAction &input_action;
+    InputAction *input_action;
     public:
-        ActionBack(InputAction &input_action);
+        ActionBack(InputAction *input_action);
         bool do_action(std::string name, Bundle bundle);
 };
 
