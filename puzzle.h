@@ -17,6 +17,7 @@ class Puzzle
         Puzzle(size_t width, size_t height, std::vector<Figure> figures);
         size_t get_width();
         size_t get_height();
+        Grid& get_grid();
         bool is_solved();
         std::vector<std::pair<Position, Figure>>& get_placed_figures();
         std::vector<Figure>& get_not_placed_figures();
