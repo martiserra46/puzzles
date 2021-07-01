@@ -8,6 +8,7 @@
 class Action
 {
     public:
+        virtual ~Action() {};
         virtual bool do_action(std::string name, Bundle bundle) = 0;
 };
 
