@@ -37,7 +37,7 @@ std::pair<std::string, Bundle> Input::input()
     return std::pair<std::string, Bundle>(name, bundle);
 }
 
-std::string build_name(std::string input_value)
+std::string Input::build_name(std::string input_value)
 {
     return input_value;
 }
