@@ -51,4 +51,10 @@ class ActionSelectGenerate : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionDifficulty : public Action
+{
+    public:
+        bool do_action(std::string name, Bundle bundle);
+}
+
 #endif

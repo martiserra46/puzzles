@@ -68,3 +68,14 @@ bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+bool ActionDifficulty::do_action(std::string name, Bundle bundle)
+{
+    if (name == "e" || name == "m" || name == "h")
+    {
+        InputActionLevel input_action_level(name);
+        input_action_level.do_input_action();
+        return true;
+    }
+    return false;
+}
