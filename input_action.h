@@ -30,8 +30,9 @@ class InputActionDifficulty : public InputAction
 
 class InputActionLevel : public InputAction
 {
+    std::string difficulty;
     public:
-        InputActionLevel();
+        InputActionLevel(std::string difficulty);
 };
 
 class InputActionRowsColumns : public InputAction
@@ -42,8 +43,9 @@ class InputActionRowsColumns : public InputAction
 
 class InputActionNumFigures : public InputAction
 {
+    int rows, columns;
     public:
-        InputActionNumFigures();
+        InputActionNumFigures(int rows, int columns);
 };
 
 #endif
