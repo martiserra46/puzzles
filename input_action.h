@@ -12,7 +12,7 @@ class InputAction
     Action *action;
     public:
         InputAction(Input *input, Action *action);
-        ~InputAction();
+        virtual ~InputAction() = 0;
         void do_input_action();
 };
 

@@ -18,41 +18,31 @@ void InputAction::do_input_action()
 }
 
 InputActionSelectGenerate::InputActionSelectGenerate() : InputAction(
-    {
-        new InputSelectGenerateWithOptions(),
-        new ActionSelectGenerateWithOptions()
-    }
+    new InputSelectGenerateWithOptions(),
+    new ActionSelectGenerateWithOptions()
 ) {}
 
 InputActionDifficulty::InputActionDifficulty() : InputAction(
-    {
-        new InputDifficultyWithOptions(),
-        new ActionDifficultyWithOptions()
-    }
+    new InputDifficultyWithOptions(),
+    new ActionDifficultyWithOptions()
 ) {}
 
 InputActionLevel::InputActionLevel(std::string difficulty) : InputAction(
-    {
-        new InputLevelWithOptions(difficulty),
-        new ActionLevelWithOptions(difficulty)
-    }
+    new InputLevelWithOptions(difficulty),
+    new ActionLevelWithOptions(difficulty)
 )
 {
     this->difficulty = difficulty;
 }
 
 InputActionRowsColumns::InputActionRowsColumns() : InputAction(
-    {
-        new InputRowsColumnsWithOptions(),
-        new ActionRowsColumnsWithOptions()
-    }
+    new InputRowsColumnsWithOptions(),
+    new ActionRowsColumnsWithOptions()
 ) {}
 
 InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputAction(
-    {
-        new InputNumFiguresWithOptions(rows, columns),
-        new ActionNumFiguresWithOptions(rows, columns)
-    }
+    new InputNumFiguresWithOptions(rows, columns),
+    new ActionNumFiguresWithOptions(rows, columns)
 )
 {
     this->rows = rows;
