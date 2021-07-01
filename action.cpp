@@ -51,3 +51,20 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
+{
+    if (name == "s")
+    {
+        InputActionDifficulty input_action_difficulty;
+        input_action_difficulty.do_input_action();
+        return true;
+    }
+    else if (name == "g")
+    {
+        InputActionRowsColumns input_action_rows_columns;
+        input_action_rows_columns.do_input_action();
+        return true;
+    }
+    return false;
+}
