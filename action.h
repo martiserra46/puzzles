@@ -20,4 +20,10 @@ class ActionGroup
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionExit
+{
+    public:
+        bool do_action(std::string name, Bundle bundle);
+};
+
 #endif

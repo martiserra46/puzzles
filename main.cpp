@@ -1,13 +1,12 @@
 #include <iostream>
-#include "input.h"
-#include <utility>
-#include "text_utils.h"
+#include "action.h"
 #include <string>
 #include "bundle.h"
 
 int main()
 {
-    InputNumFigures input_exit(5, 10);
-    input_exit.input();
+    ActionExit action_exit;
+    action_exit.do_action("eit", Bundle());
+    std::cout << "Hola" << std::endl;
     return 0;
 }
