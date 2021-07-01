@@ -15,7 +15,7 @@ class Action
         virtual bool do_action(std::string name, Bundle bundle) = 0;
 };
 
-class ActionGroup
+class ActionGroup : public Action
 {
     std::vector<Action*> actions;
     public:
@@ -23,7 +23,7 @@ class ActionGroup
         bool do_action(std::string name, Bundle bundle);
 };
 
-class ActionBack
+class ActionBack : public Action
 {
     InputAction &input_action;
     public:
@@ -31,13 +31,13 @@ class ActionBack
         bool do_action(std::string name, Bundle bundle);
 };
 
-class ActionExit
+class ActionExit : public Action
 {
     public:
         bool do_action(std::string name, Bundle bundle);
 };
 
-class ActionExitRestart
+class ActionExitRestart : public Action
 {
     InputAction &input_action;
     public:
