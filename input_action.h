@@ -4,6 +4,8 @@
 #include "input.h"
 #include "action.h"
 
+class Action;
+
 class InputAction
 {
     Input *input;

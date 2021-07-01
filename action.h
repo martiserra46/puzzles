@@ -4,6 +4,9 @@
 #include <string>
 #include "bundle.h"
 #include <vector>
+#include "input_action.h"
+
+class InputAction;
 
 class Action
 {
@@ -23,6 +26,14 @@ class ActionGroup
 class ActionExit
 {
     public:
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionExitRestart
+{
+    InputAction &input_action;
+    public:
+        ActionExitRestart(InputAction &input_action);
         bool do_action(std::string name, Bundle bundle);
 };
 
