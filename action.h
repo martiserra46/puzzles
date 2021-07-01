@@ -63,13 +63,13 @@ class ActionLevel : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
-class ActionRowsColumns
+class ActionRowsColumns : public Action
 {
     public:
         bool do_action(std::string name, Bundle bundle);
 };
 
-class ActionNumFigures
+class ActionNumFigures : public Action
 {
     int rows, columns;
     public:
