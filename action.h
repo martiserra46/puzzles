@@ -15,6 +15,7 @@ class ActionGroup
 {
     std::vector<Action*> actions;
     public:
+        ActionGroup(std::vector<Action*> actions);
         bool do_action(std::string name, Bundle bundle);
 };
 
