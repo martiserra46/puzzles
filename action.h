@@ -23,6 +23,14 @@ class ActionGroup
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionBack
+{
+    InputAction &input_action;
+    public:
+        ActionBack(InputAction &input_action);
+        bool do_action(std::string name, Bundle bundle);
+};
+
 class ActionExit
 {
     public:

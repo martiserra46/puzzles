@@ -14,6 +14,18 @@ bool ActionGroup::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+ActionBack::ActionBack(InputAction &input_action) : input_action(input_action) {}
+
+bool ActionBack::do_action(std::string name, Bundle bundle)
+{
+    if (name == "back")
+    {
+        input_action.do_input_action();
+        return true;
+    }
+    return false;
+}
+
 bool ActionExit::do_action(std::string name, Bundle bundle)
 {
     if (name != "exit") return false;
