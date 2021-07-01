@@ -38,6 +38,7 @@ class InputGroup : public Input
         ~InputGroup();
         std::string get_text();
         bool is_valid(std::string input_value);
+        std::string build_name(std::string input_value);
         Bundle build_bundle(std::string input_value);
 };
 

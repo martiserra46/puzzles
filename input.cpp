@@ -86,6 +86,19 @@ bool InputGroup::is_valid(std::string input_value)
     return false;
 }
 
+std::string InputGroup::build_name(std::string input_value)
+{
+    for (int i = 0; i < list_inputs.size(); i++)
+    {
+        Input *input = list_inputs[i];
+        if ((*input).is_valid(input_value))
+        {
+            return input->build_name(input_value);
+        }
+    }
+    return input_value;
+}
+
 Bundle InputGroup::build_bundle(std::string input_value)
 {
     for (int i = 0; i < list_inputs.size(); i++)
