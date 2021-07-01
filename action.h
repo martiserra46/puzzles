@@ -55,4 +55,12 @@ class ActionDifficulty : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionLevel : public Action
+{
+    std::string difficulty;
+    public:
+        ActionLevel(std::string difficulty);
+        bool do_action(std::string name, Bundle bundle);
+};
+
 #endif

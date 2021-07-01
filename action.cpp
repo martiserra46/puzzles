@@ -78,3 +78,20 @@ bool ActionDifficulty::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+ActionLevel::ActionLevel(std::string difficulty)
+{
+    this->difficulty = difficulty;
+}
+
+bool ActionLevel::do_action(std::string name, Bundle bundle)
+{
+    if (name == "level-number")
+    {
+        int level = bundle.get_int("level-number");
+        // GameController game_controller;
+        // game_controller.play_selected_level(difficulty, level);
+        return true;
+    }
+    return false;
+}
