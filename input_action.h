@@ -10,6 +10,7 @@ class InputAction
     Action *action;
     public:
         InputAction(Input *input, Action *action);
+        virtual ~InputAction();
         void do_input_action();
 };
 

@@ -5,6 +5,12 @@
 
 InputAction::InputAction(Input *input, Action *action) : input(input), action(action) {}
 
+InputAction::~InputAction()
+{
+    delete input;
+    delete action;
+}
+
 void InputAction::do_input_action()
 {
     std::pair<std::string, Bundle> input_value = input->input();
