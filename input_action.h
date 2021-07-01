@@ -16,31 +16,31 @@ class InputAction
         void do_input_action();
 };
 
-class InputActionSelectGenerate : public Action
+class InputActionSelectGenerate : public InputAction
 {
     public:
         InputActionSelectGenerate();
 };
 
-class InputActionDifficulty : public Action
+class InputActionDifficulty : public InputAction
 {
     public:
         InputActionDifficulty();
 };
 
-class InputActionLevel : public Action
+class InputActionLevel : public InputAction
 {
     public:
         InputActionLevel();
 };
 
-class InputActionRowsColumns : public Action
+class InputActionRowsColumns : public InputAction
 {
     public:
         InputActionRowsColumns();
 };
 
-class InputActionNumFigures : public Action
+class InputActionNumFigures : public InputAction
 {
     public:
         InputActionNumFigures();
