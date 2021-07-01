@@ -1,0 +1,27 @@
+#include "drawing_generator.h"
+
+std::string DrawingGenerator::generate_drawing(Figure &figure)
+{
+    std::set<Position> positions = figure.get_positions();
+    std::string drawing = "";
+    for (int i = 0; i < figure.get_height(); i++)
+    {
+        for (int j = 0; j < figure.get_width(); j++)
+        {
+            drawing += "| ";
+            Position position = {j, i};
+            bool found = *std::find(positions.begin(), positions.end(), position) == position;
+            if (found)
+            {
+                drawing += figure.get_letter();
+            }
+            else
+            {
+                drawing += " ";
+            }
+            drawing += " ";
+        }
+        drawing += "|\n";
+    }
+    return drawing;
+}
