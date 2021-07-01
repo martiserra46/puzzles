@@ -10,6 +10,16 @@
 
 #define INPUT_MAX_LINE_WIDTH 30
 
+#define NUM_LEVELS 10
+
+#define MIN_ROWS 5
+#define MAX_ROWS 10
+#define MIN_COLS 5
+#define MAX_COLS 10
+
+#define MIN_FIGURES 5
+#define MAX_FIGURES 10
+
 /** Input **/
 std::pair<std::string, Bundle> Input::input()
 {
@@ -200,35 +210,40 @@ InputDifficulty::InputDifficulty() : InputChoice(
 ) {}
 
 /** InputLevel **/
-InputLevel::InputLevel(int num_levels) : InputFormat(
+InputLevel::InputLevel(std::string difficulty) : InputFormat(
     "Level",
     "level-number",
-    new InputNumberValidator(1, num_levels),
+    new InputNumberValidator(1, NUM_LEVELS),
     new InputNumberConverter("level-number"),
-    "level-number has to be a number between 1 and " + std::to_string(num_levels),
-    "(ex: " + std::to_string(random(1, num_levels)) + ")"
-) {}
+    "level-number has to be a number between 1 and " + std::to_string(NUM_LEVELS),
+    "(ex: " + std::to_string(random(1, NUM_LEVELS)) + ")"
+) {
+    this->difficulty = difficulty;
+}
 
 /** InputRowsColumns **/
-InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns) : InputFormat(
+InputRowsColumns::InputRowsColumns() : InputFormat(
     "Rows & Columns",
     "rows,columns",
-    new InputTwoNumbersValidator(min_rows, max_rows, min_columns, max_columns),
+    new InputTwoNumbersValidator(MIN_ROWS, MAX_ROWS, MIN_COLS, MAX_COLS),
     new InputTwoNumbersConverter("rows", "columns"),
-    "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
-    "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
-    "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"
+    "rows has to be between " + std::to_string(MIN_ROWS) + " and " + std::to_string(MAX_ROWS) + ".\n" + 
+    "columns has to be between " + std::to_string(MIN_COLS) + " and " + std::to_string(MAX_COLS) + ".",
+    "(ex: " + std::to_string(random(MIN_ROWS, MAX_ROWS)) + "," + std::to_string(random(MIN_COLS, MAX_COLS)) + ")"
 ) {}
 
 /** InputNumFigures **/
-InputNumFigures::InputNumFigures(int min, int max) : InputFormat(
+InputNumFigures::InputNumFigures(int rows, int columns) : InputFormat(
     "Num. Figures",
     "num-figures",
-    new InputNumberValidator(min, max),
+    new InputNumberValidator(MIN_FIGURES, MAX_FIGURES),
     new InputNumberConverter("num-figures"),
-    "num-figures has to be a number between " + std::to_string(min) + " and " + std::to_string(max),
-    "(ex: " + std::to_string(random(min, max)) + ")"
-) {}
+    "num-figures has to be a number between " + std::to_string(MIN_FIGURES) + " and " + std::to_string(MAX_FIGURES),
+    "(ex: " + std::to_string(random(MIN_FIGURES, MAX_FIGURES)) + ")"
+) {
+    this->rows = rows;
+    this->columns = columns;
+}
 
 /** InputSelectGenerateWithOptions **/
 InputSelectGenerateWithOptions::InputSelectGenerateWithOptions() : InputGroup(
@@ -248,27 +263,27 @@ InputDifficultyWithOptions::InputDifficultyWithOptions() : InputGroup(
 ) {}
 
 /** InputLevelWithOptions **/
-InputLevelWithOptions::InputLevelWithOptions(int num_levels) : InputGroup(
+InputLevelWithOptions::InputLevelWithOptions(std::string difficulty) : InputGroup(
     {
-        new InputLevel(num_levels),
+        new InputLevel(difficulty),
         new InputBack(),
         new InputExitRestart()
     }
 ) {}
 
 /** InputRowsColumnsWithOptions **/
-InputRowsColumnsWithOptions::InputRowsColumnsWithOptions(int min_rows, int max_rows, int min_columns, int max_columns) : InputGroup(
+InputRowsColumnsWithOptions::InputRowsColumnsWithOptions() : InputGroup(
     {
-        new InputRowsColumns(min_rows, max_rows, min_columns, max_columns),
+        new InputRowsColumns(),
         new InputBack(),
         new InputExitRestart()
     }
 ) {}
 
 /** InputNumFiguresWithOptions **/
-InputNumFiguresWithOptions::InputNumFiguresWithOptions(int min, int max) : InputGroup(
+InputNumFiguresWithOptions::InputNumFiguresWithOptions(int rows, int columns) : InputGroup(
     {
-        new InputNumFigures(min, max),
+        new InputNumFigures(rows, columns),
         new InputBack(),
         new InputExitRestart()
     }

@@ -101,20 +101,22 @@ class InputDifficulty : public InputChoice
 
 class InputLevel : public InputFormat
 {
+    std::string difficulty;
     public:
-        InputLevel(int num_levels);
+        InputLevel(std::string difficulty);
 };
 
 class InputRowsColumns : public InputFormat
 {
     public:
-        InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns);
+        InputRowsColumns();
 };
 
 class InputNumFigures : public InputFormat
 {
+    int rows, columns;
     public:
-        InputNumFigures(int min, int max);
+        InputNumFigures(int rows, int columns);
 };
 
 class InputSelectGenerateWithOptions : public InputGroup
@@ -132,19 +134,19 @@ class InputDifficultyWithOptions : public InputGroup
 class InputLevelWithOptions : public InputGroup
 {
     public:
-        InputLevelWithOptions(int num_levels);
+        InputLevelWithOptions(std::string difficulty);
 };
 
 class InputRowsColumnsWithOptions : public InputGroup
 {
     public:
-        InputRowsColumnsWithOptions(int min_rows, int max_rows, int min_columns, int max_columns);
+        InputRowsColumnsWithOptions();
 };
 
 class InputNumFiguresWithOptions : public InputGroup
 {
     public:
-        InputNumFiguresWithOptions(int min, int max);
+        InputNumFiguresWithOptions(int rows, int columns);
 };
 
 #endif
