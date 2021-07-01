@@ -108,3 +108,21 @@ bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+ActionNumFigures::ActionNumFigures(int rows, int columns)
+{
+    this->rows = rows;
+    this->columns = columns;
+}
+
+bool ActionNumFigures::do_action(std::string name, Bundle bundle)
+{
+    if (name == "num-figures")
+    {
+        int num_figures = bundle.get_int("num-figures");
+        // GameController game_controller;
+        // game_controller.play_generated_puzzle(rows, columns, num_figures);
+        return true;
+    }
+    return false;
+}

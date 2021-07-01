@@ -69,4 +69,12 @@ class ActionRowsColumns
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionNumFigures
+{
+    int rows, columns;
+    public:
+        ActionNumFigures(int rows, int columns);
+        bool do_action(std::string name, Bundle bundle);
+};
+
 #endif
