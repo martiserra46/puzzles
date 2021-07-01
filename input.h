@@ -44,7 +44,7 @@ class InputChoice : public InputElement
     std::vector<std::pair<std::string, std::string>> list_choices;
     public:
         InputChoice(std::string title, std::vector<std::pair<std::string, std::string>> list_choices);
-        bool is_valid(std::string value);
+        bool is_valid(std::string input_value);
     protected:
         std::string get_text_without_title();
 };
@@ -59,7 +59,7 @@ class InputFormat : public InputElement
     public:
         InputFormat(std::string title, std::string format, InputValidator *input_validator, InputConverter *input_converter, std::string description, std::string example);
         ~InputFormat();
-        bool is_valid(std::string value);
+        bool is_valid(std::string input_value);
         Bundle build_bundle(std::string input_value);
     protected:
         std::string get_text_without_title();

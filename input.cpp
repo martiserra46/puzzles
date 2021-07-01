@@ -144,9 +144,9 @@ std::string InputFormat::get_text_without_title()
     return text_max_line_width(text, INPUT_MAX_LINE_WIDTH) + "\n";
 }
 
-bool InputFormat::is_valid(std::string value)
+bool InputFormat::is_valid(std::string input_value)
 {
-    return input_validator->is_valid(value);
+    return input_validator->is_valid(input_value);
 }
 
 Bundle InputFormat::build_bundle(std::string input_value)
