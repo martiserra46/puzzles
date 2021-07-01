@@ -1,6 +1,7 @@
 #include "action.h"
 #include "system_utils.h"
 
+/** ActionGroup **/
 ActionGroup::ActionGroup(std::vector<Action*> actions) : actions(actions) {}
 
 ActionGroup::~ActionGroup()
@@ -22,6 +23,7 @@ bool ActionGroup::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionBack **/
 ActionBack::ActionBack(InputAction *input_action) : input_action(input_action) {}
 
 ActionBack::~ActionBack()
@@ -40,6 +42,7 @@ bool ActionBack::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionExit **/
 bool ActionExit::do_action(std::string name, Bundle bundle)
 {
     if (name != "exit") return false;
@@ -47,6 +50,7 @@ bool ActionExit::do_action(std::string name, Bundle bundle)
     return true;
 }
 
+/** ActionExitRestart **/
 bool ActionExitRestart::do_action(std::string name, Bundle bundle)
 {
     if (name == "exit")
@@ -64,6 +68,7 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionSelectGenerate **/
 bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
 {
     if (name == "s")
@@ -83,6 +88,7 @@ bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionDifficulty **/
 bool ActionDifficulty::do_action(std::string name, Bundle bundle)
 {
     if (name == "e" || name == "m" || name == "h")
@@ -95,6 +101,7 @@ bool ActionDifficulty::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionLevel **/
 ActionLevel::ActionLevel(std::string difficulty)
 {
     this->difficulty = difficulty;
@@ -113,6 +120,7 @@ bool ActionLevel::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionRowsColumns **/
 bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
 {
     if (name == "rows,columns")
@@ -127,6 +135,7 @@ bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionNumFigures **/
 ActionNumFigures::ActionNumFigures(int rows, int columns)
 {
     this->rows = rows;
@@ -146,6 +155,7 @@ bool ActionNumFigures::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+/** ActionSelectGenerateWithOptions **/
 ActionSelectGenerateWithOptions::ActionSelectGenerateWithOptions() : ActionGroup(
     {
         new ActionSelectGenerate(),
@@ -153,6 +163,7 @@ ActionSelectGenerateWithOptions::ActionSelectGenerateWithOptions() : ActionGroup
     }
 ) {}
 
+/** ActionDifficultyWithOptions **/
 ActionDifficultyWithOptions::ActionDifficultyWithOptions() : ActionGroup(
     {
         new ActionDifficulty(),
@@ -161,6 +172,7 @@ ActionDifficultyWithOptions::ActionDifficultyWithOptions() : ActionGroup(
     }
 ) {}
 
+/** ActionLevelWithOptions **/
 ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionGroup(
     {
         new ActionLevel(difficulty),
@@ -172,6 +184,7 @@ ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionG
     this->difficulty = difficulty;
 }
 
+/** ActionRowsColumnsWithOptions **/
 ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
     {
         new ActionRowsColumns(),
@@ -180,6 +193,7 @@ ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
     }
 ) {}
 
+/** ActionNumFiguresWithOptions **/
 ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) : ActionGroup(
     {
         new ActionNumFigures(rows, columns),
