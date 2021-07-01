@@ -1,5 +1,23 @@
 #include "drawing_generator.h"
 
+std::string DrawingGenerator::generate_drawing(Grid &grid)
+{
+    std::string drawing;
+    for (int i = 0; i < grid.get_height(); i++)
+    {
+        for (int j = 0; j < grid.get_width(); j++)
+        {
+            drawing += "| ";
+            char letter = grid.get_letter_from_position({j, i});
+            if (letter != '\0') drawing += letter;
+            else drawing += " ";
+            drawing += " ";
+        }
+        drawing += "|\n";
+    }
+    return drawing;
+}
+
 std::string DrawingGenerator::generate_drawing(Figure &figure)
 {
     std::set<Position> positions = figure.get_positions();
