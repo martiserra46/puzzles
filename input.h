@@ -83,34 +83,64 @@ class InputExitRestart : public InputChoice
         InputExitRestart();
 };
 
-class InputSelectGenerate : public InputGroup
+class InputSelectGenerate : public InputChoice
 {
     public:
         InputSelectGenerate();
 };
 
-class InputDifficulty : public InputGroup
+class InputDifficulty : public InputChoice
 {
     public:
         InputDifficulty();
 };
 
-class InputLevel : public InputGroup
+class InputLevel : public InputFormat
 {
     public:
         InputLevel(int num_levels);
 };
 
-class InputRowsColumns : public InputGroup
+class InputRowsColumns : public InputFormat
 {
     public:
         InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns);
 };
 
-class InputNumFigures : public InputGroup
+class InputNumFigures : public InputFormat
 {
     public:
         InputNumFigures(int min, int max);
+};
+
+class InputSelectGenerateWithOptions : public InputGroup
+{
+    public:
+        InputSelectGenerateWithOptions();
+};
+
+class InputDifficultyWithOptions : public InputGroup
+{
+    public:
+        InputDifficultyWithOptions();
+};
+
+class InputLevelWithOptions : public InputGroup
+{
+    public:
+        InputLevelWithOptions(int num_levels);
+};
+
+class InputRowsColumnsWithOptions : public InputGroup
+{
+    public:
+        InputRowsColumnsWithOptions(int min_rows, int max_rows, int min_columns, int max_columns);
+};
+
+class InputNumFiguresWithOptions : public InputGroup
+{
+    public:
+        InputNumFiguresWithOptions(int min, int max);
 };
 
 #endif

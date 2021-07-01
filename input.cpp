@@ -164,63 +164,88 @@ InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}
 InputExitRestart::InputExitRestart() : InputChoice("Options", {{"Exit", "exit"}, {"Restart", "restart"}}) {}
 
 /** InputSelectGenerate **/
-InputSelectGenerate::InputSelectGenerate() : InputGroup(
+InputSelectGenerate::InputSelectGenerate() : InputChoice(
+    "Select or Generate",
+    {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}
+) {}
+
+/** InputDifficulty **/
+InputDifficulty::InputDifficulty() : InputChoice(
+    "Difficulty",
+    {{"Easy", "e"}, {"Medium", "m"}, {"Hard", "h"}}
+) {}
+
+/** InputLevel **/
+InputLevel::InputLevel(int num_levels) : InputFormat(
+    "Level",
+    "level-number",
+    new InputNumberValidator(1, num_levels),
+    new InputNumberConverter("level-number"),
+    "level-number has to be a number between 1 and " + std::to_string(num_levels),
+    "(ex: " + std::to_string(random(1, num_levels)) + ")"
+) {}
+
+/** InputRowsColumns **/
+InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns) : InputFormat(
+    "Rows & Columns",
+    "rows,columns",
+    new InputTwoNumbersValidator(min_rows, max_rows, min_columns, max_columns),
+    new InputTwoNumbersConverter("rows", "columns"),
+    "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
+    "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
+    "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"
+) {}
+
+/** InputNumFigures **/
+InputNumFigures::InputNumFigures(int min, int max) : InputFormat(
+    "Num. Figures",
+    "num-figures",
+    new InputNumberValidator(min, max),
+    new InputNumberConverter("num-figures"),
+    "num-figures has to be a number between " + std::to_string(min) + " and " + std::to_string(max),
+    "(ex: " + std::to_string(random(min, max)) + ")"
+) {}
+
+/** InputSelectGenerateWithOptions **/
+InputSelectGenerateWithOptions::InputSelectGenerateWithOptions() : InputGroup(
     {
-        new InputChoice("Select or Generate", {{"Select existing puzzle", "s"}, {"Generate puzzle", "g"}}),
+        new InputSelectGenerate(),
         new InputExit()
     }
 ) {}
 
-/** InputDifficulty **/
-InputDifficulty::InputDifficulty() : InputGroup(
+/** InputDifficultyWithOptions **/
+InputDifficultyWithOptions::InputDifficultyWithOptions() : InputGroup(
     {
-        new InputChoice("Difficulty", {{"Easy", "e"}, {"Medium", "m"}, {"Hard", "h"}}),
+        new InputDifficulty(),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
 
-/** InputLevel **/
-InputLevel::InputLevel(int num_levels) : InputGroup(
+/** InputLevelWithOptions **/
+InputLevelWithOptions::InputLevelWithOptions(int num_levels) : InputGroup(
     {
-        new InputFormat(
-            "Level",
-            "level-number",
-            new InputNumberValidator(1, num_levels),
-            new InputNumberConverter("level-number"),
-            "level-number has to be a number between 1 and " + std::to_string(num_levels),
-            "(ex: " + std::to_string(random(1, num_levels)) + ")"
-        ),
+        new InputLevel(num_levels),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
 
-/** InputRowsColumns **/
-InputRowsColumns::InputRowsColumns(int min_rows, int max_rows, int min_columns, int max_columns) : InputGroup(
+/** InputRowsColumnsWithOptions **/
+InputRowsColumnsWithOptions::InputRowsColumnsWithOptions(int min_rows, int max_rows, int min_columns, int max_columns) : InputGroup(
     {
-        new InputFormat(
-            "Rows & Columns",
-            "rows,columns",
-            new InputTwoNumbersValidator(min_rows, max_rows, min_columns, max_columns),
-            new InputTwoNumbersConverter("rows", "columns"),
-            "rows has to be between " + std::to_string(min_rows) + " and " + std::to_string(max_rows) + ".\n" + 
-            "columns has to be between " + std::to_string(min_columns) + " and " + std::to_string(max_columns) + ".",
-            "(ex: " + std::to_string(random(min_rows, max_rows)) + "," + std::to_string(random(min_columns, max_columns)) + ")"
-        ),
+        new InputRowsColumns(min_rows, max_rows, min_columns, max_columns),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
 
-/** InputNumFigures **/
-InputNumFigures::InputNumFigures(int min, int max) : InputGroup(
+/** InputNumFiguresWithOptions **/
+InputNumFiguresWithOptions::InputNumFiguresWithOptions(int min, int max) : InputGroup(
     {
-        new InputFormat(
-            "Num. Figures",
-            "num-figures",
-            new InputNumberValidator(min, max),
-            new InputNumberConverter("num-figures"),
-            "num-figures has to be a number between " + std::to_string(min) + " and " + std::to_string(max),
-            "(ex: " + std::to_string(random(min, max)) + ")"
-        ),
+        new InputNumFigures(min, max),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
