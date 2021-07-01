@@ -78,4 +78,36 @@ class ActionNumFigures : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionSelectGenerateWithOptions : public ActionGroup
+{
+    public:
+        ActionSelectGenerateWithOptions();
+};
+
+class ActionDifficultyWithOptions : public ActionGroup
+{
+    public:
+        ActionDifficultyWithOptions();
+};
+
+class ActionLevelWithOptions : public ActionGroup
+{
+    std::string difficulty;
+    public:
+        ActionLevelWithOptions(std::string difficulty);
+};
+
+class ActionRowsColumnsWithOptions : public ActionGroup
+{
+    public:
+        ActionRowsColumnsWithOptions();
+};
+
+class ActionNumFiguresWithOptions : public ActionGroup
+{
+    int rows, columns;
+    public:
+        ActionNumFiguresWithOptions(int rows, int columns);
+};
+
 #endif

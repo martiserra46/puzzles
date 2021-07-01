@@ -135,3 +135,49 @@ bool ActionNumFigures::do_action(std::string name, Bundle bundle)
     }
     return false;
 }
+
+ActionSelectGenerateWithOptions::ActionSelectGenerateWithOptions() : ActionGroup(
+    {
+        new ActionSelectGenerate(),
+        new ActionExit()
+    }
+) {}
+
+ActionDifficultyWithOptions::ActionDifficultyWithOptions() : ActionGroup(
+    {
+        new ActionDifficulty(),
+        //new ActionBack(new InputActionSelectGenerate()),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionGroup(
+    {
+        new ActionLevel(difficulty),
+        //new ActionBack(new InputActionDifficulty());
+        new ActionExitRestart()
+    }
+)
+{
+    this->difficulty = difficulty;
+}
+
+ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
+    {
+        new ActionRowsColumns(),
+        //new ActionBack(new InputActionSelectGenerate()),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) : ActionGroup(
+    {
+        new ActionNumFigures(rows, columns),
+        //new ActionBack(new InputActionRowsColumns()),
+        new ActionExitRestart()
+    }
+) 
+{
+    this->rows = rows;
+    this->columns = columns;
+}
