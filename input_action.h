@@ -16,4 +16,34 @@ class InputAction
         void do_input_action();
 };
 
+class InputActionSelectGenerate
+{
+    public:
+        InputActionSelectGenerate();
+};
+
+class InputActionDifficulty
+{
+    public:
+        InputActionDifficulty();
+};
+
+class InputActionLevel
+{
+    public:
+        InputActionLevel();
+};
+
+class InputActionRowsColumns
+{
+    public:
+        InputActionRowsColumns();
+};
+
+class InputActionNumFigures
+{
+    public:
+        InputActionNumFigures();
+};
+
 #endif
