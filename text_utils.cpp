@@ -5,13 +5,18 @@
 
 std::string text_between_chars(std::string text, char c, int line_width)
 {
+    return text_between_chars(text, c, c, line_width);
+}
+
+std::string text_between_chars(std::string text, char c_left, char c_right, int line_width)
+{
     std::string formatted_text = "";
     int left_chars = (line_width - text.length() - 2) / 2;
     int right_chars = left_chars;
     if ((line_width - text.length() - 2) % 2 == 1) right_chars += 1;
-    for (int i = 0; i < left_chars; i++) formatted_text += c;
+    for (int i = 0; i < left_chars; i++) formatted_text += c_left;
     formatted_text += " " + text + " ";
-    for (int i = 0; i < right_chars; i++) formatted_text += c;
+    for (int i = 0; i < right_chars; i++) formatted_text += c_right;
     return formatted_text;
 }
 

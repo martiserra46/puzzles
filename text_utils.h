@@ -6,6 +6,8 @@
 
 std::string text_between_chars(std::string text, char c, int line_width);
 
+std::string text_between_chars(std::string text, char c_left, char c_right, int line_width);
+
 std::string text_max_line_width(std::string text, int max_line_width);
 
 std::string to_uppercase(std::string text);
