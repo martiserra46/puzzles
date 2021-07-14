@@ -3,6 +3,11 @@
 #include <vector>
 #include "position.h"
 
+std::vector<std::vector<char>> create_matrix(int rows, int columns)
+{
+    return std::vector<std::vector<char>>(rows, std::vector<char>(columns, '\0'));
+}
+
 void fill_matrix(std::vector<std::vector<char>> &matrix, char value)
 {
     for (int i = 0; i < matrix.size(); i++)
