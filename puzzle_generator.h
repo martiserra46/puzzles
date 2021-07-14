@@ -10,6 +10,9 @@ class PuzzleGenerator
     private:
         static std::vector<std::vector<char>> generate_matrix(int rows, int columns, int num_figures);
         static std::vector<Figure> get_figures_from_matrix(std::vector<std::vector<char>> matrix);
+        static bool is_matrix_fully_generated(std::vector<std::vector<char>> matrix, int num_figures);
+        static void insert_random_value_in_matrix(std::vector<std::vector<char>> matrix, int num_figures);
+        static bool is_impossible_to_generate_matrix(std::vector<std::vector<char>> matrix, int num_figures);
 };
 
 #endif
