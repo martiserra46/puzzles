@@ -24,3 +24,16 @@ bool is_value_in_matrix(std::vector<std::vector<char>> matrix, char value)
     }
     return false;
 }
+
+std::vector<Position> get_positions_value_in_matrix(std::vector<std::vector<char>> matrix, char value)
+{
+    std::vector<Position> positions;
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (matrix[i][j] == value) positions.push_back({i, j}); 
+        }
+    }
+    return positions;
+}
