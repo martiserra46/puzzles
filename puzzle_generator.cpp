@@ -18,7 +18,7 @@ std::vector<std::vector<char>> PuzzleGenerator::generate_matrix(int rows, int co
     {
         insert_random_value_in_matrix(matrix, num_figures);
         if (is_impossible_to_generate_matrix(matrix, num_figures))
-            matrix = std::vector<std::vector<char>>(rows, std::vector<char>(columns, '\0'));
+            fill_matrix(matrix, '\0');
     }
     return matrix;
 }
