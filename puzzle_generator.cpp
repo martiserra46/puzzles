@@ -76,5 +76,8 @@ void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char
 
 bool PuzzleGenerator::is_impossible_to_generate_matrix(std::vector<std::vector<char>> matrix, int num_figures)
 {
+    if (is_value_in_matrix(matrix, '\0')) return false;
+    for (int i = 0; i < num_figures; i++)
+        if (!is_value_in_matrix(matrix, 'A' + i)) return true;
     return false;
 }
