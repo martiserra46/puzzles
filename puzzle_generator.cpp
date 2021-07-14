@@ -31,7 +31,7 @@ bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> m
 {
     if (is_value_in_matrix(matrix, '\0')) return false;
     for (int i = 0; i < num_figures; i++)
-        if (!is_value_in_matrix('A' + i)) return false;
+        if (!is_value_in_matrix(matrix, 'A' + i)) return false;
     return true;
 }
 
