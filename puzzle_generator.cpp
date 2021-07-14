@@ -67,7 +67,7 @@ void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char
 
             if (matrix[position_to_insert.x][position_to_insert.y] == '\0')
             {
-                matrix[position_to_insert.x][position_to_insert.y] = random_letter;
+                matrix[position_to_insert.x][position_to_insert.y] = letter;
                 break;
             }
         }
