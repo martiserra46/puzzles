@@ -1,6 +1,7 @@
 #include "puzzle_generator.h"
 #include <vector>
 #include "number_utils.h"
+#include "vector_utils.h"
 
 Puzzle PuzzleGenerator::generate_puzzle(int rows, int columns, int num_figures)
 {
@@ -28,13 +29,16 @@ std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::ve
 
 bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> matrix, int num_figures)
 {
-    return false;
+    if (is_value_in_matrix(matrix, '\0')) return false;
+    for (int i = 0; i < num_figures; i++)
+        if (!is_value_in_matrix('A' + i)) return false;
+    return true;
 }
 
 void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char>> matrix, int num_figures)
 {
-
-}
+    
+}    
 
 bool PuzzleGenerator::is_impossible_to_generate_matrix(std::vector<std::vector<char>> matrix, int num_figures)
 {
