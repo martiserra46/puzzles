@@ -1,13 +1,15 @@
 #include "puzzle_generator.h"
 #include <vector>
+#include <set>
 #include "number_utils.h"
 #include "vector_utils.h"
 #include "position.h"
+#include "figure.h"
 
 Puzzle PuzzleGenerator::generate_puzzle(int rows, int columns, int num_figures)
 {
     std::vector<std::vector<char>> matrix = generate_matrix(rows, columns, num_figures);
-    std::vector<Figure> figures = get_figures_from_matrix(matrix);
+    std::vector<Figure> figures = get_figures_from_matrix(matrix, num_figures);
     return Puzzle(rows, columns, figures);
 }
 
@@ -24,9 +26,15 @@ std::vector<std::vector<char>> PuzzleGenerator::generate_matrix(int rows, int co
     return matrix;
 }
 
-std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::vector<char>> &matrix)
+std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::vector<char>> &matrix, int num_figures)
 {
-    return {};
+    std::vector<Figure> figures;
+    for (int fig_number = 0; fig_number < num_figures; fig_number++)
+    {
+        char letter = 'A' + fig_number;
+        figures.push_back(get_figure_from_matrix(matrix, letter));
+    }
+    return figures;
 }
 
 bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> &matrix, int num_figures)
@@ -88,4 +96,38 @@ bool PuzzleGenerator::can_insert_value_in_matrix(std::vector<std::vector<char>> 
     if (position.y > 0 && matrix[position.x][position.y - 1] == letter) return true;
 
     return false;
+}
+
+Figure PuzzleGenerator::get_figure_from_matrix(std::vector<std::vector<char>> &matrix, char letter)
+{
+    std::set<Position> figure_positions_in_matrix;
+    int min_x = -1;
+    int min_y = -1;
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (matrix[i][j] == letter)
+            {
+                if (min_x == -1 || i < min_x) min_x = i;
+                if (min_y == -1 || j < min_y) min_y = j;
+                figure_positions_in_matrix.insert({i, j});
+            }
+        }
+    }
+
+    std::set<Position>::iterator it = figure_positions_in_matrix.begin();
+    std::set<Position> figure_positions;
+    while (it != figure_positions_in_matrix.end())
+    {
+        figure_positions.insert({it->x - min_x, it->y - min_y});
+        it++;
+    }
+
+    Figure figure(letter, figure_positions);
+
+    int num_rotations = random(0, 3);
+    figure.rotate(num_rotations);
+
+    return figure;
 }
