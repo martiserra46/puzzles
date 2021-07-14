@@ -17,6 +17,5 @@ void GameController::play_generated_puzzle(int rows, int columns, int num_figure
 {
     DrawingGenerator drawing_generator;
     Puzzle puzzle = PuzzleGenerator::generate_puzzle(rows, columns, num_figures);
-    std::cout << "Play selected level" << std::endl;
     std::cout << drawing_generator.generate_drawing(puzzle) << std::endl;
 }
