@@ -23,12 +23,12 @@ std::vector<std::vector<char>> PuzzleGenerator::generate_matrix(int rows, int co
     return matrix;
 }
 
-std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::vector<char>> matrix)
+std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::vector<char>> &matrix)
 {
     return {};
 }
 
-bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> matrix, int num_figures)
+bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> &matrix, int num_figures)
 {
     if (is_value_in_matrix(matrix, '\0')) return false;
     for (int i = 0; i < num_figures; i++)
@@ -74,7 +74,7 @@ void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char
     }
 }
 
-bool PuzzleGenerator::is_impossible_to_generate_matrix(std::vector<std::vector<char>> matrix, int num_figures)
+bool PuzzleGenerator::is_impossible_to_generate_matrix(std::vector<std::vector<char>> &matrix, int num_figures)
 {
     if (is_value_in_matrix(matrix, '\0')) return false;
     for (int i = 0; i < num_figures; i++)
