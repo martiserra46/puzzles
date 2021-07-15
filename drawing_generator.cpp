@@ -38,7 +38,7 @@ std::string DrawingGenerator::generate_drawing(std::vector<Figure> figures)
     for (int i = 0; i < figures.size(); i++)
     {
         Figure &figure = figures[i];
-        drawing += "" + std::to_string(i + 1) + "." + "\n";
+        drawing += text_after_chars(std::to_string(i + 1), ' ', 3) + ".\n";
         drawing += generate_drawing(figure) + "\n"; 
     }
     return drawing;
