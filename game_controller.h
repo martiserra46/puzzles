@@ -7,9 +7,9 @@
 class GameController
 {
     public:
-        void play_selected_level(std::string difficulty, int level);
-        void play_generated_puzzle(int rows, int columns, int num_figures);
-        void play_puzzle(Puzzle puzzle);
+        static void play_selected_level(std::string difficulty, int level);
+        static void play_generated_puzzle(int rows, int columns, int num_figures);
+        static void play_puzzle(Puzzle puzzle);
 };
 
 #endif
