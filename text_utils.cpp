@@ -3,6 +3,15 @@
 #include <vector>
 #include <sstream>
 
+std::string text_before_chars(std::string text, char c, int line_width)
+{
+    std::string formatted_text = "";
+    int num_chars = line_width - text.length();
+    formatted_text += text;
+    for (int i = 0; i < num_chars; i++) formatted_text += c;
+    return formatted_text;
+}
+
 std::string text_between_chars(std::string text, char c, int line_width)
 {
     return text_between_chars(text, c, c, line_width);
