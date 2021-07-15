@@ -1,17 +1,14 @@
 #include "screen.h"
+#include "puzzle_generator.h"
 #include "puzzles_file_manager.h"
+#include "drawing_generator.h"
 #include <iostream>
 
 int main()
 {
-    Figure figure('A', {{0,0}, {1,0}});
-    Figure figure2('B', {{0,0}});
-    Puzzle puzzle(4, 4, {figure, figure2});
-
-    puzzle.insert_figure({0,0}, 0);
-    
-    std::cout << puzzle << std::endl;
-    
-
+    Puzzle puzzle = PuzzleGenerator::generate_puzzle(5, 5, 3);
+    PuzzlesFileManager::save_puzzle("e", 1, puzzle);
+    Puzzle puzzle2 = PuzzlesFileManager::load_puzzle("e", 1);
+    std::cout << DrawingGenerator::generate_drawing(puzzle2) << std::endl;
     return 0;
 }
