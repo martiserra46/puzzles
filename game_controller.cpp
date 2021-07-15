@@ -16,3 +16,8 @@ void GameController::play_generated_puzzle(int rows, int columns, int num_figure
     Puzzle puzzle = PuzzleGenerator::generate_puzzle(rows, columns, num_figures);
     std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
 }
+
+void play_puzzle(Puzzle puzzle)
+{
+    
+}
