@@ -11,13 +11,13 @@ std::string DrawingGenerator::generate_drawing(Puzzle &puzzle)
 std::string DrawingGenerator::generate_drawing(Grid &grid)
 {
     std::string drawing;
-    drawing += "    ";
+    drawing += "     ";
     for (int i = 0; i < grid.get_width(); i++)
         drawing += " " + text_between_chars(std::to_string(i), ' ', 5);
     drawing += "\n\n";
     for (int i = 0; i < grid.get_height(); i++)
     {
-        drawing += text_after_chars(std::to_string(i), ' ', 3) + " ";
+        drawing += text_after_chars(std::to_string(i), ' ', 3) + "  ";
         for (int j = 0; j < grid.get_width(); j++)
         {
             drawing += "|";
@@ -50,7 +50,7 @@ std::string DrawingGenerator::generate_drawing(Figure &figure)
     std::string drawing = "";
     for (int i = 0; i < figure.get_height(); i++)
     {
-        drawing += "    ";
+        drawing += "     ";
         for (int j = 0; j < figure.get_width(); j++)
         {
             drawing += "|";
