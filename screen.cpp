@@ -13,3 +13,8 @@ void MainMenuScreen::display()
     InputActionSelectGenerate input_action;
     input_action.do_input_action();
 }
+
+void GameScreen::display()
+{
+    
+}

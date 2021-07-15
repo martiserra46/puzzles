@@ -15,4 +15,10 @@ class MainMenuScreen : public Screen
         void display();
 };
 
+class GameScreen : public Screen
+{
+    protected:
+        void display();
+};
+
 #endif
