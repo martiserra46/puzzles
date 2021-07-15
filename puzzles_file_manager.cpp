@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 
-void PuzzlesFileManager::save_puzzle(std::string difficulty, int level_number, Puzzle puzzle)
+void PuzzlesFileManager::save_puzzle(std::string difficulty, int level_number, const Puzzle &puzzle)
 {
     std::string file_path = get_file_path(difficulty, level_number);
     std::ofstream file(file_path);
