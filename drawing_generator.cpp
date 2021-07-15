@@ -3,7 +3,7 @@
 
 std::string DrawingGenerator::generate_drawing(Puzzle &puzzle)
 {
-    std::string drawing = generate_drawing(puzzle.get_grid()) + "\n";
+    std::string drawing = generate_drawing(puzzle.get_grid()) + "\n\n\n";
     drawing += generate_drawing(puzzle.get_not_placed_figures());
     return drawing;
 }
