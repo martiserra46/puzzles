@@ -1,6 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include "puzzle.h"
+
 class Screen
 {
     public:
@@ -17,8 +19,12 @@ class MainMenuScreen : public Screen
 
 class GameScreen : public Screen
 {
+    public:
+        GameScreen(Puzzle puzzle);
     protected:
         void display();
+    private:
+        Puzzle puzzle;
 };
 
 #endif

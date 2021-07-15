@@ -1,6 +1,7 @@
 #include "screen.h"
 #include "input_action.h"
 #include "system_utils.h"
+#include "game_controller.h"
 
 void Screen::init()
 {
@@ -14,7 +15,12 @@ void MainMenuScreen::display()
     input_action.do_input_action();
 }
 
+GameScreen::GameScreen(Puzzle puzzle)
+{
+    this->puzzle = puzzle;
+}
+
 void GameScreen::display()
 {
-    
+    GameController::play_puzzle(puzzle);
 }
