@@ -10,4 +10,16 @@ class PuzzlesFileManager
         static Puzzle load_puzzle(std::string difficulty, int level_number);
 };
 
+std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle);
+std::istream& operator>>(std::istream& is, Puzzle& puzzle);
+
+std::ostream& operator<<(std::ostream& os, const Grid& grid);
+std::istream& operator>>(std::istream& is, Grid& grid);
+
+std::ostream& operator<<(std::ostream& os, const Figure& figure);
+std::istream& operator>>(std::istream& is, Figure& figure);
+
+std::ostream& operator<<(std::ostream& os, const Position& position);
+std::istream& operator>>(std::istream& is, Position& position);
+
 #endif
