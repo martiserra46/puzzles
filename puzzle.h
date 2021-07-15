@@ -15,17 +15,17 @@ class Puzzle
     
     public:
         Puzzle(size_t width, size_t height, std::vector<Figure> figures);
-        size_t get_width();
-        size_t get_height();
+        size_t get_width() const;
+        size_t get_height() const;
         Grid& get_grid();
-        bool is_solved();
+        bool is_solved() const;
         std::vector<std::pair<Position, Figure>>& get_placed_figures();
         std::vector<Figure>& get_not_placed_figures();
-        bool can_insert_figure(Position position, int num_figure);
+        bool can_insert_figure(Position position, int num_figure) const;
         bool insert_figure(Position position, int num_figure);
         bool remove_figure(int num_figure);
-        bool is_position_empty(Position position);
-        char get_letter_from_position(Position position);
+        bool is_position_empty(Position position) const;
+        char get_letter_from_position(Position position) const;
 };
 
 #endif

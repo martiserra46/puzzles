@@ -2,12 +2,12 @@
 
 Puzzle::Puzzle(size_t width, size_t height, std::vector<Figure> figures) : grid(width, height), not_placed_figures(figures) {}
 
-size_t Puzzle::get_width()
+size_t Puzzle::get_width() const
 {
     return grid.get_width();
 }
 
-size_t Puzzle::get_height()
+size_t Puzzle::get_height() const
 {
     return grid.get_height();
 }
@@ -17,7 +17,7 @@ Grid& Puzzle::get_grid()
     return grid;
 }
 
-bool Puzzle::is_solved()
+bool Puzzle::is_solved() const
 {
     return grid.is_solved();
 }
@@ -32,7 +32,7 @@ std::vector<Figure>& Puzzle::get_not_placed_figures()
     return not_placed_figures;
 }
 
-bool Puzzle::can_insert_figure(Position position, int num_figure)
+bool Puzzle::can_insert_figure(Position position, int num_figure) const
 {
     if (num_figure < 0 || num_figure >= not_placed_figures.size()) return false;
     return grid.can_insert_figure(position, not_placed_figures[num_figure]);
@@ -51,12 +51,12 @@ bool Puzzle::remove_figure(int num_figure)
     return grid.remove_figure(placed_figures[num_figure].second);
 }
 
-bool Puzzle::is_position_empty(Position position)
+bool Puzzle::is_position_empty(Position position) const
 {
     return grid.is_position_empty(position);
 }
 
-char Puzzle::get_letter_from_position(Position position)
+char Puzzle::get_letter_from_position(Position position) const
 {
     return grid.get_letter_from_position(position);
 }
