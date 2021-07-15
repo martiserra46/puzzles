@@ -8,7 +8,7 @@
 class Figure
 {
     public:
-        Figure(char letter, std::set<Position> positions);
+        Figure(char letter = '\0', std::set<Position> positions = {});
         char get_letter() const;
         size_t get_width() const;
         size_t get_height() const;
