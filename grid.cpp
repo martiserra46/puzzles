@@ -98,3 +98,18 @@ char Grid::get_letter_from_position(Position position) const
     }
     return '\0';
 }
+
+void Grid::set_width(size_t width)
+{
+    this->width = width;
+}
+
+void Grid::set_height(size_t height)
+{
+    this->height = height;
+}
+
+void Grid::set_placed_figures(const std::vector<std::pair<Position, Figure>> placed_figures)
+{
+    this->placed_figures = placed_figures;
+}

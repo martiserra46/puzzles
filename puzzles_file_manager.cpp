@@ -3,6 +3,7 @@
 #include "position.h"
 #include "figure.h"
 #include <set>
+#include <vector>
 #include <iostream>
 
 void PuzzlesFileManager::save_puzzle(std::string difficulty, int level_number, Puzzle puzzle)
@@ -27,11 +28,33 @@ std::istream& operator>>(std::istream& is, Puzzle& puzzle)
 
 std::ostream& operator<<(std::ostream& os, const Grid& grid)
 {
+    os << grid.get_width() << ' ' << grid.get_height() << ' ' << grid.get_const_placed_figures().size() << ' ';
+    for (std::pair<Position, Figure> placed_figure : grid.get_const_placed_figures())
+        os << placed_figure.first << ' ' << placed_figure.second << ' ';
     return os;
 }
 
 std::istream& operator>>(std::istream& is, Grid& grid)
 {
+    size_t width, height;
+    int num_placed_figures;
+
+    is >> width >> height >> num_placed_figures;
+
+    std::vector<std::pair<Position, Figure>> placed_figures;
+
+    std::pair<Position, Figure> placed_figure = { Position(), Figure('\0', {}) };
+
+    for (int i = 0; i < num_placed_figures; i++)
+    {
+        is >> placed_figure.first >> placed_figure.second;
+        placed_figures.push_back(placed_figure);
+    }
+
+    grid.set_width(width);
+    grid.set_height(height);
+    grid.set_placed_figures(placed_figures);
+    
     return is;
 }
 

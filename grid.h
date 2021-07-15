@@ -23,6 +23,11 @@ class Grid
         bool remove_figure(const Figure &figure);
         bool is_position_empty(Position position) const;
         char get_letter_from_position(Position position) const;
+        friend std::istream& operator>>(std::istream& is, Grid& grid);
+    private:
+        void set_width(size_t width);
+        void set_height(size_t height);
+        void set_placed_figures(const std::vector<std::pair<Position, Figure>> placed_figures);
 };
 
 #endif
