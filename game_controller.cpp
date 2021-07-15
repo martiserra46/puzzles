@@ -8,7 +8,6 @@
 void GameController::play_selected_level(std::string difficulty, int level)
 {
     Puzzle puzzle = LevelLoader::load_level(difficulty, level);
-    std::cout << "Play selected level" << std::endl;
     std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
 }
 
