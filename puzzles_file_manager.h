@@ -8,6 +8,8 @@ class PuzzlesFileManager
     public:
         static void save_puzzle(std::string difficulty, int level_number, Puzzle puzzle);
         static Puzzle load_puzzle(std::string difficulty, int level_number);
+    private:
+        std::string get_file_path(std::string difficulty, int level_number);
 };
 
 std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle);

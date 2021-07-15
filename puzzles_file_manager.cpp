@@ -24,6 +24,11 @@ Puzzle PuzzlesFileManager::load_puzzle(std::string difficulty, int level_number)
     return puzzle;
 }
 
+std::string PuzzlesFileManager::get_file_path(std::string difficulty, int level_number)
+{
+    return difficulty + "/" + std::to_string(level_number) + ".txt";
+}
+
 std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle)
 {
     os << puzzle.get_const_grid() << ' ' << puzzle.get_const_not_placed_figures().size() << ' ';
