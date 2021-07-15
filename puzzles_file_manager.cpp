@@ -26,13 +26,13 @@ std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle)
 
 std::istream& operator>>(std::istream& is, Puzzle& puzzle)
 {
-    Grid grid(0,0);
+    Grid grid;
     std::vector<Figure> not_placed_figures;
     int num_not_placed_figures;
     
     is >> grid >> num_not_placed_figures;
 
-    Figure figure('\0', {});
+    Figure figure;
 
     for (int i = 0; i < num_not_placed_figures; i++)
     {
@@ -63,7 +63,7 @@ std::istream& operator>>(std::istream& is, Grid& grid)
 
     std::vector<std::pair<Position, Figure>> placed_figures;
 
-    std::pair<Position, Figure> placed_figure = { Position(), Figure('\0', {}) };
+    std::pair<Position, Figure> placed_figure = { Position(), Figure() };
 
     for (int i = 0; i < num_placed_figures; i++)
     {
