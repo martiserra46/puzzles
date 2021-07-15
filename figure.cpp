@@ -7,8 +7,6 @@
 Figure::Figure(char letter, std::set<Position> positions) {
     set_letter(letter);
     set_positions(positions);
-    width = get_width_from_positions(positions);
-    height = get_height_from_positions(positions);
 }
 
 char Figure::get_letter() const
@@ -46,8 +44,6 @@ void Figure::rotate(unsigned short num_rotations)
             new_positions.insert(new_position);
         }
         set_positions(new_positions);
-        width = get_width_from_positions(new_positions);
-        height = get_height_from_positions(new_positions);
     }
 }
 
@@ -71,6 +67,8 @@ void Figure::set_letter(char letter)
 void Figure::set_positions(std::set<Position> positions)
 {
     this->positions = positions;
+    width = get_width_from_positions(positions);
+    height = get_height_from_positions(positions);
 }
 
 static int get_width_from_positions(std::set<Position> positions)
