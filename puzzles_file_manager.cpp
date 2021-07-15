@@ -26,7 +26,7 @@ Puzzle PuzzlesFileManager::load_puzzle(std::string difficulty, int level_number)
 
 std::string PuzzlesFileManager::get_file_path(std::string difficulty, int level_number)
 {
-    return difficulty + "/" + std::to_string(level_number) + ".txt";
+    return "levels/" + difficulty + "/" + std::to_string(level_number) + ".txt";
 }
 
 std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle)
