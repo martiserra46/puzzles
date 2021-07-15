@@ -12,7 +12,7 @@ class Grid
     size_t width, height;
     std::vector<std::pair<Position, Figure>> placed_figures;
     public:
-        Grid(size_t width, size_t height);
+        Grid(size_t width = 0, size_t height = 0);
         size_t get_width() const;
         size_t get_height() const;
         bool is_solved() const;
