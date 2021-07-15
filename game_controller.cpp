@@ -1,5 +1,5 @@
 #include "game_controller.h"
-#include "level_loader.h"
+#include "puzzles_file_manager.h"
 #include "puzzle_generator.h"
 #include "drawing_generator.h"
 #include "puzzle.h"
@@ -7,7 +7,7 @@
 
 void GameController::play_selected_level(std::string difficulty, int level)
 {
-    Puzzle puzzle = LevelLoader::load_level(difficulty, level);
+    Puzzle puzzle = PuzzlesFileManager::load_puzzle(difficulty, level);
     std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
 }
 
