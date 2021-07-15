@@ -24,10 +24,9 @@ class Figure
         std::set<Position> positions;
         void set_letter(char letter);
         void set_positions(std::set<Position> positions);
+        int get_width_from_positions(std::set<Position> positions);
+        int get_height_from_positions(std::set<Position> positions);
+        int get_size_from_positions(std::set<Position> positions, int (*get_value)(Position));
 };
-
-static int get_width_from_positions(std::set<Position> positions);
-static int get_height_from_positions(std::set<Position> positions);
-static int get_size_from_positions(std::set<Position> positions, int (*get_value)(Position));
 
 #endif

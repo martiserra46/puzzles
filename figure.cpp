@@ -71,17 +71,17 @@ void Figure::set_positions(std::set<Position> positions)
     height = get_height_from_positions(positions);
 }
 
-static int get_width_from_positions(std::set<Position> positions)
+int Figure::get_width_from_positions(std::set<Position> positions)
 {
     return get_size_from_positions(positions, [](Position position) { return position.x; });
 }
 
-static int get_height_from_positions(std::set<Position> positions)
+int Figure::get_height_from_positions(std::set<Position> positions)
 {
     return get_size_from_positions(positions, [](Position position) { return position.y; });
 }
 
-static int get_size_from_positions(std::set<Position> positions, int (*get_value)(Position))
+int Figure::get_size_from_positions(std::set<Position> positions, int (*get_value)(Position))
 {
     if (positions.size() == 0) return 0;
     std::set<int> values;
