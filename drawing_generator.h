@@ -10,10 +10,10 @@
 class DrawingGenerator
 {
     public:
-        static std::string generate_drawing(Puzzle &puzzle);
-        static std::string generate_drawing(Grid &grid);
-        static std::string generate_drawing(std::vector<Figure> figures);
-        static std::string generate_drawing(Figure &figure);
+        static std::string generate_drawing(const Puzzle &puzzle);
+        static std::string generate_drawing(const Grid &grid);
+        static std::string generate_drawing(const std::vector<Figure> figures);
+        static std::string generate_drawing(const Figure &figure);
 };
 
 #endif

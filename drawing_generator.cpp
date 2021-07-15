@@ -1,14 +1,14 @@
 #include "drawing_generator.h"
 #include "text_utils.h"
 
-std::string DrawingGenerator::generate_drawing(Puzzle &puzzle)
+std::string DrawingGenerator::generate_drawing(const Puzzle &puzzle)
 {
-    std::string drawing = generate_drawing(puzzle.get_grid()) + "\n\n\n";
-    drawing += generate_drawing(puzzle.get_not_placed_figures());
+    std::string drawing = generate_drawing(puzzle.get_const_grid()) + "\n\n\n";
+    drawing += generate_drawing(puzzle.get_const_not_placed_figures());
     return drawing;
 }
 
-std::string DrawingGenerator::generate_drawing(Grid &grid)
+std::string DrawingGenerator::generate_drawing(const Grid &grid)
 {
     std::string drawing;
     drawing += "     ";
@@ -32,19 +32,19 @@ std::string DrawingGenerator::generate_drawing(Grid &grid)
     return drawing;
 }
 
-std::string DrawingGenerator::generate_drawing(std::vector<Figure> figures)
+std::string DrawingGenerator::generate_drawing(const std::vector<Figure> figures)
 {
     std::string drawing = "";
     for (int i = 0; i < figures.size(); i++)
     {
-        Figure &figure = figures[i];
+        const Figure &figure = figures[i];
         drawing += text_after_chars(std::to_string(i + 1), ' ', 3) + ".\n";
         drawing += generate_drawing(figure) + "\n"; 
     }
     return drawing;
 }
 
-std::string DrawingGenerator::generate_drawing(Figure &figure)
+std::string DrawingGenerator::generate_drawing(const Figure &figure)
 {
     std::set<Position> positions = figure.get_positions();
     std::string drawing = "";
