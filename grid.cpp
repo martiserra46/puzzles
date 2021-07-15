@@ -28,7 +28,12 @@ bool Grid::is_solved() const
     return true;
 }
 
-const std::vector<std::pair<Position, Figure>>& Grid::get_placed_figures() const
+const std::vector<std::pair<Position, Figure>>& get_const_placed_figures() const
+{
+    return placed_figures;
+}
+
+std::vector<std::pair<Position, Figure>>& Grid::get_placed_figures()
 {
     return placed_figures;
 }

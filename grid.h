@@ -16,7 +16,8 @@ class Grid
         size_t get_width() const;
         size_t get_height() const;
         bool is_solved() const;
-        const std::vector<std::pair<Position, Figure>>& get_placed_figures() const;
+        const std::vector<std::pair<Position, Figure>>& get_const_placed_figures() const;
+        std::vector<std::pair<Position, Figure>>& get_placed_figures();
         bool can_insert_figure(Position position, Figure &figure) const;
         bool insert_figure(Position position, Figure &figure);
         bool remove_figure(Figure &figure);
