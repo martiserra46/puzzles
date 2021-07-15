@@ -51,15 +51,19 @@ std::string DrawingGenerator::generate_drawing(const Figure &figure)
     for (int i = 0; i < figure.get_height(); i++)
     {
         drawing += "     ";
+        bool found = false;
         for (int j = 0; j < figure.get_width(); j++)
         {
-            drawing += "|";
+            bool prev_found = found;
             Position position = {j, i};
-            bool found = *std::find(positions.begin(), positions.end(), position) == position;
+            found = *std::find(positions.begin(), positions.end(), position) == position;
             char c = found ? figure.get_letter() : ' ';
+            if (found || prev_found) drawing += "|";
+            else drawing += " ";
             drawing += text_between_chars(std::string(1, c), ' ', 5);
         }
-        drawing += "|";
+        if (found) drawing += "|";
+        else drawing += " ";
         if (i < figure.get_height() - 1) drawing += "\n\n";
         else drawing += "\n";
     }
