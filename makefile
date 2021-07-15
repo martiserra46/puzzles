@@ -1,7 +1,7 @@
 all: puzzle generate_levels
 
-puzzle: main.o bundle.o text_utils.o number_utils.o system_utils.o vector_utils.o input.o input_validator.o input_converter.o action.o input_action.o position.o figure.o grid.o drawing_generator.o puzzle.o puzzle_generator.o game_controller.o screen.o puzzles_file_manager.o
-	g++ main.o bundle.o text_utils.o number_utils.o system_utils.o vector_utils.o input.o input_validator.o input_converter.o action.o input_action.o position.o figure.o grid.o drawing_generator.o puzzle.o puzzle_generator.o game_controller.o screen.o puzzles_file_manager.o -o puzzle -std=c++11
+puzzle: main.o bundle.o text_utils.o number_utils.o system_utils.o vector_utils.o input.o input_validator.o input_converter.o action.o input_action.o position.o figure.o grid.o drawing_generator.o puzzle.o puzzle_generator.o main_menu_controller.o screen.o puzzles_file_manager.o
+	g++ main.o bundle.o text_utils.o number_utils.o system_utils.o vector_utils.o input.o input_validator.o input_converter.o action.o input_action.o position.o figure.o grid.o drawing_generator.o puzzle.o puzzle_generator.o main_menu_controller.o screen.o puzzles_file_manager.o -o puzzle -std=c++11
 
 generate_levels: generate_levels.o puzzle.o grid.o figure.o position.o puzzle_generator.o puzzles_file_manager.o number_utils.o vector_utils.o
 	g++ generate_levels.o puzzle.o grid.o figure.o position.o puzzle_generator.o puzzles_file_manager.o number_utils.o vector_utils.o -o generate_levels -std=c++11
@@ -60,8 +60,8 @@ drawing_generator.o: drawing_generator.cpp
 puzzle_generator.o: puzzle_generator.cpp
 	g++ -c puzzle_generator.cpp -std=c++11
 
-game_controller.o: game_controller.cpp
-	g++ -c game_controller.cpp -std=c++11
+main_menu_controller.o: main_menu_controller.cpp
+	g++ -c main_menu_controller.cpp -std=c++11
 
 screen.o: screen.cpp
 	g++ -c screen.cpp -std=c++11

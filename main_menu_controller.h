@@ -1,10 +1,10 @@
-#ifndef GAME_CONTROLLER_H
-#define GAME_CONTROLLER_H
+#ifndef main_menu_controller_H
+#define main_menu_controller_H
 
 #include <string>
 #include "puzzle.h"
 
-class GameController
+class MainMenuController
 {
     public:
         static void play_selected_level(std::string difficulty, int level);

@@ -1,7 +1,7 @@
 #include "screen.h"
 #include "input_action.h"
 #include "system_utils.h"
-#include "game_controller.h"
+#include "main_menu_controller.h"
 
 void Screen::init()
 {
@@ -22,5 +22,5 @@ GameScreen::GameScreen(Puzzle puzzle)
 
 void GameScreen::display()
 {
-    GameController::play_puzzle(puzzle);
+    MainMenuController::play_puzzle(puzzle);
 }

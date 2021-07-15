@@ -1,6 +1,6 @@
 #include "action.h"
 #include "system_utils.h"
-#include "game_controller.h"
+#include "main_menu_controller.h"
 
 /** ActionGroup **/
 ActionGroup::ActionGroup(std::vector<Action*> actions) : actions(actions) {}
@@ -114,7 +114,7 @@ bool ActionLevel::do_action(std::string name, Bundle bundle)
     {
         clear_screen();
         int level = bundle.get_int("level-number");
-        GameController::play_selected_level(difficulty, level);
+        MainMenuController::play_selected_level(difficulty, level);
         return true;
     }
     return false;
@@ -148,7 +148,7 @@ bool ActionNumFigures::do_action(std::string name, Bundle bundle)
     {
         clear_screen();
         int num_figures = bundle.get_int("num-figures");
-        GameController::play_generated_puzzle(rows, columns, num_figures);
+        MainMenuController::play_generated_puzzle(rows, columns, num_figures);
         return true;
     }
     return false;
