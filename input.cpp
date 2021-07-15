@@ -17,7 +17,7 @@
 #define MIN_COLS 5
 #define MAX_COLS 10
 
-#define MIN_FIGURES 5
+#define MIN_FIGURES 3
 #define MAX_FIGURES 10
 
 /** Input **/
