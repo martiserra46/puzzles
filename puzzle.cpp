@@ -12,7 +12,7 @@ size_t Puzzle::get_height() const
     return grid.get_height();
 }
 
-const Grid& get_const_grid() const
+const Grid& Puzzle::get_const_grid() const
 {
     return grid;
 }
