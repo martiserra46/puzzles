@@ -64,7 +64,7 @@ std::string InputElement::get_text()
 {
     std::string title_to_upper = to_uppercase(title);
     std::string text = text_between_chars(title_to_upper, '-', INPUT_MAX_LINE_WIDTH) + "\n";
-    text += get_text_without_title() + "\n";
+    text += get_text_without_title();
     return text;
 }
 
