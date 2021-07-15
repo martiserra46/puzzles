@@ -17,9 +17,12 @@ class Puzzle
         Puzzle(size_t width, size_t height, std::vector<Figure> figures);
         size_t get_width() const;
         size_t get_height() const;
+        const Grid& get_const_grid() const;
         Grid& get_grid();
         bool is_solved() const;
+        const std::vector<std::pair<Position, Figure>>& get_const_placed_figures() const;
         std::vector<std::pair<Position, Figure>>& get_placed_figures();
+        const std::vector<Figure>& get_const_not_placed_figures() const;
         std::vector<Figure>& get_not_placed_figures();
         bool can_insert_figure(Position position, int num_figure) const;
         bool insert_figure(Position position, int num_figure);

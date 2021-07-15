@@ -12,6 +12,11 @@ size_t Puzzle::get_height() const
     return grid.get_height();
 }
 
+const Grid& get_const_grid() const
+{
+    return grid;
+}
+
 Grid& Puzzle::get_grid()
 {
     return grid;
@@ -22,9 +27,19 @@ bool Puzzle::is_solved() const
     return grid.is_solved();
 }
 
+const std::vector<std::pair<Position, Figure>>& Puzzle::get_const_placed_figures() const
+{
+    return grid.get_const_placed_figures();
+}
+
 std::vector<std::pair<Position, Figure>>& Puzzle::get_placed_figures()
 {
     return grid.get_placed_figures();
+}
+
+const std::vector<Figure>& Puzzle::get_const_not_placed_figures() const
+{
+    return not_placed_figures;
 }
 
 std::vector<Figure>& Puzzle::get_not_placed_figures()
