@@ -29,6 +29,10 @@ class Puzzle
         bool remove_figure(int num_figure);
         bool is_position_empty(Position position) const;
         char get_letter_from_position(Position position) const;
+        friend std::istream& operator>>(std::istream& is, Puzzle& puzzle);
+    private:
+        void set_grid(Grid grid);
+        void set_not_placed_figures(std::vector<Figure> not_placed_figures);
 };
 
 #endif

@@ -75,3 +75,13 @@ char Puzzle::get_letter_from_position(Position position) const
 {
     return grid.get_letter_from_position(position);
 }
+
+void Puzzle::set_grid(Grid grid)
+{
+    this->grid = grid;
+}
+
+void Puzzle::set_not_placed_figures(std::vector<Figure> not_placed_figures)
+{
+    this->not_placed_figures = not_placed_figures;
+}

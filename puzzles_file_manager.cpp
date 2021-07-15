@@ -18,11 +18,31 @@ Puzzle PuzzlesFileManager::load_puzzle(std::string difficulty, int level_number)
 
 std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle)
 {
+    os << puzzle.get_const_grid() << ' ' << puzzle.get_const_not_placed_figures().size() << ' ';
+    for (Figure figure : puzzle.get_const_not_placed_figures())
+        os << figure << ' ';
     return os;
 }
 
 std::istream& operator>>(std::istream& is, Puzzle& puzzle)
 {
+    Grid grid(0,0);
+    std::vector<Figure> not_placed_figures;
+    int num_not_placed_figures;
+    
+    is >> grid >> num_not_placed_figures;
+
+    Figure figure('\0', {});
+
+    for (int i = 0; i < num_not_placed_figures; i++)
+    {
+        is >> figure;
+        not_placed_figures.push_back(figure);
+    }
+
+    puzzle.set_grid(grid);
+    puzzle.set_not_placed_figures(not_placed_figures);
+
     return is;
 }
 
@@ -54,7 +74,7 @@ std::istream& operator>>(std::istream& is, Grid& grid)
     grid.set_width(width);
     grid.set_height(height);
     grid.set_placed_figures(placed_figures);
-    
+
     return is;
 }
 
