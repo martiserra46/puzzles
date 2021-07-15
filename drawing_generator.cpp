@@ -11,17 +11,23 @@ std::string DrawingGenerator::generate_drawing(Puzzle &puzzle)
 std::string DrawingGenerator::generate_drawing(Grid &grid)
 {
     std::string drawing;
+    drawing += "    ";
+    for (int i = 0; i < grid.get_width(); i++)
+        drawing += " " + text_between_chars(std::to_string(i), ' ', 5);
+    drawing += "\n\n";
     for (int i = 0; i < grid.get_height(); i++)
     {
+        drawing += text_after_chars(std::to_string(i), ' ', 3) + " ";
         for (int j = 0; j < grid.get_width(); j++)
         {
-            drawing += "| ";
-            char letter = grid.get_letter_from_position({j, i});
-            if (letter != '\0') drawing += letter;
-            else drawing += " ";
-            drawing += " ";
+            drawing += "|";
+            char c = grid.get_letter_from_position({j, i});
+            if (c == '\0') c += ' ';
+            drawing += text_between_chars(std::string(1, c), ' ', 5);
         }
-        drawing += "|\n";
+        drawing += "|";
+        if (i < grid.get_height() - 1) drawing += "\n\n";
+        else drawing += "\n";
     }
     return drawing;
 }
