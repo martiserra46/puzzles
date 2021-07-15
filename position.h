@@ -6,6 +6,7 @@ struct Position {
     bool operator<(const Position &position) const;
     bool operator==(const Position &position) const;
     Position operator+(const Position &position) const;
+    Position operator-(const Position &position) const;
 };
 
 #endif
