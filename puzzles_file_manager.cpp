@@ -8,7 +8,10 @@
 
 void PuzzlesFileManager::save_puzzle(std::string difficulty, int level_number, Puzzle puzzle)
 {
-
+    std::string file_path = get_file_path(difficulty, level_number);
+    std::ofstream file(file_path);
+    file << puzzle;
+    file.close();
 }
 
 Puzzle PuzzlesFileManager::load_puzzle(std::string difficulty, int level_number)
