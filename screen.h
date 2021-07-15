@@ -9,4 +9,10 @@ class Screen
         virtual void display() = 0;
 };
 
+class MainMenuScreen : public Screen
+{
+    protected:
+        void display();
+};
+
 #endif
