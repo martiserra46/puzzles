@@ -16,7 +16,12 @@ void PuzzlesFileManager::save_puzzle(std::string difficulty, int level_number, P
 
 Puzzle PuzzlesFileManager::load_puzzle(std::string difficulty, int level_number)
 {
-    return Puzzle(5,5,{});
+    Puzzle puzzle;
+    std::string file_path = get_file_path(difficulty, level_number);
+    std::ifstream file(file_path);
+    file >> puzzle;
+    file.close();
+    return puzzle;
 }
 
 std::ostream& operator<<(std::ostream& os, const Puzzle& puzzle)
