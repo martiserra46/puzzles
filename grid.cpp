@@ -6,17 +6,17 @@ Grid::Grid(size_t width, size_t height)
     this->height = height;
 }
 
-size_t Grid::get_width()
+size_t Grid::get_width() const
 {
     return width;
 }
 
-size_t Grid::get_height()
+size_t Grid::get_height() const
 {
     return height;
 }
 
-bool Grid::is_solved()
+bool Grid::is_solved() const
 {
     for (int i = 0; i < height; i++)
     {
@@ -28,12 +28,12 @@ bool Grid::is_solved()
     return true;
 }
 
-std::vector<std::pair<Position, Figure>>& Grid::get_placed_figures()
+const std::vector<std::pair<Position, Figure>>& Grid::get_placed_figures() const
 {
     return placed_figures;
 }
 
-bool Grid::can_insert_figure(Position position, Figure &figure)
+bool Grid::can_insert_figure(Position position, Figure &figure) const
 {
     std::set<Position> figure_positions = figure.get_positions();
     for (Position figure_position : figure_positions)
@@ -55,7 +55,6 @@ bool Grid::insert_figure(Position position, Figure &figure)
 
 bool Grid::remove_figure(Figure &figure)
 {
-    std::vector<std::pair<Position, Figure>> &placed_figures = get_placed_figures();
     std::vector<std::pair<Position, Figure>>::iterator it = placed_figures.begin();
     while (it != placed_figures.end())
     {
@@ -72,14 +71,14 @@ bool Grid::remove_figure(Figure &figure)
     return false;
 }
 
-bool Grid::is_position_empty(Position position)
+bool Grid::is_position_empty(Position position) const
 {
     return get_letter_from_position(position) == '\0';
 }
 
-char Grid::get_letter_from_position(Position position)
+char Grid::get_letter_from_position(Position position) const
 {
-    for (std::pair<Position, Figure> placed_figure : get_placed_figures())
+    for (std::pair<Position, Figure> placed_figure : placed_figures)
     {
         Position &figure_position_in_grid = placed_figure.first;
         Figure &figure = placed_figure.second;
