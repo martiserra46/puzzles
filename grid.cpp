@@ -38,7 +38,7 @@ std::vector<std::pair<Position, Figure>>& Grid::get_placed_figures()
     return placed_figures;
 }
 
-bool Grid::can_insert_figure(Position position, Figure &figure) const
+bool Grid::can_insert_figure(Position position, const Figure &figure) const
 {
     std::set<Position> figure_positions = figure.get_positions();
     for (Position figure_position : figure_positions)
@@ -51,14 +51,14 @@ bool Grid::can_insert_figure(Position position, Figure &figure) const
     return true;
 }
 
-bool Grid::insert_figure(Position position, Figure &figure)
+bool Grid::insert_figure(Position position, const Figure &figure)
 {
     if (!can_insert_figure(position, figure)) return false;
     placed_figures.push_back({position, figure});
     return true;
 }
 
-bool Grid::remove_figure(Figure &figure)
+bool Grid::remove_figure(const Figure &figure)
 {
     std::vector<std::pair<Position, Figure>>::iterator it = placed_figures.begin();
     while (it != placed_figures.end())

@@ -18,9 +18,9 @@ class Grid
         bool is_solved() const;
         const std::vector<std::pair<Position, Figure>>& get_const_placed_figures() const;
         std::vector<std::pair<Position, Figure>>& get_placed_figures();
-        bool can_insert_figure(Position position, Figure &figure) const;
-        bool insert_figure(Position position, Figure &figure);
-        bool remove_figure(Figure &figure);
+        bool can_insert_figure(Position position, const Figure &figure) const;
+        bool insert_figure(Position position, const Figure &figure);
+        bool remove_figure(const Figure &figure);
         bool is_position_empty(Position position) const;
         char get_letter_from_position(Position position) const;
 };
