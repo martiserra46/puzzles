@@ -16,13 +16,14 @@ Puzzle PuzzleGenerator::generate_puzzle(int rows, int columns, int num_figures)
 std::vector<std::vector<char>> PuzzleGenerator::generate_matrix(int rows, int columns, int num_figures)
 {
     auto matrix = create_matrix(rows, columns);
-    while (!is_matrix_fully_generated(matrix, num_figures))
+
+    while (is_value_in_matrix(matrix, '\0'))
     {
-        if (can_insert_random_value_in_matrix(matrix, num_figures))
-            insert_random_value_in_matrix(matrix, num_figures);
-        else
+        insert_random_value_in_matrix(matrix, num_figures);
+        if (!is_value_in_matrix(matrix, '\0') && !is_matrix_valid(matrix, num_figures))
             fill_matrix(matrix, '\0');
     }
+
     return matrix;
 }
 
@@ -35,14 +36,6 @@ std::vector<Figure> PuzzleGenerator::get_figures_from_matrix(std::vector<std::ve
         figures.push_back(get_figure_from_matrix(matrix, letter));
     }
     return figures;
-}
-
-bool PuzzleGenerator::is_matrix_fully_generated(std::vector<std::vector<char>> &matrix, int num_figures)
-{
-    if (is_value_in_matrix(matrix, '\0')) return false;
-    for (int i = 0; i < num_figures; i++)
-        if (!is_value_in_matrix(matrix, 'A' + i)) return false;
-    return true;
 }
 
 void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char>> &matrix, int num_figures)
@@ -66,20 +59,20 @@ void PuzzleGenerator::insert_random_value_in_matrix(std::vector<std::vector<char
     }
 }
 
-bool PuzzleGenerator::can_insert_random_value_in_matrix(std::vector<std::vector<char>> &matrix, int num_figures)
+bool PuzzleGenerator::is_matrix_valid(std::vector<std::vector<char>> &matrix, int num_figures)
 {
-    for (int fig_number = 0; fig_number < num_figures; fig_number++)
+    if (is_value_in_matrix(matrix, '\0')) return false;
+    int num_positions = matrix.size() * matrix[0].size();
+    int mean_num_figure_positions = num_positions / num_figures;
+    if (num_positions % num_figures != 0) mean_num_figure_positions += 1;
+    int min = mean_num_figure_positions - (mean_num_figure_positions / 2);
+    int max = mean_num_figure_positions + (mean_num_figure_positions / 2);
+    for (int i = 0; i < num_figures; i++)
     {
-        char letter = 'A' + fig_number;
-        for (int i = 0; i < matrix.size(); i++)
-        {
-            for (int j = 0; j < matrix[i].size(); j++)
-            {
-                if (can_insert_value_in_matrix(matrix, num_figures, letter, {i, j})) return true;
-            }
-        }
+        int num_figure_positions = get_positions_value_in_matrix(matrix, 'A' + i).size();
+        if (num_figure_positions < min || num_figure_positions > max) return false;
     }
-    return false;
+    return true;
 }
 
 bool PuzzleGenerator::can_insert_value_in_matrix(std::vector<std::vector<char>> &matrix, int num_figures, int letter, Position position)
