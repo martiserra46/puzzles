@@ -17,7 +17,7 @@ void GameController::play_generated_puzzle(int rows, int columns, int num_figure
     std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
 }
 
-void play_puzzle(Puzzle puzzle)
+void GameController::play_puzzle(Puzzle puzzle)
 {
-    
+
 }
