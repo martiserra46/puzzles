@@ -14,7 +14,7 @@ class Puzzle
     std::vector<Figure> not_placed_figures;
     
     public:
-        Puzzle(size_t width, size_t height, std::vector<Figure> figures);
+        Puzzle(size_t width = 0, size_t height = 0, std::vector<Figure> figures = {});
         size_t get_width() const;
         size_t get_height() const;
         const Grid& get_const_grid() const;
