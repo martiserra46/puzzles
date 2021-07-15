@@ -94,33 +94,28 @@ bool PuzzleGenerator::can_insert_value_in_matrix(std::vector<std::vector<char>> 
 Figure PuzzleGenerator::get_figure_from_matrix(std::vector<std::vector<char>> &matrix, char letter)
 {
     std::set<Position> figure_positions_in_matrix;
-    int min_x = -1;
-    int min_y = -1;
+    Position position_to_substract = {-1, -1};
     for (int i = 0; i < matrix.size(); i++)
     {
         for (int j = 0; j < matrix[i].size(); j++)
         {
             if (matrix[i][j] == letter)
             {
-                if (min_x == -1 || i < min_x) min_x = i;
-                if (min_y == -1 || j < min_y) min_y = j;
+                if (position_to_substract.x == -1 || i < position_to_substract.x) position_to_substract.x = i;
+                if (position_to_substract.y == -1 || j < position_to_substract.y) position_to_substract.y = j;
                 figure_positions_in_matrix.insert({i, j});
             }
         }
     }
 
-    std::set<Position>::iterator it = figure_positions_in_matrix.begin();
     std::set<Position> figure_positions;
-    while (it != figure_positions_in_matrix.end())
-    {
-        figure_positions.insert({it->x - min_x, it->y - min_y});
-        it++;
-    }
+
+    for (Position position : figure_positions_in_matrix)
+        figure_positions.insert(position - position_to_substract);
 
     Figure figure(letter, figure_positions);
 
-    int num_rotations = random(0, 3);
-    figure.rotate(num_rotations);
+    figure.rotate(random(0, 3));
 
     return figure;
 }
