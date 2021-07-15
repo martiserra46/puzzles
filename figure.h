@@ -16,6 +16,7 @@ class Figure
         void rotate(unsigned short num_rotations);
         bool operator==(const Figure &figure) const;
         bool operator<(const Figure &figure) const;
+        friend std::istream& operator>>(std::istream& is, Figure& figure);
     private:
         char letter;
         size_t width;
