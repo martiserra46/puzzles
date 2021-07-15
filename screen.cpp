@@ -22,5 +22,5 @@ GameScreen::GameScreen(Puzzle puzzle)
 
 void GameScreen::display()
 {
-    MainMenuController::play_puzzle(puzzle);
+    
 }
