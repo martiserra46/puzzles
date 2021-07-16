@@ -5,8 +5,8 @@
 int main()
 {
     std::vector<std::string> difficulty = {"e", "m", "h"};
-    std::vector<size_t> grid_width = {5, 6, 7}, grid_height = {5, 6, 7};
-    std::vector<int> num_figures = {4, 5, 6};
+    std::vector<size_t> grid_width = {4, 5, 6}, grid_height = {4, 5, 6};
+    std::vector<int> num_figures = {3, 4, 5};
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 10; j++)

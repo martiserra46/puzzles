@@ -14,13 +14,13 @@
 
 #define NUM_LEVELS 10
 
-#define MIN_ROWS 5
-#define MAX_ROWS 10
-#define MIN_COLS 5
-#define MAX_COLS 10
+#define MIN_ROWS 4
+#define MAX_ROWS 6
+#define MIN_COLS 4
+#define MAX_COLS 6
 
 #define MIN_FIGURES 3
-#define MAX_FIGURES 10
+#define MAX_FIGURES 5
 
 /** Input **/
 std::pair<std::string, Bundle> Input::input()
