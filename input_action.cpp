@@ -34,10 +34,7 @@ InputActionDifficulty::InputActionDifficulty() : InputAction(
 InputActionLevel::InputActionLevel(std::string difficulty) : InputAction(
     new InputLevelWithOptions(difficulty),
     new ActionLevelWithOptions(difficulty)
-)
-{
-    this->difficulty = difficulty;
-}
+) {}
 
 /** InputActionRowsColumns **/
 InputActionRowsColumns::InputActionRowsColumns() : InputAction(
@@ -49,8 +46,4 @@ InputActionRowsColumns::InputActionRowsColumns() : InputAction(
 InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputAction(
     new InputNumFiguresWithOptions(rows, columns),
     new ActionNumFiguresWithOptions(rows, columns)
-)
-{
-    this->rows = rows;
-    this->columns = columns;
-}
+) {}
