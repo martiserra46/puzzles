@@ -18,11 +18,9 @@ std::string DrawingGenerator::generate_puzzle_drawing(const Puzzle &puzzle)
 
 std::string DrawingGenerator::generate_grid_drawing(const Puzzle &puzzle)
 {
-    size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
-
     std::string drawing;
 
-    drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Grid"), ' ', title_width) + "\n";
+    drawing += get_formatted_title("Grid", puzzle.get_width()) + "\n";
     
     drawing += generate_drawing(puzzle.get_const_grid());
 
@@ -31,17 +29,15 @@ std::string DrawingGenerator::generate_grid_drawing(const Puzzle &puzzle)
 
 std::string DrawingGenerator::generate_placed_figures_drawing(const Puzzle &puzzle)
 {
-    size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
-
     std::string drawing;
     
-    drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Placed Figures"), ' ', title_width) + "\n";
+    drawing += get_formatted_title("Placed Figures", puzzle.get_width()) + "\n";
     
     std::vector<Figure> placed_figures;
     
     for (auto placed_figure : puzzle.get_const_placed_figures()) placed_figures.push_back(placed_figure.second);
     
-    if (placed_figures.size() == 0) drawing += "\n" + std::string(TEXT_LEFT_MARGIN, ' ') + "There aren't any placed figures\n\n";
+    if (placed_figures.size() == 0) drawing += "\nThere aren't any placed figures\n\n";
     else drawing += generate_drawing(placed_figures);
 
     return drawing;
@@ -49,13 +45,11 @@ std::string DrawingGenerator::generate_placed_figures_drawing(const Puzzle &puzz
 
 std::string DrawingGenerator::generate_not_placed_figures_drawing(const Puzzle &puzzle)
 {
-    size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
-
     std::string drawing;
 
-    drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Not Placed Figures"), ' ', title_width) + "\n\n";
+    drawing += get_formatted_title("Not Placed Figures", puzzle.get_width()) + "\n";
 
-    if (puzzle.get_const_not_placed_figures().size() == 0) drawing += "\n" + std::string(TEXT_LEFT_MARGIN, ' ') + "There aren't any not placed figures\n";
+    if (puzzle.get_const_not_placed_figures().size() == 0) drawing += "\nThere aren't any not placed figures\n";
     else drawing += generate_drawing(puzzle.get_const_not_placed_figures());
 
     return drawing;
@@ -129,10 +123,10 @@ std::string DrawingGenerator::generate_drawing(const Figure &figure)
     return drawing;
 }
 
-std::string DrawingGenerator::get_formatted_title(std::string title)
+std::string DrawingGenerator::get_formatted_title(std::string title, size_t puzzle_width)
 {
-    
+    size_t title_width = GRID_LEFT_MARGIN + puzzle_width * (GRID_CELL_WIDTH + 1) + 1;
     title = to_uppercase(title);
-    title = text_between_chars(title, '_', title.length() + NUM_LINES_SIDE_TITLE * 2 + 2);
+    title = text_between_chars(title, '-', title_width);
     return title;
 }
