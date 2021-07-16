@@ -68,6 +68,13 @@ std::string DrawingGenerator::generate_not_placed_figures_drawing(const Puzzle &
     return drawing;
 }
 
+std::string DrawingGenerator::generate_figure_drawing(const Puzzle &puzzle, bool placed, int figure_number)
+{
+    Figure figure = placed ? puzzle.get_const_placed_figures()[figure_number].second : puzzle.get_const_not_placed_figures()[figure_number];
+    std::string drawing = generate_drawing(figure);
+    return drawing;
+}
+
 std::string DrawingGenerator::generate_drawing(const Grid &grid)
 {
     std::string drawing;

@@ -14,6 +14,7 @@ class DrawingGenerator
         static std::string generate_grid_drawing(const Puzzle &puzzle);
         static std::string generate_placed_figures_drawing(const Puzzle &puzzle);
         static std::string generate_not_placed_figures_drawing(const Puzzle &puzzle);
+        static std::string generate_figure_drawing(const Puzzle &puzzle, bool placed, int figure_number);
     private:
         static std::string get_formatted_title(std::string title);
         static std::string generate_drawing(const Grid &grid);
