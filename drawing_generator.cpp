@@ -92,8 +92,8 @@ std::string DrawingGenerator::generate_drawing(const std::vector<Figure> figures
     for (int i = 0; i < figures.size(); i++)
     {
         const Figure &figure = figures[i];
-        drawing += text_after_chars(std::to_string(i + 1), ' ', TEXT_LEFT_MARGIN + 1) + ".\n";
-        drawing += generate_drawing(figure); 
+        drawing += text_after_chars(std::to_string(i + 1), ' ', TEXT_LEFT_MARGIN + 1) + ".\n\n";
+        drawing += generate_drawing(figure) + "\n\n";
     }
     return drawing;
 }
@@ -102,9 +102,13 @@ std::string DrawingGenerator::generate_drawing(const Figure &figure)
 {
     std::set<Position> positions = figure.get_positions();
     std::string drawing = "";
+    drawing += std::string(GRID_LEFT_MARGIN, ' ');
+    for (int i = 0; i < figure.get_width(); i++)
+        drawing += " " + text_between_chars(std::to_string(i), ' ', GRID_CELL_WIDTH);
+    drawing += "\n\n";
     for (int i = 0; i < figure.get_height(); i++)
     {
-        drawing += std::string(GRID_LEFT_MARGIN, ' ');
+        drawing += text_after_chars(std::to_string(i), ' ', TEXT_LEFT_MARGIN + 1) + std::string(GRID_LEFT_MARGIN - TEXT_LEFT_MARGIN - 1, ' ');
         bool found = false;
         for (int j = 0; j < figure.get_width(); j++)
         {
