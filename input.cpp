@@ -297,7 +297,7 @@ InputRowsColumns::InputRowsColumns() : InputFormat(
 
 /** InputFigureToInsert **/
 InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
-    "Figure to insert",
+    "Figure To Insert",
     "figure-number",
     new InputNumberValidator(1, puzzle.get_const_not_placed_figures().size()),
     new InputNumberConverter("figure-number"),
@@ -320,9 +320,22 @@ InputFigureRotations::InputFigureRotations(Puzzle puzzle, int figure_number) : I
     this->figure_number = figure_number;
 }
 
+/** InputFigurePosition **/
+InputFigurePosition::InputFigurePosition(Puzzle puzzle, int figure_number) : InputFormat(
+    "Position To Insert",
+    "row,column",
+    new InputPositionToInsertFigureValidator(puzzle, figure_number),
+    new InputTwoNumbersConverter("row", "column"),
+    "row,column has to be a position where you can place the figure.",
+    "(ex: " + std::to_string(random(0, puzzle.get_width() - 1)) + "," + std::to_string(random(0, puzzle.get_height() - 1)) + ")"
+) {
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
 /** InputFigureToRemove **/
 InputFigureToRemove::InputFigureToRemove(Puzzle puzzle) : InputFormat(
-    "Figure to remove",
+    "Figure To Remove",
     "figure-number",
     new InputNumberValidator(1, puzzle.get_const_placed_figures().size()),
     new InputNumberConverter("figure-number"),
@@ -352,6 +365,15 @@ InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : 
 InputFigureRotationsWithOptions::InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : InputGroup(
     {
         new InputFigureRotations(puzzle, figure_number),
+        new InputBack(),
+        new InputExitRestart()
+    }
+) {}
+
+/** InputFigurePositionWithOptions **/
+InputFigurePositionWithOptions::InputFigurePositionWithOptions(Puzzle puzzle, int figure_number) : InputGroup(
+    {
+        new InputFigurePosition(puzzle, figure_number),
         new InputBack(),
         new InputExitRestart()
     }
