@@ -49,9 +49,8 @@ std::string DrawingGenerator::generate_drawing(const Grid &grid)
             if (c == '\0') c += ' ';
             drawing += text_between_chars(std::string(1, c), ' ', GRID_CELL_WIDTH);
         }
-        drawing += "|\n";
+        drawing += "|\n\n";
     }
-    drawing += "\n";
     return drawing;
 }
 
@@ -88,9 +87,8 @@ std::string DrawingGenerator::generate_drawing(const Figure &figure)
         }
         if (found) drawing += "|";
         else drawing += " ";
-        drawing += "\n";
+        drawing += "\n\n";
     }
-    drawing += "\n";
     return drawing;
 }
 
