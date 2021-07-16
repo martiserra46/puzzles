@@ -71,6 +71,13 @@ bool Puzzle::remove_figure(int num_figure)
     return true;
 }
 
+bool Puzzle::rotate_figure(int num_figure, int num_rotations)
+{
+    if (num_figure < 0 || num_figure >= not_placed_figures.size()) return false;
+    not_placed_figures[num_figure].rotate(num_rotations);
+    return true;
+}
+
 bool Puzzle::is_position_empty(Position position) const
 {
     return grid.is_position_empty(position);

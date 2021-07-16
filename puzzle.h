@@ -27,6 +27,7 @@ class Puzzle
         bool can_insert_figure(Position position, int num_figure) const;
         bool insert_figure(Position position, int num_figure);
         bool remove_figure(int num_figure);
+        bool rotate_figure(int num_figure, int num_rotations);
         bool is_position_empty(Position position) const;
         char get_letter_from_position(Position position) const;
         friend std::istream& operator>>(std::istream& is, Puzzle& puzzle);
