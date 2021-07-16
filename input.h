@@ -8,6 +8,7 @@
 #include <utility>
 #include "input_validator.h"
 #include "input_converter.h"
+#include "puzzle.h"
 
 class Input
 {
@@ -158,10 +159,24 @@ class InputInsertRemoveFigure : public InputChoice
         InputInsertRemoveFigure();
 };
 
+class InputFigureToInsert : public InputFormat
+{
+    Puzzle puzzle;
+    public:
+        InputFigureToInsert(Puzzle puzzle);
+};
+
 class InputInsertRemoveFigureWithOptions : public InputGroup
 {
     public:
         InputInsertRemoveFigureWithOptions();
+};
+
+class InputFigureToInsertWithOptions : public InputGroup
+{
+    Puzzle puzzle;
+    public:
+        InputFigureToInsertWithOptions(Puzzle puzzle);
 };
 
 #endif

@@ -221,17 +221,6 @@ InputLevel::InputLevel(std::string difficulty) : InputFormat(
     this->difficulty = difficulty;
 }
 
-/** InputRowsColumns **/
-InputRowsColumns::InputRowsColumns() : InputFormat(
-    "Rows & Columns",
-    "rows,columns",
-    new InputTwoNumbersValidator(MIN_ROWS, MAX_ROWS, MIN_COLS, MAX_COLS),
-    new InputTwoNumbersConverter("rows", "columns"),
-    "rows has to be between " + std::to_string(MIN_ROWS) + " and " + std::to_string(MAX_ROWS) + ".\n" + 
-    "columns has to be between " + std::to_string(MIN_COLS) + " and " + std::to_string(MAX_COLS) + ".",
-    "(ex: " + std::to_string(random(MIN_ROWS, MAX_ROWS)) + "," + std::to_string(random(MIN_COLS, MAX_COLS)) + ")"
-) {}
-
 /** InputNumFigures **/
 InputNumFigures::InputNumFigures(int rows, int columns) : InputFormat(
     "Num. Figures",
@@ -295,10 +284,41 @@ InputInsertRemoveFigure::InputInsertRemoveFigure() : InputChoice(
     {{"Insert not placed figure", "i"}, {"Remove placed figure", "r"}}
 ) {}
 
+/** InputRowsColumns **/
+InputRowsColumns::InputRowsColumns() : InputFormat(
+    "Rows & Columns",
+    "rows,columns",
+    new InputTwoNumbersValidator(MIN_ROWS, MAX_ROWS, MIN_COLS, MAX_COLS),
+    new InputTwoNumbersConverter("rows", "columns"),
+    "rows has to be between " + std::to_string(MIN_ROWS) + " and " + std::to_string(MAX_ROWS) + ".\n" + 
+    "columns has to be between " + std::to_string(MIN_COLS) + " and " + std::to_string(MAX_COLS) + ".",
+    "(ex: " + std::to_string(random(MIN_ROWS, MAX_ROWS)) + "," + std::to_string(random(MIN_COLS, MAX_COLS)) + ")"
+) {}
+
+/** InputFigureToInsert **/
+InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
+    "Figure to insert",
+    "figure-number",
+    new InputNumberValidator(1, puzzle.get_const_not_placed_figures().size()),
+    new InputNumberConverter("figure-number"),
+    "figure-number has to be between 1 and " + std::to_string(puzzle.get_const_not_placed_figures().size()) + ".",
+    "(ex: " + std::to_string(random(1, puzzle.get_const_not_placed_figures().size())) + ")"
+) {
+    this->puzzle = puzzle;
+}
+
 /** InputInsertRemoveFigureWithOptions **/
 InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : InputGroup(
     {
         new InputInsertRemoveFigure(),
+        new InputExitRestart()
+    }
+) {}
+
+/** InputFigureToInsertWithOptions **/
+InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : InputGroup(
+    {
+        new InputFigureToInsert(puzzle),
         new InputExitRestart()
     }
 ) {}
