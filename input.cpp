@@ -308,17 +308,14 @@ InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
 }
 
 /** InputFigureRotations **/
-InputFigureRotations::InputFigureRotations(Puzzle puzzle, int figure_number) : InputFormat(
+InputFigureRotations::InputFigureRotations() : InputFormat(
     "Figure Rotations",
     "num-rotations",
-    new InputNumberValidator(1, puzzle.get_const_placed_figures().size()),
+    new InputNumberValidator(0, 3),
     new InputNumberConverter("num-rotations"),
     "num-rotations has to be between 0 and 3.",
     "(ex: " + std::to_string(random(0, 3)) + ")"
-) {
-    this->puzzle = puzzle;
-    this->figure_number = figure_number;
-}
+) {}
 
 /** InputFigurePosition **/
 InputFigurePosition::InputFigurePosition(Puzzle puzzle, int figure_number) : InputFormat(
@@ -362,9 +359,9 @@ InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : 
 ) {}
 
 /** InputFigureRotationsWithOptions **/
-InputFigureRotationsWithOptions::InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : InputGroup(
+InputFigureRotationsWithOptions::InputFigureRotationsWithOptions() : InputGroup(
     {
-        new InputFigureRotations(puzzle, figure_number),
+        new InputFigureRotations(),
         new InputBack(),
         new InputExitRestart()
     }

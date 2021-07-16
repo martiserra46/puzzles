@@ -64,7 +64,7 @@ InputActionFigureToInsert::InputActionFigureToInsert(Puzzle puzzle) : InputActio
 
 /** InputActionFigureRotations **/
 InputActionFigureRotations::InputActionFigureRotations(Puzzle puzzle, int figure_number) : InputAction(
-    new InputFigureRotationsWithOptions(puzzle, figure_number),
+    new InputFigureRotationsWithOptions(),
     new ActionFigureRotationsWithOptions(puzzle, figure_number)
 ) {}
 

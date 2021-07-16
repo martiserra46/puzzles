@@ -168,10 +168,8 @@ class InputFigureToInsert : public InputFormat
 
 class InputFigureRotations : public InputFormat
 {
-    Puzzle puzzle;
-    int figure_number;
     public:
-        InputFigureRotations(Puzzle puzzle, int figure_number);
+        InputFigureRotations();
 };
 
 class InputFigurePosition : public InputFormat
@@ -204,10 +202,8 @@ class InputFigureToInsertWithOptions : public InputGroup
 
 class InputFigureRotationsWithOptions : public InputGroup
 {
-    Puzzle puzzle;
-    int figure_number;
     public:
-        InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
+        InputFigureRotationsWithOptions();
 };
 
 class InputFigurePositionWithOptions : public InputGroup
