@@ -34,11 +34,11 @@ class InputTwoNumbersValidator : public InputValidator
 class InputPositionToInsertFigureValidator : public InputValidator
 {
     public:
-        InputPositionToInsertFigureValidator(Puzzle puzzle, int figure_number);
-        void set_puzzle_figure_number(Puzzle puzzle, int figure_number);
+        InputPositionToInsertFigureValidator(Puzzle *puzzle, int figure_number);
+        void set_puzzle_figure_number(Puzzle *puzzle, int figure_number);
         bool is_valid(std::string input_value);
     private:
-        Puzzle puzzle;
+        Puzzle *puzzle;
         int figure_number;
 };
 

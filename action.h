@@ -113,74 +113,74 @@ class ActionNumFiguresWithOptions : public ActionGroup
 /** GAME **/
 class ActionInsertRemoveFigure : public Action
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        ActionInsertRemoveFigure(Puzzle puzzle);
+        ActionInsertRemoveFigure(Puzzle *puzzle);
         bool do_action(std::string name, Bundle bundle);
 };
 
 class ActionFigureToInsert : public Action
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        ActionFigureToInsert(Puzzle puzzle);
+        ActionFigureToInsert(Puzzle *puzzle);
         bool do_action(std::string name, Bundle bundle);
 };
 
 class ActionFigureRotations : public Action
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     int figure_number;
     public:
-        ActionFigureRotations(Puzzle puzzle, int figure_number);
+        ActionFigureRotations(Puzzle *puzzle, int figure_number);
         bool do_action(std::string name, Bundle bundle);
 };
 
 class ActionFigurePosition : public Action
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     int figure_number;
     public:
-        ActionFigurePosition(Puzzle puzzle, int figure_number);
+        ActionFigurePosition(Puzzle *puzzle, int figure_number);
         bool do_action(std::string name, Bundle bundle);
 };
 
 class ActionFigureToRemove : public Action
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        ActionFigureToRemove(Puzzle puzzle);
+        ActionFigureToRemove(Puzzle *puzzle);
         bool do_action(std::string name, Bundle bundle);
 };
 
 class ActionInsertRemoveFigureWithOptions : public ActionGroup
 {
     public:
-        ActionInsertRemoveFigureWithOptions(Puzzle puzzle);
+        ActionInsertRemoveFigureWithOptions(Puzzle *puzzle);
 };
 
 class ActionFigureToInsertWithOptions : public ActionGroup
 {
     public:
-        ActionFigureToInsertWithOptions(Puzzle puzzle);
+        ActionFigureToInsertWithOptions(Puzzle *puzzle);
 };
 
 class ActionFigureRotationsWithOptions : public ActionGroup
 {
     public:
-        ActionFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
+        ActionFigureRotationsWithOptions(Puzzle *puzzle, int figure_number);
 };
 
 class ActionFigurePositionWithOptions : public ActionGroup
 {
     public:
-        ActionFigurePositionWithOptions(Puzzle puzzle, int figure_number);
+        ActionFigurePositionWithOptions(Puzzle *puzzle, int figure_number);
 };
 
 class ActionFigureToRemoveWithOptions : public ActionGroup
 {
     public:
-        ActionFigureToRemoveWithOptions(Puzzle puzzle);
+        ActionFigureToRemoveWithOptions(Puzzle *puzzle);
 };
 
 #endif

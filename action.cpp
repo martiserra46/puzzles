@@ -194,10 +194,7 @@ ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) 
 
 /** GAME **/
 /** ActionInsertRemoveFigure **/
-ActionInsertRemoveFigure::ActionInsertRemoveFigure(Puzzle puzzle)
-{
-    this->puzzle = puzzle;
-}
+ActionInsertRemoveFigure::ActionInsertRemoveFigure(Puzzle *puzzle) : puzzle(puzzle) {}
 
 bool ActionInsertRemoveFigure::do_action(std::string name, Bundle bundle)
 {
@@ -216,10 +213,7 @@ bool ActionInsertRemoveFigure::do_action(std::string name, Bundle bundle)
     return false;
 }
 
-ActionFigureToInsert::ActionFigureToInsert(Puzzle puzzle)
-{
-    this->puzzle = puzzle;
-}
+ActionFigureToInsert::ActionFigureToInsert(Puzzle *puzzle) : puzzle(puzzle) {}
 
 bool ActionFigureToInsert::do_action(std::string name, Bundle bundle)
 {
@@ -234,18 +228,14 @@ bool ActionFigureToInsert::do_action(std::string name, Bundle bundle)
 }
 
 
-ActionFigureRotations::ActionFigureRotations(Puzzle puzzle, int figure_number)
-{
-    this->puzzle = puzzle;
-    this->figure_number = figure_number;
-}
+ActionFigureRotations::ActionFigureRotations(Puzzle *puzzle, int figure_number) : puzzle(puzzle), figure_number(figure_number) {}
 
 bool ActionFigureRotations::do_action(std::string name, Bundle bundle)
 {
     if (name == "num-rotations")
     {
         int num_rotations = bundle.get_int("num-rotations");
-        puzzle.rotate_figure(figure_number, num_rotations);
+        puzzle->rotate_figure(figure_number, num_rotations);
         InputActionFigurePosition input_action(puzzle, figure_number);
         input_action.do_input_action();
         return true;
@@ -253,47 +243,40 @@ bool ActionFigureRotations::do_action(std::string name, Bundle bundle)
     return false;
 }
 
-ActionFigurePosition::ActionFigurePosition(Puzzle puzzle, int figure_number)
-{
-    this->puzzle = puzzle;
-    this->figure_number = figure_number;
-}
+ActionFigurePosition::ActionFigurePosition(Puzzle *puzzle, int figure_number) : puzzle(puzzle), figure_number(figure_number) {}
 
 bool ActionFigurePosition::do_action(std::string name, Bundle bundle)
 {
     if (name == "row,column")
     {
         Position position = { bundle.get_int("row"), bundle.get_int("column") };
-        puzzle.insert_figure(position, figure_number);
+        puzzle->insert_figure(position, figure_number);
         return true;
     }
     return false;
 }
 
-ActionFigureToRemove::ActionFigureToRemove(Puzzle puzzle)
-{
-    this->puzzle = puzzle;
-}
+ActionFigureToRemove::ActionFigureToRemove(Puzzle *puzzle) : puzzle(puzzle) {}
 
 bool ActionFigureToRemove::do_action(std::string name, Bundle bundle)
 {
     if (name == "figure-number")
     {
         int figure_number = bundle.get_int("figure-number") - 1;
-        puzzle.remove_figure(figure_number);
+        puzzle->remove_figure(figure_number);
         return true;
     }
     return false;
 }
 
-ActionInsertRemoveFigureWithOptions::ActionInsertRemoveFigureWithOptions(Puzzle puzzle) : ActionGroup(
+ActionInsertRemoveFigureWithOptions::ActionInsertRemoveFigureWithOptions(Puzzle *puzzle) : ActionGroup(
     {
         new ActionInsertRemoveFigure(puzzle),
         new ActionExitRestart()
     }
 ) {}
 
-ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle puzzle) : ActionGroup(
+ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle *puzzle) : ActionGroup(
     {
         new ActionFigureToInsert(puzzle),
         new ActionBack(new InputActionInsertRemoveFigure(puzzle)),
@@ -301,7 +284,7 @@ ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle puzzle) 
     }
 ) {}
 
-ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
+ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle *puzzle, int figure_number) : ActionGroup(
     {
         new ActionFigureRotations(puzzle, figure_number),
         new ActionBack(new InputActionFigureToInsert(puzzle)),
@@ -309,7 +292,7 @@ ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle puzzle
     }
 ) {}
 
-ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
+ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle *puzzle, int figure_number) : ActionGroup(
     {
         new ActionFigurePosition(puzzle, figure_number),
         new ActionBack(new InputActionFigureRotations(puzzle, figure_number)),
@@ -317,7 +300,7 @@ ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle puzzle, 
     }
 ) {}
 
-ActionFigureToRemoveWithOptions::ActionFigureToRemoveWithOptions(Puzzle puzzle) : ActionGroup(
+ActionFigureToRemoveWithOptions::ActionFigureToRemoveWithOptions(Puzzle *puzzle) : ActionGroup(
     {
         new ActionFigureToRemove(puzzle),
         new ActionBack(new InputActionInsertRemoveFigure(puzzle)),

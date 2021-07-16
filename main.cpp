@@ -14,8 +14,10 @@ int main()
     // main_menu_screen.init();
     Puzzle puzzle = PuzzleGenerator::generate_puzzle(5, 5, 5);
 
-    InputActionInsertRemoveFigure input_action(puzzle);
+    InputActionInsertRemoveFigure input_action(&puzzle);
     input_action.do_input_action();
+
+    std::cout << DrawingGenerator::generate_puzzle_drawing(puzzle) << std::endl;
 
     return 0;
 }

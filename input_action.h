@@ -51,31 +51,31 @@ class InputActionNumFigures : public InputAction
 class InputActionInsertRemoveFigure : public InputAction
 {
     public:
-        InputActionInsertRemoveFigure(Puzzle puzzle);
+        InputActionInsertRemoveFigure(Puzzle *puzzle);
 };
 
 class InputActionFigureToInsert : public InputAction
 {
     public:
-        InputActionFigureToInsert(Puzzle puzzle);
+        InputActionFigureToInsert(Puzzle *puzzle);
 };
 
 class InputActionFigureRotations : public InputAction
 {
     public:
-        InputActionFigureRotations(Puzzle puzzle, int figure_number);
+        InputActionFigureRotations(Puzzle *puzzle, int figure_number);
 };
 
 class InputActionFigurePosition : public InputAction
 {
     public:
-        InputActionFigurePosition(Puzzle puzzle, int figure_number);
+        InputActionFigurePosition(Puzzle *puzzle, int figure_number);
 };
 
 class InputActionFigureToRemove : public InputAction
 {
     public:
-        InputActionFigureToRemove(Puzzle puzzle);
+        InputActionFigureToRemove(Puzzle *puzzle);
 };
 
 #endif

@@ -51,31 +51,31 @@ InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputActio
 
 /** GAME **/
 /** InputActionInsertRemoveFigure **/
-InputActionInsertRemoveFigure::InputActionInsertRemoveFigure(Puzzle puzzle) : InputAction(
+InputActionInsertRemoveFigure::InputActionInsertRemoveFigure(Puzzle *puzzle) : InputAction(
     new InputInsertRemoveFigureWithOptions(puzzle),
     new ActionInsertRemoveFigureWithOptions(puzzle)
 ) {}
 
 /** InputActionFigureToInsert **/
-InputActionFigureToInsert::InputActionFigureToInsert(Puzzle puzzle) : InputAction(
+InputActionFigureToInsert::InputActionFigureToInsert(Puzzle *puzzle) : InputAction(
     new InputFigureToInsertWithOptions(puzzle),
     new ActionFigureToInsertWithOptions(puzzle)
 ) {}
 
 /** InputActionFigureRotations **/
-InputActionFigureRotations::InputActionFigureRotations(Puzzle puzzle, int figure_number) : InputAction(
+InputActionFigureRotations::InputActionFigureRotations(Puzzle *puzzle, int figure_number) : InputAction(
     new InputFigureRotationsWithOptions(puzzle, figure_number),
     new ActionFigureRotationsWithOptions(puzzle, figure_number)
 ) {}
 
 /** InputActionFigurePosition **/
-InputActionFigurePosition::InputActionFigurePosition(Puzzle puzzle, int figure_number) : InputAction(
+InputActionFigurePosition::InputActionFigurePosition(Puzzle *puzzle, int figure_number) : InputAction(
     new InputFigurePositionWithOptions(puzzle, figure_number),
     new ActionFigurePositionWithOptions(puzzle, figure_number)
 ) {}
 
 /** InputActionFigureToRemove **/
-InputActionFigureToRemove::InputActionFigureToRemove(Puzzle puzzle) : InputAction(
+InputActionFigureToRemove::InputActionFigureToRemove(Puzzle *puzzle) : InputAction(
     new InputFigureToRemoveWithOptions(puzzle),
     new ActionFigureToRemoveWithOptions(puzzle)
 ) {}

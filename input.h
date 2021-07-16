@@ -157,78 +157,78 @@ class InputNumFiguresWithOptions : public InputGroup
 /** GAME **/
 class InputInsertRemoveFigure : public InputChoice
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        InputInsertRemoveFigure(Puzzle puzzle);
+        InputInsertRemoveFigure(Puzzle *puzzle);
         std::string get_top_additional_text();
 };
 
 class InputFigureToInsert : public InputFormat
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        InputFigureToInsert(Puzzle puzzle);
+        InputFigureToInsert(Puzzle *puzzle);
         std::string get_top_additional_text();
 };
 
 class InputFigureRotations : public InputFormat
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     int figure_number;
     public:
-        InputFigureRotations(Puzzle puzzle, int figure_number);
+        InputFigureRotations(Puzzle *puzzle, int figure_number);
         std::string get_top_additional_text();
 };
 
 class InputFigurePosition : public InputFormat
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     int figure_number;
     public:
-        InputFigurePosition(Puzzle puzzle, int figure_number);
+        InputFigurePosition(Puzzle *puzzle, int figure_number);
         std::string get_top_additional_text();
 };
 
 class InputFigureToRemove : public InputFormat
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        InputFigureToRemove(Puzzle puzzle);
+        InputFigureToRemove(Puzzle *puzzle);
         std::string get_top_additional_text();
 };
 
 class InputInsertRemoveFigureWithOptions : public InputGroup
 {
     public:
-        InputInsertRemoveFigureWithOptions(Puzzle puzzle);
+        InputInsertRemoveFigureWithOptions(Puzzle *puzzle);
 };
 
 class InputFigureToInsertWithOptions : public InputGroup
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        InputFigureToInsertWithOptions(Puzzle puzzle);
+        InputFigureToInsertWithOptions(Puzzle *puzzle);
 };
 
 class InputFigureRotationsWithOptions : public InputGroup
 {
     public:
-        InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
+        InputFigureRotationsWithOptions(Puzzle *puzzle, int figure_number);
 };
 
 class InputFigurePositionWithOptions : public InputGroup
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     int figure_number;
     public:
-        InputFigurePositionWithOptions(Puzzle puzzle, int figure_number);
+        InputFigurePositionWithOptions(Puzzle *puzzle, int figure_number);
 };
 
 class InputFigureToRemoveWithOptions : public InputGroup
 {
-    Puzzle puzzle;
+    Puzzle *puzzle;
     public:
-        InputFigureToRemoveWithOptions(Puzzle puzzle);
+        InputFigureToRemoveWithOptions(Puzzle *puzzle);
 };
 
 #endif
