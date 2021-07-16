@@ -56,7 +56,9 @@ bool Puzzle::can_insert_figure(Position position, int num_figure) const
 bool Puzzle::insert_figure(Position position, int num_figure)
 {
     if (num_figure < 0 || num_figure >= not_placed_figures.size()) return false;
-    return grid.insert_figure(position, not_placed_figures[num_figure]);
+    if (!grid.insert_figure(position, not_placed_figures[num_figure])) return false;
+    not_placed_figures.erase(not_placed_figures.begin() + num_figure);
+    return true;
 }
 
 bool Puzzle::remove_figure(int num_figure)
