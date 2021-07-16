@@ -204,3 +204,94 @@ ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) 
     this->rows = rows;
     this->columns = columns;
 }
+
+/** GAME **/
+/** ActionInsertRemoveFigure **/
+ActionInsertRemoveFigure::ActionInsertRemoveFigure(Puzzle puzzle)
+{
+    this->puzzle = puzzle;
+}
+
+bool ActionInsertRemoveFigure::do_action(std::string name, Bundle bundle)
+{
+    return false;
+}
+
+ActionFigureToInsert::ActionFigureToInsert(Puzzle puzzle)
+{
+    this->puzzle = puzzle;
+}
+
+bool ActionFigureToInsert::do_action(std::string name, Bundle bundle)
+{
+    return false;
+}
+
+
+ActionFigureRotations::ActionFigureRotations(Puzzle puzzle, int figure_number)
+{
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
+bool ActionFigureRotations::do_action(std::string name, Bundle bundle)
+{
+    return false;
+}
+
+
+ActionFigurePosition::ActionFigurePosition(Puzzle puzzle, int figure_number)
+{
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
+bool ActionFigurePosition::do_action(std::string name, Bundle bundle)
+{
+    return false;
+}
+
+ActionFigureToRemove::ActionFigureToRemove(Puzzle puzzle)
+{
+    this->puzzle = puzzle;
+}
+
+bool ActionFigureToRemove::do_action(std::string name, Bundle bundle)
+{
+    return false;
+}
+
+ActionInsertRemoveFigureWithOptions::ActionInsertRemoveFigureWithOptions(Puzzle puzzle) : ActionGroup(
+    {
+        new ActionInsertRemoveFigure(puzzle),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle puzzle) : ActionGroup(
+    {
+        new ActionFigureToInsert(puzzle),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
+    {
+        new ActionFigureRotations(puzzle, figure_number),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
+    {
+        new ActionFigurePosition(puzzle, figure_number),
+        new ActionExitRestart()
+    }
+) {}
+
+ActionFigureToRemoveWithOptions::ActionFigureToRemoveWithOptions(Puzzle puzzle) : ActionGroup(
+    {
+        new ActionFigureToRemove(puzzle),
+        new ActionExitRestart()
+    }
+) {}

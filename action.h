@@ -45,6 +45,7 @@ class ActionExitRestart : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
+/** MAIN MENU **/
 class ActionSelectGenerate : public Action
 {
     public:
@@ -109,6 +110,79 @@ class ActionNumFiguresWithOptions : public ActionGroup
     int rows, columns;
     public:
         ActionNumFiguresWithOptions(int rows, int columns);
+};
+
+/** GAME **/
+class ActionInsertRemoveFigure : public Action
+{
+    Puzzle puzzle;
+    public:
+        ActionInsertRemoveFigure(Puzzle puzzle);
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionFigureToInsert : public Action
+{
+    Puzzle puzzle;
+    public:
+        ActionFigureToInsert(Puzzle puzzle);
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionFigureRotations : public Action
+{
+    Puzzle puzzle;
+    int figure_number;
+    public:
+        ActionFigureRotations(Puzzle puzzle, int figure_number);
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionFigurePosition : public Action
+{
+    Puzzle puzzle;
+    int figure_number;
+    public:
+        ActionFigurePosition(Puzzle puzzle, int figure_number);
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionFigureToRemove : public Action
+{
+    Puzzle puzzle;
+    public:
+        ActionFigureToRemove(Puzzle puzzle);
+        bool do_action(std::string name, Bundle bundle);
+};
+
+class ActionInsertRemoveFigureWithOptions : public ActionGroup
+{
+    public:
+        ActionInsertRemoveFigureWithOptions(Puzzle puzzle);
+};
+
+class ActionFigureToInsertWithOptions : public ActionGroup
+{
+    public:
+        ActionFigureToInsertWithOptions(Puzzle puzzle);
+};
+
+class ActionFigureRotationsWithOptions : public ActionGroup
+{
+    public:
+        ActionFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
+};
+
+class ActionFigurePositionWithOptions : public ActionGroup
+{
+    public:
+        ActionFigurePositionWithOptions(Puzzle puzzle, int figure_number);
+};
+
+class ActionFigureToRemoveWithOptions : public ActionGroup
+{
+    public:
+        ActionFigureToRemoveWithOptions(Puzzle puzzle);
 };
 
 #endif
