@@ -14,6 +14,8 @@ class DrawingGenerator
         static std::string generate_drawing(const Grid &grid);
         static std::string generate_drawing(const std::vector<Figure> figures);
         static std::string generate_drawing(const Figure &figure);
+    private:
+        static std::string get_formatted_title(std::string title);
 };
 
 #endif
