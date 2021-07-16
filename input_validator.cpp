@@ -2,6 +2,8 @@
 #include <string>
 #include "number_utils.h"
 #include "text_utils.h"
+#include "bundle.h"
+#include "input_converter.h"
 
 /** InputNumberValidator **/
 InputNumberValidator::InputNumberValidator(int min, int max)
@@ -47,4 +49,26 @@ bool InputTwoNumbersValidator::is_valid(std::string input_value)
     if (num_1 < min_num_1 || num_1 > max_num_1) return false;
     if (num_2 < min_num_2 || num_2 > max_num_2) return false;
     return true;
+}
+
+/** InputPositionToInsertFigureValidator **/
+InputPositionToInsertFigureValidator::InputPositionToInsertFigureValidator(Puzzle puzzle, int figure_number)
+{
+    set_puzzle_figure_number(puzzle, figure_number);
+}
+
+void InputPositionToInsertFigureValidator::set_puzzle_figure_number(Puzzle puzzle, int figure_number)
+{
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
+bool InputPositionToInsertFigureValidator::is_valid(std::string input_value)
+{
+    InputTwoNumbersValidator input_two_numbers_validator(0, puzzle.get_width() - 1, 0, puzzle.get_height() - 1);
+    if (!input_two_numbers_validator.is_valid(input_value)) return false;
+    InputTwoNumbersConverter input_two_numbers_converter("row", "column");
+    Bundle bundle = input_two_numbers_converter.convert_input(input_value);
+    Position position = { bundle.get_int("row"), bundle.get_int("column") };
+    return puzzle.can_insert_figure(position, figure_number);
 }

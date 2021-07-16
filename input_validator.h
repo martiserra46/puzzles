@@ -2,6 +2,7 @@
 #define INPUT_VALIDATOR_H
 
 #include <string>
+#include "puzzle.h"
 
 class InputValidator
 {
@@ -28,6 +29,17 @@ class InputTwoNumbersValidator : public InputValidator
         bool is_valid(std::string input_value);
     private:
         int min_num_1, min_num_2, max_num_1, max_num_2;
+};
+
+class InputPositionToInsertFigureValidator : public InputValidator
+{
+    public:
+        InputPositionToInsertFigureValidator(Puzzle puzzle, int figure_number);
+        void set_puzzle_figure_number(Puzzle puzzle, int figure_number);
+        bool is_valid(std::string input_value);
+    private:
+        Puzzle puzzle;
+        int figure_number;
 };
 
 #endif
