@@ -65,8 +65,8 @@ std::string DrawingGenerator::generate_drawing(const Figure &figure)
         }
         if (found) drawing += "|";
         else drawing += " ";
-        if (i < figure.get_height() - 1) drawing += "\n\n";
-        else drawing += "\n";
+        drawing += "\n";
     }
+    drawing += "\n";
     return drawing;
 }
