@@ -58,22 +58,11 @@ bool Grid::insert_figure(Position position, const Figure &figure)
     return true;
 }
 
-bool Grid::remove_figure(const Figure &figure)
+bool Grid::remove_figure(int num_figure)
 {
-    std::vector<std::pair<Position, Figure>>::iterator it = placed_figures.begin();
-    while (it != placed_figures.end())
-    {
-        if ((*it).second == figure)
-        {
-            it = placed_figures.erase(it);
-            return true;
-        }
-        else
-        {
-            it++;
-        }
-    }
-    return false;
+    if (num_figure < 0 || num_figure >= placed_figures.size()) return false;
+    placed_figures.erase(placed_figures.begin() + num_figure);
+    return true;
 }
 
 bool Grid::is_position_empty(Position position) const

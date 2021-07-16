@@ -65,8 +65,9 @@ bool Puzzle::remove_figure(int num_figure)
 {
     std::vector<std::pair<Position, Figure>> &placed_figures = get_placed_figures();
     if (num_figure < 0 || num_figure >= placed_figures.size()) return false;
-    if (!grid.remove_figure(placed_figures[num_figure].second)) return false;
-    not_placed_figures.push_back(placed_figures[num_figure].second);
+    Figure figure = placed_figures[num_figure].second;
+    if (!grid.remove_figure(num_figure)) return false;
+    not_placed_figures.push_back(figure);
     return true;
 }
 
