@@ -178,10 +178,7 @@ ActionLevelWithOptions::ActionLevelWithOptions(std::string difficulty) : ActionG
         new ActionBack(new InputActionDifficulty()),
         new ActionExitRestart()
     }
-)
-{
-    this->difficulty = difficulty;
-}
+) {}
 
 /** ActionRowsColumnsWithOptions **/
 ActionRowsColumnsWithOptions::ActionRowsColumnsWithOptions() : ActionGroup(
@@ -199,11 +196,7 @@ ActionNumFiguresWithOptions::ActionNumFiguresWithOptions(int rows, int columns) 
         new ActionBack(new InputActionRowsColumns()),
         new ActionExitRestart()
     }
-) 
-{
-    this->rows = rows;
-    this->columns = columns;
-}
+) {}
 
 /** GAME **/
 /** ActionInsertRemoveFigure **/

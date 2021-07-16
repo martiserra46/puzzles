@@ -94,7 +94,6 @@ class ActionDifficultyWithOptions : public ActionGroup
 
 class ActionLevelWithOptions : public ActionGroup
 {
-    std::string difficulty;
     public:
         ActionLevelWithOptions(std::string difficulty);
 };
@@ -107,7 +106,6 @@ class ActionRowsColumnsWithOptions : public ActionGroup
 
 class ActionNumFiguresWithOptions : public ActionGroup
 {
-    int rows, columns;
     public:
         ActionNumFiguresWithOptions(int rows, int columns);
 };
