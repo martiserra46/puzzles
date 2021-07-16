@@ -161,6 +161,7 @@ class InputInsertRemoveFigure : public InputChoice
     public:
         InputInsertRemoveFigure(Puzzle *puzzle);
         std::string get_top_additional_text();
+        bool is_valid(std::string input_value);
 };
 
 class InputFigureToInsert : public InputFormat

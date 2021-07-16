@@ -319,6 +319,13 @@ std::string InputInsertRemoveFigure::get_top_additional_text()
     return drawing;
 }
 
+bool InputInsertRemoveFigure::is_valid(std::string input_value)
+{
+    if (!InputChoice::is_valid(input_value)) return false;
+    if (input_value == "r") return puzzle->get_placed_figures().size() > 0;
+    return true;
+}
+
 /** InputFigureToInsert **/
 InputFigureToInsert::InputFigureToInsert(Puzzle *puzzle) : InputFormat(
     "Figure To Insert",
