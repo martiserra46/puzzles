@@ -288,3 +288,17 @@ InputNumFiguresWithOptions::InputNumFiguresWithOptions(int rows, int columns) : 
         new InputExitRestart()
     }
 ) {}
+
+/** InputInsertRemoveFigure **/
+InputInsertRemoveFigure::InputInsertRemoveFigure() : InputChoice(
+    "Insert or Remove",
+    {{"Insert not placed figure", "i"}, {"Remove placed figure", "r"}}
+) {}
+
+/** InputInsertRemoveFigureWithOptions **/
+InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : InputGroup(
+    {
+        new InputInsertRemoveFigure(),
+        new InputExitRestart()
+    }
+) {}

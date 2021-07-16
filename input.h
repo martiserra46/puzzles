@@ -87,6 +87,7 @@ class InputExitRestart : public InputChoice
         InputExitRestart();
 };
 
+/** MAIN MENU **/
 class InputSelectGenerate : public InputChoice
 {
     public:
@@ -147,6 +148,20 @@ class InputNumFiguresWithOptions : public InputGroup
 {
     public:
         InputNumFiguresWithOptions(int rows, int columns);
+};
+
+
+/** GAME **/
+class InputInsertRemoveFigure : public InputChoice
+{
+    public:
+        InputInsertRemoveFigure();
+};
+
+class InputInsertRemoveFigureWithOptions : public InputGroup
+{
+    public:
+        InputInsertRemoveFigureWithOptions();
 };
 
 #endif
