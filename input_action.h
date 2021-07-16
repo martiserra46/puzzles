@@ -16,6 +16,7 @@ class InputAction
         void do_input_action();
 };
 
+/** MAIN MENU **/
 class InputActionSelectGenerate : public InputAction
 {
     public:
@@ -44,6 +45,37 @@ class InputActionNumFigures : public InputAction
 {
     public:
         InputActionNumFigures(int rows, int columns);
+};
+
+/** GAME **/
+class InputActionInsertRemoveFigure : public InputAction
+{
+    public:
+        InputActionInsertRemoveFigure(Puzzle puzzle);
+};
+
+class InputActionFigureToInsert : public InputAction
+{
+    public:
+        InputActionFigureToInsert(Puzzle puzzle);
+};
+
+class InputActionFigureRotations : public InputAction
+{
+    public:
+        InputActionFigureRotations(Puzzle puzzle, int figure_number);
+};
+
+class InputActionFigurePosition : public InputAction
+{
+    public:
+        InputActionFigurePosition(Puzzle puzzle, int figure_number);
+};
+
+class InputActionFigureToRemove : public InputAction
+{
+    public:
+        InputActionFigureToRemove(Puzzle puzzle);
 };
 
 #endif

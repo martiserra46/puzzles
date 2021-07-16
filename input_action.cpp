@@ -18,6 +18,7 @@ void InputAction::do_input_action()
     action->do_action(input_value.first, input_value.second);
 }
 
+/** MAIN MENU **/
 /** InputActionSelectGenerate **/
 InputActionSelectGenerate::InputActionSelectGenerate() : InputAction(
     new InputSelectGenerateWithOptions(),
@@ -46,4 +47,35 @@ InputActionRowsColumns::InputActionRowsColumns() : InputAction(
 InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputAction(
     new InputNumFiguresWithOptions(rows, columns),
     new ActionNumFiguresWithOptions(rows, columns)
+) {}
+
+/** GAME **/
+/** InputActionInsertRemoveFigure **/
+InputActionInsertRemoveFigure::InputActionInsertRemoveFigure(Puzzle puzzle) : InputAction(
+    new InputInsertRemoveFigureWithOptions(),
+    new ActionInsertRemoveFigureWithOptions(puzzle)
+) {}
+
+/** InputActionFigureToInsert **/
+InputActionFigureToInsert::InputActionFigureToInsert(Puzzle puzzle) : InputAction(
+    new InputFigureToInsertWithOptions(puzzle),
+    new ActionFigureToInsertWithOptions(puzzle)
+) {}
+
+/** InputActionFigureRotations **/
+InputActionFigureRotations::InputActionFigureRotations(Puzzle puzzle, int figure_number) : InputAction(
+    new InputFigureRotationsWithOptions(puzzle, figure_number),
+    new ActionFigureRotationsWithOptions(puzzle, figure_number)
+) {}
+
+/** InputActionFigurePosition **/
+InputActionFigurePosition::InputActionFigurePosition(Puzzle puzzle, int figure_number) : InputAction(
+    new InputFigurePositionWithOptions(puzzle, figure_number),
+    new ActionFigurePositionWithOptions(puzzle, figure_number)
+) {}
+
+/** InputActionFigureToRemove **/
+InputActionFigureToRemove::InputActionFigureToRemove(Puzzle puzzle) : InputAction(
+    new InputFigureToRemoveWithOptions(puzzle),
+    new ActionFigureToRemoveWithOptions(puzzle)
 ) {}
