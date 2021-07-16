@@ -38,7 +38,6 @@ bool ActionBack::do_action(std::string name, Bundle bundle)
 {
     if (name == "back")
     {
-        clear_screen();
         input_action->do_input_action();
         return true;
     }
@@ -63,7 +62,6 @@ bool ActionExitRestart::do_action(std::string name, Bundle bundle)
     }
     else if (name == "restart")
     {
-        clear_screen();
         InputActionSelectGenerate input_action;
         input_action.do_input_action();
         return true;
@@ -76,14 +74,12 @@ bool ActionSelectGenerate::do_action(std::string name, Bundle bundle)
 {
     if (name == "s")
     {
-        clear_screen();
         InputActionDifficulty input_action;
         input_action.do_input_action();
         return true;
     }
     else if (name == "g")
     {
-        clear_screen();
         InputActionRowsColumns input_action;
         input_action.do_input_action();
         return true;
@@ -96,7 +92,6 @@ bool ActionDifficulty::do_action(std::string name, Bundle bundle)
 {
     if (name == "e" || name == "m" || name == "h")
     {
-        clear_screen();
         InputActionLevel input_action(name);
         input_action.do_input_action();
         return true;
@@ -114,7 +109,6 @@ bool ActionLevel::do_action(std::string name, Bundle bundle)
 {
     if (name == "level-number")
     {
-        clear_screen();
         int level = bundle.get_int("level-number");
         MainMenuController::play_selected_level(difficulty, level);
         return true;
@@ -127,7 +121,6 @@ bool ActionRowsColumns::do_action(std::string name, Bundle bundle)
 {
     if (name == "rows,columns")
     {
-        clear_screen();
         int rows = bundle.get_int("rows");
         int columns = bundle.get_int("columns");
         InputActionNumFigures input_action(rows, columns);
@@ -148,7 +141,6 @@ bool ActionNumFigures::do_action(std::string name, Bundle bundle)
 {
     if (name == "num-figures")
     {
-        clear_screen();
         int num_figures = bundle.get_int("num-figures");
         MainMenuController::play_generated_puzzle(rows, columns, num_figures);
         return true;
@@ -211,20 +203,12 @@ bool ActionInsertRemoveFigure::do_action(std::string name, Bundle bundle)
 {
     if (name == "i")
     {
-        clear_screen();
-        std::cout << std::endl;
-        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
-        std::cout << DrawingGenerator::generate_not_placed_figures_drawing(puzzle) << std::endl;
         InputActionFigureToInsert input_action(puzzle);
         input_action.do_input_action();
         return true;
     }
     else if (name == "r")
     {
-        clear_screen();
-        std::cout << std::endl;
-        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
-        std::cout << DrawingGenerator::generate_placed_figures_drawing(puzzle) << std::endl;
         InputActionFigureToRemove input_action(puzzle);
         input_action.do_input_action();
         return true;
@@ -242,10 +226,6 @@ bool ActionFigureToInsert::do_action(std::string name, Bundle bundle)
     if (name == "figure-number")
     {
         int figure_number = bundle.get_int("figure-number") - 1;
-        clear_screen();
-        std::cout << std::endl;
-        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
-        std::cout << DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) << std::endl;
         InputActionFigureRotations input_action(puzzle, figure_number);
         input_action.do_input_action();
         return true;
@@ -266,10 +246,6 @@ bool ActionFigureRotations::do_action(std::string name, Bundle bundle)
     {
         int num_rotations = bundle.get_int("num-rotations");
         puzzle.rotate_figure(figure_number, num_rotations);
-        clear_screen();
-        std::cout << std::endl;
-        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
-        std::cout << DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) << std::endl;
         InputActionFigurePosition input_action(puzzle, figure_number);
         input_action.do_input_action();
         return true;
@@ -289,7 +265,6 @@ bool ActionFigurePosition::do_action(std::string name, Bundle bundle)
     {
         Position position = { bundle.get_int("row"), bundle.get_int("column") };
         puzzle.insert_figure(position, figure_number);
-        clear_screen();
         return true;
     }
     return false;
@@ -306,7 +281,6 @@ bool ActionFigureToRemove::do_action(std::string name, Bundle bundle)
     {
         int figure_number = bundle.get_int("figure-number") - 1;
         puzzle.remove_figure(figure_number);
-        clear_screen();
         return true;
     }
     return false;

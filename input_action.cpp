@@ -52,7 +52,7 @@ InputActionNumFigures::InputActionNumFigures(int rows, int columns) : InputActio
 /** GAME **/
 /** InputActionInsertRemoveFigure **/
 InputActionInsertRemoveFigure::InputActionInsertRemoveFigure(Puzzle puzzle) : InputAction(
-    new InputInsertRemoveFigureWithOptions(),
+    new InputInsertRemoveFigureWithOptions(puzzle),
     new ActionInsertRemoveFigureWithOptions(puzzle)
 ) {}
 
@@ -64,7 +64,7 @@ InputActionFigureToInsert::InputActionFigureToInsert(Puzzle puzzle) : InputActio
 
 /** InputActionFigureRotations **/
 InputActionFigureRotations::InputActionFigureRotations(Puzzle puzzle, int figure_number) : InputAction(
-    new InputFigureRotationsWithOptions(),
+    new InputFigureRotationsWithOptions(puzzle, figure_number),
     new ActionFigureRotationsWithOptions(puzzle, figure_number)
 ) {}
 

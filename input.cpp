@@ -7,6 +7,8 @@
 #include "input_converter.h"
 #include <utility>
 #include "number_utils.h"
+#include "system_utils.h"
+#include "drawing_generator.h"
 
 #define INPUT_MAX_LINE_WIDTH 30
 
@@ -23,6 +25,9 @@
 /** Input **/
 std::pair<std::string, Bundle> Input::input()
 {
+    clear_screen();
+
+    std::cout << get_top_additional_text();
     std::cout << get_text();
 
     std::string input_value;
@@ -75,6 +80,16 @@ InputGroup::~InputGroup()
 {
     for (Input *input : list_inputs) delete input;
     list_inputs.clear();
+}
+
+std::string InputGroup::get_top_additional_text()
+{
+    std::string text;
+    for (int i = 0; i < list_inputs.size(); i++)
+    {
+        text += list_inputs[i]->get_top_additional_text();
+    }
+    return text;
 }
 
 std::string InputGroup::get_text()
@@ -197,6 +212,7 @@ InputExit::InputExit() : InputChoice("Exit", {{"Exit", "exit"}}) {}
 /** InputExitRestart **/
 InputExitRestart::InputExitRestart() : InputChoice("Options", {{"Exit", "exit"}, {"Restart", "restart"}}) {}
 
+/** MAIN MENU **/
 /** InputSelectGenerate **/
 InputSelectGenerate::InputSelectGenerate() : InputChoice(
     "Select or Generate",
@@ -278,12 +294,6 @@ InputNumFiguresWithOptions::InputNumFiguresWithOptions(int rows, int columns) : 
     }
 ) {}
 
-/** InputInsertRemoveFigure **/
-InputInsertRemoveFigure::InputInsertRemoveFigure() : InputChoice(
-    "Insert or Remove",
-    {{"Insert not placed figure", "i"}, {"Remove placed figure", "r"}}
-) {}
-
 /** InputRowsColumns **/
 InputRowsColumns::InputRowsColumns() : InputFormat(
     "Rows & Columns",
@@ -294,6 +304,23 @@ InputRowsColumns::InputRowsColumns() : InputFormat(
     "columns has to be between " + std::to_string(MIN_COLS) + " and " + std::to_string(MAX_COLS) + ".",
     "(ex: " + std::to_string(random(MIN_ROWS, MAX_ROWS)) + "," + std::to_string(random(MIN_COLS, MAX_COLS)) + ")"
 ) {}
+
+/** GAME **/
+/** InputInsertRemoveFigure **/
+InputInsertRemoveFigure::InputInsertRemoveFigure(Puzzle puzzle) : InputChoice(
+    "Insert or Remove",
+    {{"Insert not placed figure", "i"}, {"Remove placed figure", "r"}}
+)
+{
+    this->puzzle = puzzle;
+}
+
+std::string InputInsertRemoveFigure::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_puzzle_drawing(puzzle) + "\n";
+    return drawing;
+}
 
 /** InputFigureToInsert **/
 InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
@@ -307,15 +334,35 @@ InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
     this->puzzle = puzzle;
 }
 
+std::string InputFigureToInsert::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_grid_drawing(puzzle) + "\n";
+    drawing += DrawingGenerator::generate_not_placed_figures_drawing(puzzle) + "\n";
+    return drawing;
+}
+
 /** InputFigureRotations **/
-InputFigureRotations::InputFigureRotations() : InputFormat(
+InputFigureRotations::InputFigureRotations(Puzzle puzzle, int figure_number) : InputFormat(
     "Figure Rotations",
     "num-rotations",
     new InputNumberValidator(0, 3),
     new InputNumberConverter("num-rotations"),
     "num-rotations has to be between 0 and 3.",
     "(ex: " + std::to_string(random(0, 3)) + ")"
-) {}
+)
+{
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
+std::string InputFigureRotations::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_grid_drawing(puzzle) + "\n";
+    drawing += DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) + "\n";
+    return drawing;
+}
 
 /** InputFigurePosition **/
 InputFigurePosition::InputFigurePosition(Puzzle puzzle, int figure_number) : InputFormat(
@@ -330,6 +377,14 @@ InputFigurePosition::InputFigurePosition(Puzzle puzzle, int figure_number) : Inp
     this->figure_number = figure_number;
 }
 
+std::string InputFigurePosition::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_grid_drawing(puzzle) + "\n";
+    drawing += DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) + "\n";
+    return drawing;
+}
+
 /** InputFigureToRemove **/
 InputFigureToRemove::InputFigureToRemove(Puzzle puzzle) : InputFormat(
     "Figure To Remove",
@@ -342,10 +397,18 @@ InputFigureToRemove::InputFigureToRemove(Puzzle puzzle) : InputFormat(
     this->puzzle = puzzle;
 }
 
+std::string InputFigureToRemove::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_grid_drawing(puzzle) + "\n";
+    drawing += DrawingGenerator::generate_placed_figures_drawing(puzzle) + "\n";
+    return drawing;
+}
+
 /** InputInsertRemoveFigureWithOptions **/
-InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : InputGroup(
+InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions(Puzzle puzzle) : InputGroup(
     {
-        new InputInsertRemoveFigure(),
+        new InputInsertRemoveFigure(puzzle),
         new InputExitRestart()
     }
 ) {}
@@ -360,9 +423,9 @@ InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : 
 ) {}
 
 /** InputFigureRotationsWithOptions **/
-InputFigureRotationsWithOptions::InputFigureRotationsWithOptions() : InputGroup(
+InputFigureRotationsWithOptions::InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : InputGroup(
     {
-        new InputFigureRotations(),
+        new InputFigureRotations(puzzle, figure_number),
         new InputBack(),
         new InputExitRestart()
     }

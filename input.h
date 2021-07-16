@@ -15,6 +15,7 @@ class Input
     public:
         virtual ~Input() {};
         std::pair<std::string, Bundle> input();
+        virtual std::string get_top_additional_text() { return ""; };
         virtual std::string get_text() = 0;
         virtual bool is_valid(std::string input_value) = 0;
         virtual std::string build_name(std::string input_value);
@@ -37,6 +38,7 @@ class InputGroup : public Input
     public:
         InputGroup(std::vector<Input*> list_inputs);
         ~InputGroup();
+        std::string get_top_additional_text();
         std::string get_text();
         bool is_valid(std::string input_value);
         std::string build_name(std::string input_value);
@@ -155,8 +157,10 @@ class InputNumFiguresWithOptions : public InputGroup
 /** GAME **/
 class InputInsertRemoveFigure : public InputChoice
 {
+    Puzzle puzzle;
     public:
-        InputInsertRemoveFigure();
+        InputInsertRemoveFigure(Puzzle puzzle);
+        std::string get_top_additional_text();
 };
 
 class InputFigureToInsert : public InputFormat
@@ -164,12 +168,16 @@ class InputFigureToInsert : public InputFormat
     Puzzle puzzle;
     public:
         InputFigureToInsert(Puzzle puzzle);
+        std::string get_top_additional_text();
 };
 
 class InputFigureRotations : public InputFormat
 {
+    Puzzle puzzle;
+    int figure_number;
     public:
-        InputFigureRotations();
+        InputFigureRotations(Puzzle puzzle, int figure_number);
+        std::string get_top_additional_text();
 };
 
 class InputFigurePosition : public InputFormat
@@ -178,6 +186,7 @@ class InputFigurePosition : public InputFormat
     int figure_number;
     public:
         InputFigurePosition(Puzzle puzzle, int figure_number);
+        std::string get_top_additional_text();
 };
 
 class InputFigureToRemove : public InputFormat
@@ -185,12 +194,13 @@ class InputFigureToRemove : public InputFormat
     Puzzle puzzle;
     public:
         InputFigureToRemove(Puzzle puzzle);
+        std::string get_top_additional_text();
 };
 
 class InputInsertRemoveFigureWithOptions : public InputGroup
 {
     public:
-        InputInsertRemoveFigureWithOptions();
+        InputInsertRemoveFigureWithOptions(Puzzle puzzle);
 };
 
 class InputFigureToInsertWithOptions : public InputGroup
@@ -203,7 +213,7 @@ class InputFigureToInsertWithOptions : public InputGroup
 class InputFigureRotationsWithOptions : public InputGroup
 {
     public:
-        InputFigureRotationsWithOptions();
+        InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
 };
 
 class InputFigurePositionWithOptions : public InputGroup
