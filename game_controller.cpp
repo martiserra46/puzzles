@@ -4,5 +4,5 @@
 
 void GameController::play(Puzzle puzzle)
 {
-    std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
+    std::cout << DrawingGenerator::generate_puzzle_drawing(puzzle) << std::endl;
 }
