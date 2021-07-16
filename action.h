@@ -153,6 +153,14 @@ class ActionFigureToRemove : public Action
         bool do_action(std::string name, Bundle bundle);
 };
 
+class ActionPlayAgain : public Action
+{
+    Puzzle *puzzle;
+    public:
+        ActionPlayAgain(Puzzle *puzzle);
+        bool do_action(std::string name, Bundle bundle);
+};
+
 class ActionInsertRemoveFigureWithOptions : public ActionGroup
 {
     public:

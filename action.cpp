@@ -269,6 +269,24 @@ bool ActionFigureToRemove::do_action(std::string name, Bundle bundle)
     return false;
 }
 
+ActionPlayAgain::ActionPlayAgain(Puzzle *puzzle) : puzzle(puzzle) {}
+
+bool ActionPlayAgain::do_action(std::string name, Bundle bundle)
+{
+    if (name == "play")
+    {
+        InputActionSelectGenerate input_action;
+        input_action.do_input_action();
+        return true;
+    }
+    else if (name == "exit")
+    {
+        quit();
+        return true;
+    }
+    return false;
+}
+
 ActionInsertRemoveFigureWithOptions::ActionInsertRemoveFigureWithOptions(Puzzle *puzzle) : ActionGroup(
     {
         new ActionInsertRemoveFigure(puzzle),

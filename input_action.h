@@ -78,4 +78,10 @@ class InputActionFigureToRemove : public InputAction
         InputActionFigureToRemove(Puzzle *puzzle);
 };
 
+class InputActionPlayAgain : public InputAction
+{
+    public:
+        InputActionPlayAgain(Puzzle *puzzle);
+};
+
 #endif

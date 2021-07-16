@@ -398,6 +398,19 @@ std::string InputFigureToRemove::get_top_additional_text()
     return drawing;
 }
 
+/** InputPlayAgain **/
+InputPlayAgain::InputPlayAgain(Puzzle *puzzle) : InputChoice(
+    "Play again or Exit",
+    {{"Play again", "play"}, {"Exit", "exit"}}
+), puzzle(puzzle) {}
+
+std::string InputPlayAgain::get_top_additional_text()
+{
+    std::string drawing;
+    drawing += DrawingGenerator::generate_puzzle_drawing(*puzzle) + "\n";
+    return drawing;
+}
+
 /** InputInsertRemoveFigureWithOptions **/
 InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions(Puzzle *puzzle) : InputGroup(
     {

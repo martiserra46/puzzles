@@ -198,6 +198,14 @@ class InputFigureToRemove : public InputFormat
         std::string get_top_additional_text();
 };
 
+class InputPlayAgain : public InputChoice
+{
+    Puzzle *puzzle;
+    public:
+        InputPlayAgain(Puzzle *puzzle);
+        std::string get_top_additional_text();
+};
+
 class InputInsertRemoveFigureWithOptions : public InputGroup
 {
     public:

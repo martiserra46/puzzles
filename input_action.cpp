@@ -79,3 +79,9 @@ InputActionFigureToRemove::InputActionFigureToRemove(Puzzle *puzzle) : InputActi
     new InputFigureToRemoveWithOptions(puzzle),
     new ActionFigureToRemoveWithOptions(puzzle)
 ) {}
+
+/** InputActionPlayAgain **/
+InputActionPlayAgain::InputActionPlayAgain(Puzzle *puzzle) : InputAction(
+    new InputPlayAgain(puzzle),
+    new ActionPlayAgain(puzzle)
+) {}
