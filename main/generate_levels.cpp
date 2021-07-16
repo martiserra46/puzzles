@@ -1,5 +1,5 @@
-#include "puzzle_generator.h"
-#include "puzzles_file_manager.h"
+#include "../puzzle_generator.h"
+#include "../puzzles_file_manager.h"
 #include <vector>
 
 int main()

@@ -6,11 +6,11 @@ puzzle: main.o bundle.o text_utils.o number_utils.o system_utils.o vector_utils.
 generate_levels: generate_levels.o puzzle.o grid.o figure.o position.o puzzle_generator.o puzzles_file_manager.o number_utils.o vector_utils.o
 	g++ generate_levels.o puzzle.o grid.o figure.o position.o puzzle_generator.o puzzles_file_manager.o number_utils.o vector_utils.o -o generate_levels -std=c++11
 
-main.o: main.cpp
-	g++ -c main.cpp -std=c++11
+main.o: main/main.cpp
+	g++ -c main/main.cpp -std=c++11
 
-generate_levels.o: generate_levels.cpp
-	g++ -c generate_levels.cpp -std=c++11
+generate_levels.o: main/generate_levels.cpp
+	g++ -c main/generate_levels.cpp -std=c++11
 
 bundle.o: bundle.cpp
 	g++ -c bundle.cpp -std=c++11
