@@ -88,12 +88,12 @@ std::string DrawingGenerator::generate_drawing(const Grid &grid)
 std::string DrawingGenerator::generate_drawing(const std::vector<Figure> figures)
 {
     std::string drawing;
-    drawing += "\n";
     for (int i = 0; i < figures.size(); i++)
     {
         const Figure &figure = figures[i];
+        drawing += "\n";
         drawing += text_after_chars(std::to_string(i + 1), ' ', TEXT_LEFT_MARGIN + 1) + ".\n\n";
-        drawing += generate_drawing(figure) + "\n\n";
+        drawing += generate_drawing(figure) + "\n";
     }
     return drawing;
 }
