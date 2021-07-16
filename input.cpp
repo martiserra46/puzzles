@@ -307,6 +307,19 @@ InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
     this->puzzle = puzzle;
 }
 
+/** InputFigureRotations **/
+InputFigureRotations::InputFigureRotations(Puzzle puzzle, int figure_number) : InputFormat(
+    "Figure Rotations",
+    "num-rotations",
+    new InputNumberValidator(1, puzzle.get_const_placed_figures().size()),
+    new InputNumberConverter("num-rotations"),
+    "num-rotations has to be between 0 and 3.",
+    "(ex: " + std::to_string(random(0, 3)) + ")"
+) {
+    this->puzzle = puzzle;
+    this->figure_number = figure_number;
+}
+
 /** InputFigureToRemove **/
 InputFigureToRemove::InputFigureToRemove(Puzzle puzzle) : InputFormat(
     "Figure to remove",
@@ -331,6 +344,15 @@ InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : Input
 InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : InputGroup(
     {
         new InputFigureToInsert(puzzle),
+        new InputExitRestart()
+    }
+) {}
+
+/** InputFigureRotationsWithOptions **/
+InputFigureRotationsWithOptions::InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : InputGroup(
+    {
+        new InputFigureRotations(puzzle, figure_number),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}

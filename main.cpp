@@ -15,7 +15,7 @@ int main()
     Puzzle puzzle = PuzzleGenerator::generate_puzzle(5, 5, 5);
     puzzle.insert_figure({0,0}, 0);
     //std::cout << DrawingGenerator::generate_drawing(puzzle) << std::endl;
-    InputFigureToRemoveWithOptions input(puzzle);
+    InputFigureRotationsWithOptions input(puzzle, 0);
     input.input();
 
     return 0;

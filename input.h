@@ -166,6 +166,14 @@ class InputFigureToInsert : public InputFormat
         InputFigureToInsert(Puzzle puzzle);
 };
 
+class InputFigureRotations : public InputFormat
+{
+    Puzzle puzzle;
+    int figure_number;
+    public:
+        InputFigureRotations(Puzzle puzzle, int figure_number);
+};
+
 class InputFigureToRemove : public InputFormat
 {
     Puzzle puzzle;
@@ -184,6 +192,14 @@ class InputFigureToInsertWithOptions : public InputGroup
     Puzzle puzzle;
     public:
         InputFigureToInsertWithOptions(Puzzle puzzle);
+};
+
+class InputFigureRotationsWithOptions : public InputGroup
+{
+    Puzzle puzzle;
+    int figure_number;
+    public:
+        InputFigureRotationsWithOptions(Puzzle puzzle, int figure_number);
 };
 
 class InputFigureToRemoveWithOptions : public InputGroup
