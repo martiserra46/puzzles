@@ -10,10 +10,9 @@
 std::string DrawingGenerator::generate_puzzle_drawing(const Puzzle &puzzle)
 {
     std::string drawing;
-    drawing += generate_grid_drawing(puzzle);
-    drawing += generate_placed_figures_drawing(puzzle);
-    drawing += generate_not_placed_figures_drawing(puzzle);
-    drawing += "\n";
+    drawing += generate_grid_drawing(puzzle) + "\n";
+    drawing += generate_placed_figures_drawing(puzzle) + "\n";
+    drawing += generate_not_placed_figures_drawing(puzzle) + "\n";
     return drawing;
 }
 
@@ -22,8 +21,6 @@ std::string DrawingGenerator::generate_grid_drawing(const Puzzle &puzzle)
     size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
 
     std::string drawing;
-
-    drawing += "\n";
 
     drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Grid"), ' ', title_width) + "\n";
     
@@ -37,8 +34,6 @@ std::string DrawingGenerator::generate_placed_figures_drawing(const Puzzle &puzz
     size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
 
     std::string drawing;
-
-    drawing += "\n";
     
     drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Placed Figures"), ' ', title_width) + "\n";
     
@@ -57,8 +52,6 @@ std::string DrawingGenerator::generate_not_placed_figures_drawing(const Puzzle &
     size_t title_width = puzzle.get_width() * (GRID_CELL_WIDTH + 1) + 1;
 
     std::string drawing;
-
-    drawing += "\n";
 
     drawing += std::string(GRID_LEFT_MARGIN, ' ') + text_between_chars(get_formatted_title("Not Placed Figures"), ' ', title_width) + "\n\n";
 

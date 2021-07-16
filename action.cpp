@@ -1,6 +1,8 @@
 #include "action.h"
 #include "system_utils.h"
 #include "main_menu_controller.h"
+#include "drawing_generator.h"
+#include <iostream>
 
 /** ActionGroup **/
 ActionGroup::ActionGroup(std::vector<Action*> actions) : actions(actions) {}
@@ -207,6 +209,26 @@ ActionInsertRemoveFigure::ActionInsertRemoveFigure(Puzzle puzzle)
 
 bool ActionInsertRemoveFigure::do_action(std::string name, Bundle bundle)
 {
+    if (name == "i")
+    {
+        clear_screen();
+        std::cout << std::endl;
+        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
+        std::cout << DrawingGenerator::generate_not_placed_figures_drawing(puzzle) << std::endl;
+        InputActionFigureToInsert input_action(puzzle);
+        input_action.do_input_action();
+        return true;
+    }
+    else if (name == "r")
+    {
+        clear_screen();
+        std::cout << std::endl;
+        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
+        std::cout << DrawingGenerator::generate_placed_figures_drawing(puzzle) << std::endl;
+        InputActionFigureToRemove input_action(puzzle);
+        input_action.do_input_action();
+        return true;
+    }
     return false;
 }
 
@@ -217,6 +239,17 @@ ActionFigureToInsert::ActionFigureToInsert(Puzzle puzzle)
 
 bool ActionFigureToInsert::do_action(std::string name, Bundle bundle)
 {
+    if (name == "figure-number")
+    {
+        int figure_number = bundle.get_int("figure-number") - 1;
+        clear_screen();
+        std::cout << std::endl;
+        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
+        std::cout << DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) << std::endl;
+        InputActionFigureRotations input_action(puzzle, figure_number);
+        input_action.do_input_action();
+        return true;
+    }
     return false;
 }
 
@@ -229,9 +262,20 @@ ActionFigureRotations::ActionFigureRotations(Puzzle puzzle, int figure_number)
 
 bool ActionFigureRotations::do_action(std::string name, Bundle bundle)
 {
+    if (name == "num-rotations")
+    {
+        int num_rotations = bundle.get_int("num-rotations");
+        puzzle.rotate_figure(figure_number, num_rotations);
+        clear_screen();
+        std::cout << std::endl;
+        std::cout << DrawingGenerator::generate_grid_drawing(puzzle) << std::endl;
+        std::cout << DrawingGenerator::generate_figure_drawing(puzzle, false, figure_number) << std::endl;
+        InputActionFigurePosition input_action(puzzle, figure_number);
+        input_action.do_input_action();
+        return true;
+    }
     return false;
 }
-
 
 ActionFigurePosition::ActionFigurePosition(Puzzle puzzle, int figure_number)
 {
@@ -241,6 +285,13 @@ ActionFigurePosition::ActionFigurePosition(Puzzle puzzle, int figure_number)
 
 bool ActionFigurePosition::do_action(std::string name, Bundle bundle)
 {
+    if (name == "row,column")
+    {
+        Position position = { bundle.get_int("row"), bundle.get_int("column") };
+        puzzle.insert_figure(position, figure_number);
+        clear_screen();
+        return true;
+    }
     return false;
 }
 
@@ -251,6 +302,13 @@ ActionFigureToRemove::ActionFigureToRemove(Puzzle puzzle)
 
 bool ActionFigureToRemove::do_action(std::string name, Bundle bundle)
 {
+    if (name == "figure-number")
+    {
+        int figure_number = bundle.get_int("figure-number") - 1;
+        puzzle.remove_figure(figure_number);
+        clear_screen();
+        return true;
+    }
     return false;
 }
 
@@ -264,6 +322,7 @@ ActionInsertRemoveFigureWithOptions::ActionInsertRemoveFigureWithOptions(Puzzle 
 ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle puzzle) : ActionGroup(
     {
         new ActionFigureToInsert(puzzle),
+        new ActionBack(new InputActionInsertRemoveFigure(puzzle)),
         new ActionExitRestart()
     }
 ) {}
@@ -271,6 +330,7 @@ ActionFigureToInsertWithOptions::ActionFigureToInsertWithOptions(Puzzle puzzle) 
 ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
     {
         new ActionFigureRotations(puzzle, figure_number),
+        new ActionBack(new InputActionFigureToInsert(puzzle)),
         new ActionExitRestart()
     }
 ) {}
@@ -278,6 +338,7 @@ ActionFigureRotationsWithOptions::ActionFigureRotationsWithOptions(Puzzle puzzle
 ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle puzzle, int figure_number) : ActionGroup(
     {
         new ActionFigurePosition(puzzle, figure_number),
+        new ActionBack(new InputActionFigureRotations(puzzle, figure_number)),
         new ActionExitRestart()
     }
 ) {}
@@ -285,6 +346,7 @@ ActionFigurePositionWithOptions::ActionFigurePositionWithOptions(Puzzle puzzle, 
 ActionFigureToRemoveWithOptions::ActionFigureToRemoveWithOptions(Puzzle puzzle) : ActionGroup(
     {
         new ActionFigureToRemove(puzzle),
+        new ActionBack(new InputActionInsertRemoveFigure(puzzle)),
         new ActionExitRestart()
     }
 ) {}

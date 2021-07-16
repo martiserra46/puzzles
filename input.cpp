@@ -354,6 +354,7 @@ InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : Input
 InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : InputGroup(
     {
         new InputFigureToInsert(puzzle),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
@@ -380,6 +381,7 @@ InputFigurePositionWithOptions::InputFigurePositionWithOptions(Puzzle puzzle, in
 InputFigureToRemoveWithOptions::InputFigureToRemoveWithOptions(Puzzle puzzle) : InputGroup(
     {
         new InputFigureToRemove(puzzle),
+        new InputBack(),
         new InputExitRestart()
     }
 ) {}
