@@ -307,6 +307,18 @@ InputFigureToInsert::InputFigureToInsert(Puzzle puzzle) : InputFormat(
     this->puzzle = puzzle;
 }
 
+/** InputFigureToRemove **/
+InputFigureToRemove::InputFigureToRemove(Puzzle puzzle) : InputFormat(
+    "Figure to remove",
+    "figure-number",
+    new InputNumberValidator(1, puzzle.get_const_placed_figures().size()),
+    new InputNumberConverter("figure-number"),
+    "figure-number has to be between 1 and " + std::to_string(puzzle.get_const_placed_figures().size()) + ".",
+    "(ex: " + std::to_string(random(1, puzzle.get_const_placed_figures().size())) + ")"
+) {
+    this->puzzle = puzzle;
+}
+
 /** InputInsertRemoveFigureWithOptions **/
 InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : InputGroup(
     {
@@ -319,6 +331,14 @@ InputInsertRemoveFigureWithOptions::InputInsertRemoveFigureWithOptions() : Input
 InputFigureToInsertWithOptions::InputFigureToInsertWithOptions(Puzzle puzzle) : InputGroup(
     {
         new InputFigureToInsert(puzzle),
+        new InputExitRestart()
+    }
+) {}
+
+/** InputFigureToRemoveWithOptions **/
+InputFigureToRemoveWithOptions::InputFigureToRemoveWithOptions(Puzzle puzzle) : InputGroup(
+    {
+        new InputFigureToRemove(puzzle),
         new InputExitRestart()
     }
 ) {}

@@ -166,6 +166,13 @@ class InputFigureToInsert : public InputFormat
         InputFigureToInsert(Puzzle puzzle);
 };
 
+class InputFigureToRemove : public InputFormat
+{
+    Puzzle puzzle;
+    public:
+        InputFigureToRemove(Puzzle puzzle);
+};
+
 class InputInsertRemoveFigureWithOptions : public InputGroup
 {
     public:
@@ -177,6 +184,13 @@ class InputFigureToInsertWithOptions : public InputGroup
     Puzzle puzzle;
     public:
         InputFigureToInsertWithOptions(Puzzle puzzle);
+};
+
+class InputFigureToRemoveWithOptions : public InputGroup
+{
+    Puzzle puzzle;
+    public:
+        InputFigureToRemoveWithOptions(Puzzle puzzle);
 };
 
 #endif
